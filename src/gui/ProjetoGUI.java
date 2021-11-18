@@ -1,29 +1,29 @@
 package gui;
 
-import dao.UsuarioDAO;
+import dao.ProjetoDAO;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.ModelTable;
-import modelo.Usuario;
+import modelo.Projeto;
 
-public class UsuarioGUI extends javax.swing.JFrame {
+public class ProjetoGUI extends javax.swing.JFrame {
 
-    private Usuario objUsuario;
-    private UsuarioDAO objDAO;
+    private Projeto objProjeto;
+    private ProjetoDAO objDAO;
     private boolean buscar = false;
     
     /**
-     * Creates new form UsuarioGUI
+     * Creates new form ProjetoGUI
      */
-    public UsuarioGUI() {
+    public ProjetoGUI() {
 
         initComponents();
 
         //Centralizando a janela
         this.setLocationRelativeTo(null);
         // Impede que a janela seja redimencionada 
-        this.setResizable(false);
+        // this.setResizable(false);
         // Trocando cursor para HAND CURSOR(Maozinha)
         // jButtonRefresh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         // Variavel con recebendo a conexao
@@ -32,43 +32,43 @@ public class UsuarioGUI extends javax.swing.JFrame {
 
     // Metodo que realiza conexao com o banco, faz uma instrucao Query(select)
     // para jogar na JTable atraves do modelo de tabela (ModelTabel.java)
-    public void carregarTable(Usuario objUsuario) {
+    public void carregarTable(Projeto objProjeto) {
 
-        objDAO = new UsuarioDAO();
+        objDAO = new ProjetoDAO();
         ArrayList dados = new ArrayList();
         if (buscar) {
-            dados = objDAO.buscar(objUsuario);
+            dados = objDAO.buscar(objProjeto);
         } else {
-            objUsuario = new Usuario();
+            objProjeto = new Projeto();
             dados = objDAO.listarTodos();
         }
-        String[] colunas = objUsuario.getColunas();
+        String[] colunas = objProjeto.getColunas();
 
         ModelTable modelo = new ModelTable(dados, colunas);
 
-        tbListagemUsuario.setModel(modelo);
-        tbListagemUsuario.getColumnModel().getColumn(0).setPreferredWidth(80);
-        tbListagemUsuario.getColumnModel().getColumn(0).setResizable(false);
-        tbListagemUsuario.getColumnModel().getColumn(1).setPreferredWidth(120);
-        tbListagemUsuario.getColumnModel().getColumn(1).setResizable(false);
-        tbListagemUsuario.getColumnModel().getColumn(2).setPreferredWidth(250);
-        tbListagemUsuario.getColumnModel().getColumn(2).setResizable(false);
-        tbListagemUsuario.getTableHeader().setReorderingAllowed(false);
-        //  tbListagemUsuario.setAutoResizeMode(tbListagemUsuario.AUTO_RESIZE_ALL_COLUMNS);
-        // tbListagemUsuario.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        tbListagemProjeto.setModel(modelo);
+        tbListagemProjeto.getColumnModel().getColumn(0).setPreferredWidth(80);
+        tbListagemProjeto.getColumnModel().getColumn(0).setResizable(false);
+        tbListagemProjeto.getColumnModel().getColumn(1).setPreferredWidth(120);
+        tbListagemProjeto.getColumnModel().getColumn(1).setResizable(false);
+        tbListagemProjeto.getColumnModel().getColumn(2).setPreferredWidth(250);
+        tbListagemProjeto.getColumnModel().getColumn(2).setResizable(false);
+        tbListagemProjeto.getTableHeader().setReorderingAllowed(false);
+        //  tbListagemProjeto.setAutoResizeMode(tbListagemProjeto.AUTO_RESIZE_ALL_COLUMNS);
+        // tbListagemProjeto.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
     // Metodo responsavel por selecionar um registro ao clicar ou seguir com as setas do teclado
     // na JTable, e realizar a vinculacao do mesmo nos TextFields
     public void selectRegistryTable() {
 
-        txtID.setText(tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 0).toString());
+        txtID.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 0).toString());
 
-        //Object objNome = tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 1);
-        txtNome.setText(tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 1).toString());
-        txtCPF.setText(tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 2).toString());
-        txtEmail.setText(tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 3).toString());
-        txtTelefone.setText(tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 4).toString());
+        //Object objNome = tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 1);
+        txtNome.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 1).toString());
+        txtDescricao.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 2).toString());
+        txtEmail.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 3).toString());
+        txtTelefone.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 4).toString());
     }
 
     /**
@@ -83,7 +83,7 @@ public class UsuarioGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        txtCPF = new javax.swing.JTextField();
+        txtDescricao = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         txtTelefone = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
@@ -92,20 +92,17 @@ public class UsuarioGUI extends javax.swing.JFrame {
         tbnLimpar = new javax.swing.JButton();
         tbnSalvar = new javax.swing.JButton();
         tbnExit = new javax.swing.JButton();
-        tbnExit1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbListagemUsuario = new javax.swing.JTable();
+        tbListagemProjeto = new javax.swing.JTable();
         txtID = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         btnDeletar = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
-        btAbreProjetos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("CADASTRO DE USUÁRIOS");
+        jLabel1.setText("Cadastro de Projeto");
 
         jLabel2.setText("Nome");
 
@@ -115,13 +112,13 @@ public class UsuarioGUI extends javax.swing.JFrame {
             }
         });
 
-        txtCPF.addActionListener(new java.awt.event.ActionListener() {
+        txtDescricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCPFActionPerformed(evt);
+                txtDescricaoActionPerformed(evt);
             }
         });
 
-        jLabel3.setText("CPF");
+        jLabel3.setText("Descrição");
 
         jLabel4.setText("Telefone");
 
@@ -148,14 +145,7 @@ public class UsuarioGUI extends javax.swing.JFrame {
             }
         });
 
-        tbnExit1.setText("Testar Conexão");
-        tbnExit1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbnExit1ActionPerformed(evt);
-            }
-        });
-
-        tbListagemUsuario.setModel(new javax.swing.table.DefaultTableModel(
+        tbListagemProjeto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -163,7 +153,7 @@ public class UsuarioGUI extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "CPF", "Email", "Telefone"
+                "ID", "Nome", "Descrição", "Email", "Telefone"
             }
         ) {
             Class[] types = new Class [] {
@@ -181,12 +171,12 @@ public class UsuarioGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbListagemUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbListagemProjeto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbListagemUsuarioMouseClicked(evt);
+                tbListagemProjetoMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tbListagemUsuario);
+        jScrollPane1.setViewportView(tbListagemProjeto);
 
         txtID.setEditable(false);
 
@@ -199,20 +189,10 @@ public class UsuarioGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel7.setText("Com MySQL");
-
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
-            }
-        });
-
-        btAbreProjetos.setText("Tela Projetos");
-        btAbreProjetos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAbreProjetosActionPerformed(evt);
             }
         });
 
@@ -230,8 +210,7 @@ public class UsuarioGUI extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jLabel1))
@@ -243,7 +222,7 @@ public class UsuarioGUI extends javax.swing.JFrame {
                                         .addComponent(jLabel4)
                                         .addComponent(jLabel5)
                                         .addComponent(txtNome)
-                                        .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtEmail)
                                         .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
@@ -252,14 +231,10 @@ public class UsuarioGUI extends javax.swing.JFrame {
                                         .addComponent(tbnLimpar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnDeletar)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tbnExit1, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(btnBuscar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tbnExit))
-                                    .addComponent(btAbreProjetos))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                                .addComponent(btnBuscar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(tbnExit)))
                         .addGap(86, 86, 86))))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -271,27 +246,21 @@ public class UsuarioGUI extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
-                .addGap(8, 8, 8)
+                .addComponent(jLabel6)
+                .addGap(15, 15, 15)
                 .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tbnExit1))
+                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAbreProjetos))
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -304,7 +273,7 @@ public class UsuarioGUI extends javax.swing.JFrame {
                     .addComponent(btnDeletar)
                     .addComponent(btnBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
         );
 
         pack();
@@ -314,26 +283,26 @@ public class UsuarioGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNomeActionPerformed
 
-    private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
+    private void txtDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCPFActionPerformed
+    }//GEN-LAST:event_txtDescricaoActionPerformed
 
     private void tbnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnSalvarActionPerformed
 
-        objUsuario = new Usuario();
-        objUsuario.setId(txtID.getText());
-        objUsuario.setNome(txtNome.getText());
-        objUsuario.setCpf(txtCPF.getText());
-        objUsuario.setEmail(txtEmail.getText());
-        objUsuario.setTelefone(txtTelefone.getText());
+        objProjeto = new Projeto();
+        objProjeto.setId(txtID.getText());
+        objProjeto.setNome(txtNome.getText());
+        objProjeto.setDescricao(txtDescricao.getText());
+        objProjeto.setEmail(txtEmail.getText());
+        objProjeto.setTelefone(txtTelefone.getText());
 
         // fazendo a valida��o dos dados
-        if ((txtNome.getText().isEmpty()) || (txtCPF.getText().isEmpty()) || (txtEmail.getText().isEmpty()) || (txtTelefone.getText().isEmpty())) {
+        if ((txtNome.getText().isEmpty()) || (txtDescricao.getText().isEmpty()) || (txtEmail.getText().isEmpty()) || (txtTelefone.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Informe valores para os campos");
         } else {
-            // instanciando a classe UsuarioDAO do pacote dao e criando seu objeto dao
-            objDAO = new UsuarioDAO();
-            objDAO.salvar(objUsuario);
+            // instanciando a classe ProjetoDAO do pacote dao e criando seu objeto dao
+            objDAO = new ProjetoDAO();
+            objDAO.salvar(objProjeto);
             JOptionPane.showMessageDialog(null, "Usu�rio " + txtNome.getText() + " inserido com sucesso! ");
         }
 
@@ -352,29 +321,21 @@ public class UsuarioGUI extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_tbnExitActionPerformed
 
-    private void tbnExit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnExit1ActionPerformed
-        try {
-            UsuarioDAO.testarConexao();
-        } catch (SQLException ex) {
-            ex.getMessage();
-        }
-    }//GEN-LAST:event_tbnExit1ActionPerformed
-
-    private void tbListagemUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListagemUsuarioMouseClicked
+    private void tbListagemProjetoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListagemProjetoMouseClicked
         // TODO add your handling code here:
         selectRegistryTable();
-    }//GEN-LAST:event_tbListagemUsuarioMouseClicked
+    }//GEN-LAST:event_tbListagemProjetoMouseClicked
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        objUsuario.setId(txtID.getText());
+        objProjeto.setId(txtID.getText());
 
         // fazendo a valida��o dos dados
         if ((txtID.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Informe valores para os campos");
         } else {
-            // instanciando a classe UsuarioDAO do pacote dao e criando seu objeto dao
-            objDAO = new UsuarioDAO();
-            objDAO.deletar(objUsuario);
+            // instanciando a classe ProjetoDAO do pacote dao e criando seu objeto dao
+            objDAO = new ProjetoDAO();
+            objDAO.deletar(objProjeto);
             JOptionPane.showMessageDialog(null, "Usu�rio Removido com Sucesso! ");
         }
 
@@ -385,16 +346,16 @@ public class UsuarioGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        objUsuario = new Usuario();
-        objUsuario.setNome(txtNome.getText());
-        objUsuario.setCpf(txtCPF.getText());
+        objProjeto = new Projeto();
+        objProjeto.setNome(txtNome.getText());
+        objProjeto.setDescricao(txtDescricao.getText());
 
         // fazendo a valida��o dos dados
-        if ((!txtNome.getText().isEmpty()) || (!txtCPF.getText().isEmpty())) {
-            // instanciando a classe UsuarioDAO do pacote dao e criando seu objeto dao
-            objDAO = new UsuarioDAO();
+        if ((!txtNome.getText().isEmpty()) || (!txtDescricao.getText().isEmpty())) {
+            // instanciando a classe ProjetoDAO do pacote dao e criando seu objeto dao
+            objDAO = new ProjetoDAO();
             buscar = true;
-            carregarTable(objUsuario);
+            carregarTable(objProjeto);
         }else{
             buscar = false;
             carregarTable(null);
@@ -404,59 +365,16 @@ public class UsuarioGUI extends javax.swing.JFrame {
         setClear();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btAbreProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbreProjetosActionPerformed
-        // TODO abrir tela projeto 
-        
-        new ProjetoGUI().setVisible(true);
-        
-    }//GEN-LAST:event_btAbreProjetosActionPerformed
-
     public void setClear() {
         txtID.setText(null);
         txtNome.setText(null);
-        txtCPF.setText(null);
+        txtDescricao.setText(null);
         txtEmail.setText(null);
         txtTelefone.setText(null);
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UsuarioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UsuarioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UsuarioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UsuarioGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UsuarioGUI().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btAbreProjetos;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnDeletar;
     private javax.swing.JLabel jLabel1;
@@ -465,14 +383,12 @@ public class UsuarioGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tbListagemUsuario;
+    private javax.swing.JTable tbListagemProjeto;
     private javax.swing.JButton tbnExit;
-    private javax.swing.JButton tbnExit1;
     private javax.swing.JButton tbnLimpar;
     private javax.swing.JButton tbnSalvar;
-    private javax.swing.JTextField txtCPF;
+    private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNome;

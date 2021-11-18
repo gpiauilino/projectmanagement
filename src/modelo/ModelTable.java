@@ -1,8 +1,7 @@
 package modelo;
 
 /*
- *
- * fonte: http://devsv.wordpress.com/2012/07/08/como-implementar-um-tablemodel/
+ * 
  */
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;

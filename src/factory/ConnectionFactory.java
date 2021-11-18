@@ -27,9 +27,9 @@ public class ConnectionFactory {
 //        }
 //        
         try {
-            //return DriverManager.getConnection("jdbc:mysql://localhost/db_usuario?" + "user=root&password=fn0rd");
+            //return DriverManager.getConnection("jdbc:mysql://localhost/db_projusu?" + "user=root&password=fn0rd");
 
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/db_usuario", "root", "fn0rd");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/db_projusu", "root", "fn0rd");
         } catch (SQLException excecao) {
             throw new RuntimeException(excecao);
         }
