@@ -15,12 +15,12 @@ public class CheckMysqlConnector {
         
     public static void main(String[] args){
     
-        String className = "";
+        String className = "com.mysql.jdbc.Driver";
         try {
             Class.forName(className);
-            System.out.println("Driver loaded Sucessfully");
+            System.out.println("Driver carregou com sucesso.");
         } catch (ClassNotFoundException ex) {
-            System.out.println("Driver failed to load Sucessfully");
+            System.out.println("Driver falhou em carregar.");
             System.out.println(ex.getMessage());
         }
         
