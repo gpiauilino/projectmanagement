@@ -13,7 +13,7 @@ import modelo.Requisito;
 public class FormRequisito extends javax.swing.JFrame {
     
     Requisito objRequisito = new Requisito();
-    objRequisito.setIdRequisito(txtRequisitoId.getText());
+    Requisito.setIdRequisito(txtRequisitoId.getText());
 
     /**
      * Creates new form FormRequisito
