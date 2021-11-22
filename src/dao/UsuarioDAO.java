@@ -141,8 +141,17 @@ public class UsuarioDAO {
 
     public static void testarConexao() throws SQLException {
         try (Connection objConnection = new ConnectionFactory().getConnection()) {
-            JOptionPane.showMessageDialog(null, "Conex�o realizada com sucesso! ");
+            JOptionPane.showMessageDialog(null, "Conexão realizada com sucesso! ");
         }
     }
 
+    public static boolean confirmarConexao() {
+        Connection objConnection = new ConnectionFactory().getConnection();
+        if (objConnection != null) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
 }

@@ -1,11 +1,11 @@
-// situa em qual package ou ?pacote? est� a classe 
+// situa em qual package ou ?pacote? está a classe 
 package factory;
-// faz as importa��es de classes necess�rias para o funcionamento do programa 
+// faz as importações de classes necessárias para o funcionamento do programa 
 
 import java.sql.Connection;
-// conex�o SQL para Java 
+// conexao SQL para Java 
 import java.sql.DriverManager;
-// driver de conex�o SQL para Java 
+// driver de conexao SQL para Java 
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,9 +29,11 @@ public class ConnectionFactory {
         try {
             //return DriverManager.getConnection("jdbc:mysql://localhost/db_projusu?" + "user=root&password=fn0rd");
 
-            return DriverManager.getConnection("jdbc:mysql://localhost:3306/db_projusu", "root", "fn0rd");
+            return DriverManager.getConnection("jdbc:mysql://localhost:3306/db_projusu", "root", "x");
         } catch (SQLException excecao) {
-            throw new RuntimeException(excecao);
+            System.out.println("Erro de conex" + excecao.getMessage());
+            //throw new RuntimeException(excecao);
         }
+        return null;
      }
 }
