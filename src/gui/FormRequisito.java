@@ -2,13 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package JFrames;
+package gui;
+
+import modelo.Requisito;
 
 /**
  *
  * @author Daniel Gomes
  */
 public class FormRequisito extends javax.swing.JFrame {
+    
+    Requisito objRequisito = new Requisito();
+    objRequisito.setIdRequisito(txtRequisitoId.getText());
 
     /**
      * Creates new form FormRequisito
@@ -46,7 +51,7 @@ public class FormRequisito extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtRequisitoId = new javax.swing.JTextField();
         jTextFieldNomeRequisito = new javax.swing.JTextField();
         jTextFieldModulo = new javax.swing.JTextField();
         jTextFieldVersao = new javax.swing.JTextField();
@@ -72,10 +77,10 @@ public class FormRequisito extends javax.swing.JFrame {
         jLabel1.setText("Id");
 
         jLabelRequisito.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabelRequisito.setText("Gerenciador de Requisito");
+        jLabelRequisito.setText("Adicionar Requisito");
 
         jLabelDescricaoProjeto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabelDescricaoProjeto.setText("Descrição do Projeto");
+        jLabelDescricaoProjeto.setText("Nome do Projeto");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Nome");
@@ -119,20 +124,30 @@ public class FormRequisito extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel17.setText("Descrição");
 
-        jTextField1.setEditable(false);
-        jTextField1.setText("0001");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtRequisitoId.setEditable(false);
+        txtRequisitoId.setText("0001");
+        txtRequisitoId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtRequisitoIdActionPerformed(evt);
             }
         });
 
         jButtonCancelarRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonCancelarRequisito.setText("Cancelar");
         jButtonCancelarRequisito.setToolTipText("");
+        jButtonCancelarRequisito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarRequisitoActionPerformed(evt);
+            }
+        });
 
         jButtonSalvarRequisito1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButtonSalvarRequisito1.setText("Salvar");
+        jButtonSalvarRequisito1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarRequisito1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,7 +172,7 @@ public class FormRequisito extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTextFieldModulo, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jTextFieldNomeRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtRequisitoId, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jTextFieldVersao, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,7 +245,7 @@ public class FormRequisito extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jLabel10)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtRequisitoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextFieldDataCriacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -294,9 +309,23 @@ public class FormRequisito extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtRequisitoIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRequisitoIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtRequisitoIdActionPerformed
+
+    private void jButtonSalvarRequisito1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarRequisito1ActionPerformed
+        // TODO add your handling code here:
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jButtonSalvarRequisito1ActionPerformed
+
+    private void jButtonCancelarRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarRequisitoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCancelarRequisitoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -333,10 +362,16 @@ public class FormRequisito extends javax.swing.JFrame {
         });
     }
 
+    
+    
+    
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButtonCancelarRequisito;
-    private javax.swing.JButton jButtonSalvarRequisito1;
+    private static javax.swing.JButton jButtonCancelarRequisito;
+    private static javax.swing.JButton jButtonSalvarRequisito1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -356,7 +391,6 @@ public class FormRequisito extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelRequisito;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextFieldAutor;
     private javax.swing.JTextField jTextFieldAutorUltimaMod;
     private javax.swing.JTextField jTextFieldComplexidade;
@@ -371,5 +405,8 @@ public class FormRequisito extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNomeRequisito;
     private javax.swing.JTextField jTextFieldPrioridade;
     private javax.swing.JTextField jTextFieldVersao;
+    private javax.swing.JTextField txtRequisitoId;
     // End of variables declaration//GEN-END:variables
+
+
 }
