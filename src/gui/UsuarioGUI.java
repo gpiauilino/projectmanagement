@@ -10,7 +10,7 @@ import modelo.Usuario;
 public class UsuarioGUI extends javax.swing.JFrame {
 
     private Usuario objUsuario;
-    private UsuarioDAO objDAO;
+    //private UsuarioDAO objDAO;
     private boolean buscar = false;
     
     /**
@@ -34,13 +34,12 @@ public class UsuarioGUI extends javax.swing.JFrame {
     // para jogar na JTable atraves do modelo de tabela (ModelTabel.java)
     public void carregarTable(Usuario objUsuario) {
 
-        objDAO = new UsuarioDAO();
         ArrayList dados = new ArrayList();
         if (buscar) {
-            dados = objDAO.buscar(objUsuario);
+            dados = Utilitarios.usuDAO.buscar(objUsuario);
         } else {
             objUsuario = new Usuario();
-            dados = objDAO.listarTodos();
+            dados = Utilitarios.usuDAO.listarTodos();
         }
         String[] colunas = objUsuario.getColunas();
 
@@ -327,14 +326,14 @@ public class UsuarioGUI extends javax.swing.JFrame {
         objUsuario.setEmail(txtEmail.getText());
         objUsuario.setTelefone(txtTelefone.getText());
 
-        // fazendo a valida��o dos dados
+        // fazendo a validação dos dados
         if ((txtNome.getText().isEmpty()) || (txtCPF.getText().isEmpty()) || (txtEmail.getText().isEmpty()) || (txtTelefone.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Informe valores para os campos");
         } else {
             // instanciando a classe UsuarioDAO do pacote dao e criando seu objeto dao
-            objDAO = new UsuarioDAO();
-            objDAO.salvar(objUsuario);
-            JOptionPane.showMessageDialog(null, "Usu�rio " + txtNome.getText() + " inserido com sucesso! ");
+            //Msg de adição do usuário ao banco.
+            Utilitarios.usuDAO.salvar(objUsuario);
+            JOptionPane.showMessageDialog(null, "Usuario " + txtNome.getText() + " inserido com sucesso! ");
         }
 
         carregarTable(null);
@@ -373,8 +372,7 @@ public class UsuarioGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Informe valores para os campos");
         } else {
             // instanciando a classe UsuarioDAO do pacote dao e criando seu objeto dao
-            objDAO = new UsuarioDAO();
-            objDAO.deletar(objUsuario);
+            Utilitarios.usuDAO.deletar(objUsuario);
             JOptionPane.showMessageDialog(null, "Usu�rio Removido com Sucesso! ");
         }
 
@@ -392,7 +390,6 @@ public class UsuarioGUI extends javax.swing.JFrame {
         // fazendo a valida��o dos dados
         if ((!txtNome.getText().isEmpty()) || (!txtCPF.getText().isEmpty())) {
             // instanciando a classe UsuarioDAO do pacote dao e criando seu objeto dao
-            objDAO = new UsuarioDAO();
             buscar = true;
             carregarTable(objUsuario);
         }else{

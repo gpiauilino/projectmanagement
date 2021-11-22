@@ -1,5 +1,7 @@
 package modelo;
 
+//Obj Usuário
+
 public class Usuario {
 
     private String id;
@@ -11,7 +13,7 @@ public class Usuario {
 
     public Usuario() {
     }
-
+    // Construtor
     public Usuario(String id) {
         this.id = id;
     }

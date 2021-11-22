@@ -9,15 +9,15 @@ import javax.swing.JOptionPane;
 
 public class ProjetoDAO {
 
-    private Connection connection;
+    private final Connection connection;
     Long id;
     String nome;
     String descricao;
     String email;
     String telefone;
 
-    public ProjetoDAO() {
-        this.connection = new ConnectionFactory().getConnection();
+    public ProjetoDAO(Connection con) {
+        this.connection = con;
     }
 
     public void salvar(Projeto objProjeto) {

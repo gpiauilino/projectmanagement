@@ -1,5 +1,6 @@
 package dao;
 
+import gui.Inicio;
 import factory.ConnectionFactory;
 import modelo.Usuario;
 import java.sql.*;
@@ -8,16 +9,16 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class UsuarioDAO {
-
-    private Connection connection;
+    private final Connection connection;
+    
     Long id;
     String nome;
     String cpf;
     String email;
     String telefone;
-
-    public UsuarioDAO() {
-        this.connection = new ConnectionFactory().getConnection();
+    
+    public UsuarioDAO(Connection con) {
+        connection = con;
     }
 
     public void salvar(Usuario objUsuario) {
@@ -143,15 +144,5 @@ public class UsuarioDAO {
         try (Connection objConnection = new ConnectionFactory().getConnection()) {
             JOptionPane.showMessageDialog(null, "Conexão realizada com sucesso! ");
         }
-    }
-
-    public static boolean confirmarConexao() {
-        Connection objConnection = new ConnectionFactory().getConnection();
-        if (objConnection != null) {
-            return true;
-        } else {
-            return false;
-        }
-
     }
 }

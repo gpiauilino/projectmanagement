@@ -6,7 +6,7 @@ package modelo;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
-// Implementacao do modelo da minha JTable.
+// Implementacao do modelo das JTable de detalhes.
 public class ModelTable extends AbstractTableModel {
 
     private ArrayList linhas = null;
@@ -25,10 +25,12 @@ public class ModelTable extends AbstractTableModel {
         return colunas;
     }
 
+    @Override
     public int getRowCount() {
         return linhas.size();
     }
 
+    @Override
     public int getColumnCount() {
         return colunas.length;
     }
@@ -40,6 +42,7 @@ public class ModelTable extends AbstractTableModel {
     }
 
     // Retornas as informacoes na tabela
+    @Override
     public Object getValueAt(int numLinhas, int numColunas) {
 
         Object[] linha = (Object[]) getLinhas().get(numLinhas);

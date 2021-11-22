@@ -10,7 +10,7 @@ import modelo.Projeto;
 public class ProjetoGUI extends javax.swing.JFrame {
 
     private Projeto objProjeto;
-    private ProjetoDAO objDAO;
+
     private boolean buscar = false;
     
     /**
@@ -34,13 +34,12 @@ public class ProjetoGUI extends javax.swing.JFrame {
     // para jogar na JTable atraves do modelo de tabela (ModelTabel.java)
     public void carregarTable(Projeto objProjeto) {
 
-        objDAO = new ProjetoDAO();
         ArrayList dados = new ArrayList();
         if (buscar) {
-            dados = objDAO.buscar(objProjeto);
+            dados = Utilitarios.projDAO.buscar(objProjeto);
         } else {
             objProjeto = new Projeto();
-            dados = objDAO.listarTodos();
+            dados = Utilitarios.projDAO.listarTodos();
         }
         String[] colunas = objProjeto.getColunas();
 
@@ -301,8 +300,7 @@ public class ProjetoGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Informe valores para os campos");
         } else {
             // instanciando a classe ProjetoDAO do pacote dao e criando seu objeto dao
-            objDAO = new ProjetoDAO();
-            objDAO.salvar(objProjeto);
+            Utilitarios.projDAO.salvar(objProjeto);
             JOptionPane.showMessageDialog(null, "Usu�rio " + txtNome.getText() + " inserido com sucesso! ");
         }
 
@@ -334,8 +332,7 @@ public class ProjetoGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Informe valores para os campos");
         } else {
             // instanciando a classe ProjetoDAO do pacote dao e criando seu objeto dao
-            objDAO = new ProjetoDAO();
-            objDAO.deletar(objProjeto);
+            Utilitarios.projDAO.deletar(objProjeto);
             JOptionPane.showMessageDialog(null, "Usu�rio Removido com Sucesso! ");
         }
 
@@ -353,7 +350,6 @@ public class ProjetoGUI extends javax.swing.JFrame {
         // fazendo a valida��o dos dados
         if ((!txtNome.getText().isEmpty()) || (!txtDescricao.getText().isEmpty())) {
             // instanciando a classe ProjetoDAO do pacote dao e criando seu objeto dao
-            objDAO = new ProjetoDAO();
             buscar = true;
             carregarTable(objProjeto);
         }else{
