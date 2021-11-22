@@ -4,7 +4,7 @@
  */
 package gui;
 
-import modelo.Requisito;
+import modelo.Requisitos;
 
 /**
  *
@@ -12,13 +12,22 @@ import modelo.Requisito;
  */
 public class FormRequisito extends javax.swing.JFrame {
     
-    Requisito objRequisito = new Requisito();
-    objRequisito.setIdRequisito(txtRequisitoId.getText());
+    Requisitos objRequisitos;
 
     /**
      * Creates new form FormRequisito
      */
     public FormRequisito() {
+        
+    /** Problema resolvido, recortar esta parte aqui em baixo.
+     * Converter a string para integer, uma vez que ela é inteiro
+     */
+       
+        Requisitos objRequisitos = new Requisitos();
+        String text = txtRequisitoId.getText();
+        objRequisitos.setIdRequisito(Integer.getInteger(text));
+
+        
         initComponents();
     }
 
@@ -225,7 +234,7 @@ public class FormRequisito extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCancelarRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonCancelarRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonSalvarRequisito1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))

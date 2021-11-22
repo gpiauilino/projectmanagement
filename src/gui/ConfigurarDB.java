@@ -1,5 +1,7 @@
 package gui;
 
+import java.util.Arrays;
+
 public class ConfigurarDB extends javax.swing.JDialog {
 
     public ConfigurarDB(java.awt.Frame parent, boolean modal) {
@@ -14,7 +16,6 @@ public class ConfigurarDB extends javax.swing.JDialog {
         tfEndereco = new javax.swing.JTextField();
         tfPorta = new javax.swing.JTextField();
         tfNome = new javax.swing.JTextField();
-        tfSenha = new javax.swing.JTextField();
         btSalvar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -23,10 +24,20 @@ public class ConfigurarDB extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
+        tfSenha2 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        tfEndereco.setText("127.0.0.1");
+        tfEndereco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfEnderecoActionPerformed(evt);
+            }
+        });
+
         tfPorta.setText("3306");
+
+        tfNome.setText("root");
 
         btSalvar.setText("Conectar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -48,6 +59,13 @@ public class ConfigurarDB extends javax.swing.JDialog {
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 8)); // NOI18N
         jLabel6.setText("Project Management Tool");
 
+        tfSenha2.setText("fn0rd");
+        tfSenha2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfSenha2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -67,9 +85,9 @@ public class ConfigurarDB extends javax.swing.JDialog {
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tfNome, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                                    .addComponent(tfSenha2)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(221, 221, 221)
@@ -96,25 +114,25 @@ public class ConfigurarDB extends javax.swing.JDialog {
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfPorta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(tfSenha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfPorta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(55, 55, 55)
                         .addComponent(btSalvar)
                         .addGap(23, 23, 23))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -129,10 +147,20 @@ public class ConfigurarDB extends javax.swing.JDialog {
         Utilitarios.endereco = tfEndereco.getText();
         Utilitarios.porta = tfPorta.getText();
         Utilitarios.usuario = tfNome.getText();
-        Utilitarios.senha = tfSenha.getText();
-        
+        Utilitarios.senha = Arrays.toString(tfSenha2.getPassword());
+        // sujestão do java usar o Array to string, pois vem um array char dentro do get psw.
         this.dispose();
     }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void tfEnderecoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfEnderecoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfEnderecoActionPerformed
+
+    private void tfSenha2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSenha2ActionPerformed
+        //automatizar a entrada da ação com o teclado, enter.
+        btSalvar.doClick(); 
+    // TODO add your handling code here:
+    }//GEN-LAST:event_tfSenha2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -147,6 +175,6 @@ public class ConfigurarDB extends javax.swing.JDialog {
     private javax.swing.JTextField tfEndereco;
     private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfPorta;
-    private javax.swing.JTextField tfSenha;
+    private javax.swing.JPasswordField tfSenha2;
     // End of variables declaration//GEN-END:variables
 }

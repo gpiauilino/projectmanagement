@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Daniel Gomes
  */
-public class Requisito {
+public class Requisitos {
     
         private int idRequisito;
         private String nomeRequisito;

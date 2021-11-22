@@ -54,7 +54,23 @@ public class Utilitarios {
                     + " telefone VARCHAR(255),"
                     + " PRIMARY KEY (id)"
                     + ");");
-
+            
+            myResult = s.executeUpdate("CREATE TABLE IF NOT EXISTS requisito ("
+                                + " id BIGINT(10) AUTO_INCREMENT,"
+                                + " descricao VARCHAR(255),"
+                                + " modulo VARCHAR(255),"
+                                + " estado VARCHAR(255),"
+                                + " fase VARCHAR(255),"
+                                + " data_criacao DATETIME,"
+                                + " funcionalidades VARCHAR(255),"
+                                + " complexidade VARCHAR(255),"
+                                + " data_ultima_mod DATETIME,"
+                                + " autor_ultima_mod DATETIME,"
+                                + " esforco_horARCHARas INT,"
+                                + " PRIMARY KEY (id)"
+                                + ");");
+            
+            
         } catch (SQLException ex) {
             Logger.getLogger(Utilitarios.class.getName()).log(Level.SEVERE, null, ex);
         }

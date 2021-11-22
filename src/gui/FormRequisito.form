@@ -125,7 +125,7 @@
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="jTextFieldDescricao" min="-2" pref="362" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButtonCancelarRequisito" min="-2" pref="85" max="-2" attributes="0"/>
+                      <Component id="jButtonCancelarRequisito" min="-2" pref="105" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jButtonSalvarRequisito1" min="-2" pref="85" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
