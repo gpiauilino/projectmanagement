@@ -168,7 +168,7 @@ public class FormRequisito extends javax.swing.JFrame {
                                                 .addGap(10, 10, 10)
                                                 .addComponent(jTextFieldEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jTextFieldPrioridade, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(75, 75, 75)))
                                 .addGap(35, 35, 35)

@@ -32,7 +32,7 @@ public class ProjetoDAO {
                 stmt.setString(3, objProjeto.getEmail());
                 stmt.setString(4, objProjeto.getTelefone());
                 stmt.execute();
-                stmt.close();
+                
 
             } else {
                 sql = "UPDATE projeto SET nome = ?, descricao = ?, email = ?, telefone = ? WHERE projeto.id = ?";
@@ -45,7 +45,7 @@ public class ProjetoDAO {
                 stmt.setString(3, objProjeto.getEmail());
                 stmt.setString(4, objProjeto.getTelefone());
                 stmt.execute();
-                stmt.close();
+                
 
             }
         } catch (SQLException u) {
@@ -80,7 +80,7 @@ public class ProjetoDAO {
             }
             ps.close();
             rs.close();
-            connection.close();
+            //connection.close()
 
             return dado;
         } catch (SQLException e) {
@@ -100,7 +100,7 @@ public class ProjetoDAO {
 
                 stmt.setString(1, objProjeto.getId());
                 stmt.execute();
-                stmt.close();
+                
 
             }
         } catch (SQLException u) {
@@ -129,7 +129,7 @@ public class ProjetoDAO {
             }
             ps.close();
             rs.close();
-            connection.close();
+            //connection.close()
 
             return dado;
         } catch (SQLException e) {

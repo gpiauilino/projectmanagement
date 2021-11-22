@@ -33,7 +33,7 @@ public class UsuarioDAO {
                 stmt.setString(3, objUsuario.getEmail());
                 stmt.setString(4, objUsuario.getTelefone());
                 stmt.execute();
-                stmt.close();
+                
 
             } else {
                 sql = "UPDATE usuario SET nome = ?, cpf = ?, email = ?, telefone = ? WHERE usuario.id = ?";
@@ -46,7 +46,7 @@ public class UsuarioDAO {
                 stmt.setString(3, objUsuario.getEmail());
                 stmt.setString(4, objUsuario.getTelefone());
                 stmt.execute();
-                stmt.close();
+             
 
             }
         } catch (SQLException u) {
@@ -81,7 +81,7 @@ public class UsuarioDAO {
             }
             ps.close();
             rs.close();
-            connection.close();
+            ////connection.close()
 
             return dado;
         } catch (SQLException e) {
@@ -101,7 +101,7 @@ public class UsuarioDAO {
 
                 stmt.setString(1, objUsuario.getId());
                 stmt.execute();
-                stmt.close();
+                
 
             }
         } catch (SQLException u) {
@@ -130,7 +130,7 @@ public class UsuarioDAO {
             }
             ps.close();
             rs.close();
-            connection.close();
+            ////connection.close()
 
             return dado;
         } catch (SQLException e) {

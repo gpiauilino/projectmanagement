@@ -24,7 +24,7 @@ public class Utilitarios {
         do {
             connection = new ConnectionFactory().getConnection();
             if (connection == null) {
-                System.out.println("Erro de conex");
+                System.out.println("Erro de conexao");
                 return false;
             } else {
                 testconect = true;
