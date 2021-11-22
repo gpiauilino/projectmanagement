@@ -1,6 +1,8 @@
 # Project_Management_Tool
 Projeto da Faculdade, trabalho A3.
 
+Link para biblioteca JDBC que deve ser informada como Lib do projeto:
+https://dev.mysql.com/downloads/connector/j/?os=26
 
 Para criar os esquemas:
 
