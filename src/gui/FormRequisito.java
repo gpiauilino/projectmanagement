@@ -6,14 +6,18 @@ package gui;
 
 import javax.swing.JOptionPane;
 import modelo.Requisitos;
+import modelo.DateToString;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
 
 /**
  *
  * @author Daniel Gomes
  */
+
+
 public class FormRequisito extends javax.swing.JFrame {
 
     private String getDateTime(){
@@ -21,6 +25,8 @@ public class FormRequisito extends javax.swing.JFrame {
         Date date = new Date();
         return dateFormat.format(date);
     }
+
+
     
  
     /**
@@ -34,6 +40,8 @@ public class FormRequisito extends javax.swing.JFrame {
      */
        
         Requisitos objRequisitos = new Requisitos();
+        DateToString data = new DateToString();
+        
         String idNumber = txtRequisitoId.getText();
         String versaoNumber = txtVersao.getText();
         String dataCriacaoConvertida = txtDataCriacao.getText();
@@ -48,7 +56,7 @@ public class FormRequisito extends javax.swing.JFrame {
         objRequisitos.setPrioridade(txtPrioridade.getText());
         objRequisitos.setEstado(txtEstado.getText());
         objRequisitos.setFase(txtFase.getText());
-        //objRequisitos.setDataCriacao(txtDataCriacao(getDateTime));
+        objRequisitos.setDataCriacao(data.getStrDate());
         //objRequisitos.setDataUltimaMod();        
         objRequisitos.setAutor(txtAutor.getText());
         objRequisitos.setFuncionalidades(txtFuncionalidades.getText());
