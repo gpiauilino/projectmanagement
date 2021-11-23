@@ -26,7 +26,8 @@ public class Requisitos {
         private String complexidade;
         private Date dataUltimaMod;
         private String autorUltimaMod;
-        private int esforcoHoras;
+        private Double esforcoHoras;
+        private String descricao;
 
                   
         
@@ -143,13 +144,23 @@ public class Requisitos {
         this.autorUltimaMod = autorUltimaMod;
     }
 
-    public int getEsforcoHoras() {
+    public Double getEsforcoHoras() {
         return esforcoHoras;
     }
 
-    public void setEsforcoHoras(int esforcoHoras) {
+    public void setEsforcoHoras(Double esforcoHoras) {
         this.esforcoHoras = esforcoHoras;
     }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+   
         
         
           
