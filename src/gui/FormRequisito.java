@@ -4,6 +4,7 @@
  */
 package gui;
 
+import javax.swing.JOptionPane;
 import modelo.Requisitos;
 
 /**
@@ -32,6 +33,7 @@ public class FormRequisito extends javax.swing.JFrame {
         String esforcoHoraNumber = txtEsforco.getText();
         
         objRequisitos.setIdRequisito(Integer.getInteger(idNumber));
+        objRequisitos.setNomeRequisito(txtNomeRequisito.getText());
         objRequisitos.setModulo(txtModulo.getText());
         objRequisitos.setVersao(Double.parseDouble(versaoNumber));
         objRequisitos.setPrioridade(txtPrioridade.getText());
@@ -44,6 +46,17 @@ public class FormRequisito extends javax.swing.JFrame {
         objRequisitos.setComplexidade(txtComplexidade.getText());
         objRequisitos.setAutorUltimaMod(txtAutorUltimaMod.getText());
         objRequisitos.setEsforcoHoras(Double.parseDouble(esforcoHoraNumber));
+        objRequisitos.setDescricao(txtDescricaoRequisito.getText());
+        
+        
+        // DASTRO DE USUÁRIOSfazendo a valida��o dos dados
+        if ((txtNomeRequisito.getText().isEmpty()) || (txtModulo.getText().isEmpty()) || (txtVersao.getText().isEmpty()) || (txtVersao.getText().isEmpty()) || (txtFuncionalidades.getText().isEmpty()) || (txtComplexidade.getText().isEmpty()) || (txtDescricaoRequisito.getText().isEmpty()) ) {
+            JOptionPane.showMessageDialog(null, "Informe valores para os campos");
+        } else {
+            // instanciando a classe ProjetoDAO do pacote dao e criando seu objeto dao
+            Utilitarios.projDAO.salvar(objProjeto);
+            JOptionPane.showMessageDialog(null, "Usu�rio " + txtNome.getText() + " inserido com sucesso! ");
+        }
         
         
         
