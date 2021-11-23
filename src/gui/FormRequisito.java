@@ -20,11 +20,6 @@ import java.text.SimpleDateFormat;
 
 public class FormRequisito extends javax.swing.JFrame {
 
-    private String getDateTime(){
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Date date = new Date();
-        return dateFormat.format(date);
-    }
 
 
     
@@ -44,7 +39,7 @@ public class FormRequisito extends javax.swing.JFrame {
         
         String idNumber = txtRequisitoId.getText();
         String versaoNumber = txtVersao.getText();
-        String dataCriacaoConvertida = txtDataCriacao.getText();
+        String dataCriacaoConvertida = String.valueOf(data.getDate());
         String esforcoHoraNumber = txtEsforco.getText();
        
         
@@ -56,8 +51,10 @@ public class FormRequisito extends javax.swing.JFrame {
         objRequisitos.setPrioridade(txtPrioridade.getText());
         objRequisitos.setEstado(txtEstado.getText());
         objRequisitos.setFase(txtFase.getText());
-        objRequisitos.setDataCriacao(data.getStrDate());
-        //objRequisitos.setDataUltimaMod();        
+        
+        objRequisitos.setDataCriacao(dataCriacaoConvertida);
+        //objRequisitos.setDataUltimaMod(); 
+        
         objRequisitos.setAutor(txtAutor.getText());
         objRequisitos.setFuncionalidades(txtFuncionalidades.getText());
         objRequisitos.setComplexidade(txtComplexidade.getText());
@@ -67,8 +64,8 @@ public class FormRequisito extends javax.swing.JFrame {
         
         
         // DASTRO DE USUÁRIOSfazendo a valida��o dos dados
-        if ((txtNomeRequisito.getText().isEmpty()) || (txtModulo.getText().isEmpty()) || (txtVersao.getText().isEmpty()) || (txtVersao.getText().isEmpty()) || (txtFuncionalidades.getText().isEmpty()) || (txtComplexidade.getText().isEmpty()) || (txtDescricaoRequisito.getText().isEmpty()) ) {
-            JOptionPane.showMessageDialog(null, "Informe valores para os campos");
+        if ((txtNomeRequisito.getText().isEmpty()) || (txtModulo.getText().isEmpty()) || (txtFuncionalidades.getText().isEmpty()) || (txtDescricaoRequisito.getText().isEmpty()) ) {
+            JOptionPane.showMessageDialog(null, "Informe valores para os campos de: Nome do Requisito, Módulo, Funcionalidade e Descriação.");
         } else {
             // instanciando a classe ProjetoDAO do pacote dao e criando seu objeto dao
             Utilitarios.projDAO.salvar(objProjeto);
