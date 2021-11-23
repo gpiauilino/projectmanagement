@@ -50,10 +50,10 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jTextFieldModulo" min="-2" pref="214" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldNomeRequisito" min="-2" pref="214" max="-2" attributes="0"/>
+                                          <Component id="txtModulo" min="-2" pref="214" max="-2" attributes="0"/>
+                                          <Component id="txtNomeRequisito" min="-2" pref="214" max="-2" attributes="0"/>
                                           <Component id="txtRequisitoId" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldVersao" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+                                          <Component id="txtVersao" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" attributes="0">
@@ -61,15 +61,10 @@
                                           <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                              <Component id="jTextFieldEstado" min="-2" pref="139" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jTextFieldPrioridade" min="-2" pref="60" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="txtEstado" min="-2" pref="139" max="-2" attributes="0"/>
+                                          <Component id="txtPrioridade" min="-2" pref="60" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                                   </Group>
@@ -84,9 +79,9 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jTextFieldAutor" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldDataCriacao" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldComplexidade" pref="147" max="32767" attributes="0"/>
+                                          <Component id="txtAutor" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtDataCriacao" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtComplexidade" pref="147" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -96,22 +91,22 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jTextFieldDataUltimaMod" pref="91" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldAutorUltimaMod" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldEsforco" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="txtDataUltimaMod" pref="91" max="32767" attributes="0"/>
+                                          <Component id="txtAutorUltimaMod" max="32767" attributes="0"/>
+                                          <Component id="txtEsforco" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jTextFieldFuncionalidades" max="32767" attributes="0"/>
+                                      <Component id="txtFuncionalidades" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                              <Component id="jTextFieldFase" min="-2" pref="139" max="-2" attributes="0"/>
+                              <Component id="txtFase" min="-2" pref="139" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
@@ -123,11 +118,11 @@
                   <Group type="102" attributes="0">
                       <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Component id="jTextFieldDescricao" min="-2" pref="362" max="-2" attributes="0"/>
+                      <Component id="txtDescricaoRequisito" min="-2" pref="362" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButtonCancelarRequisito" min="-2" pref="105" max="-2" attributes="0"/>
+                      <Component id="ButtonCancelarRequisito" min="-2" pref="105" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButtonSalvarRequisito1" min="-2" pref="85" max="-2" attributes="0"/>
+                      <Component id="ButtonSalvarRequisito1" min="-2" pref="85" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -150,14 +145,14 @@
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtRequisitoId" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldDataCriacao" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDataCriacao" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldNomeRequisito" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldAutor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNomeRequisito" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtAutor" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
@@ -168,8 +163,8 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldModulo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldComplexidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtModulo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtComplexidade" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -177,39 +172,39 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldDataUltimaMod" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDataUltimaMod" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel15" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldAutorUltimaMod" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtAutorUltimaMod" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldEsforco" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtEsforco" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldVersao" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtVersao" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldPrioridade" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPrioridade" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtEstado" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldFase" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtFase" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -217,15 +212,15 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldFuncionalidades" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
+                          <Component id="txtFuncionalidades" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="36" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonSalvarRequisito1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                          <Component id="jButtonCancelarRequisito" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="ButtonSalvarRequisito1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="ButtonCancelarRequisito" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jTextFieldDescricao" max="32767" attributes="0"/>
+                  <Component id="txtDescricaoRequisito" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -380,35 +375,35 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRequisitoIdActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldNomeRequisito">
+    <Component class="javax.swing.JTextField" name="txtNomeRequisito">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldModulo">
+    <Component class="javax.swing.JTextField" name="txtModulo">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldVersao">
+    <Component class="javax.swing.JTextField" name="txtVersao">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldPrioridade">
+    <Component class="javax.swing.JTextField" name="txtPrioridade">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldEstado">
+    <Component class="javax.swing.JTextField" name="txtEstado">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldFase">
+    <Component class="javax.swing.JTextField" name="txtFase">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldDescricao">
+    <Component class="javax.swing.JTextField" name="txtDescricaoRequisito">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldDataCriacao">
+    <Component class="javax.swing.JTextField" name="txtDataCriacao">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldAutor">
+    <Component class="javax.swing.JTextField" name="txtAutor">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldComplexidade">
+    <Component class="javax.swing.JTextField" name="txtComplexidade">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldDataUltimaMod">
+    <Component class="javax.swing.JTextField" name="txtDataUltimaMod">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldAutorUltimaMod">
+    <Component class="javax.swing.JTextField" name="txtAutorUltimaMod">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldEsforco">
+    <Component class="javax.swing.JTextField" name="txtEsforco">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldFuncionalidades">
+    <Component class="javax.swing.JTextField" name="txtFuncionalidades">
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonCancelarRequisito">
+    <Component class="javax.swing.JButton" name="ButtonCancelarRequisito">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
@@ -417,13 +412,13 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonCancelarRequisitoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonCancelarRequisitoActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonSalvarRequisito1">
+    <Component class="javax.swing.JButton" name="ButtonSalvarRequisito1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
@@ -431,7 +426,7 @@
         <Property name="text" type="java.lang.String" value="Salvar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSalvarRequisito1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonSalvarRequisito1ActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>

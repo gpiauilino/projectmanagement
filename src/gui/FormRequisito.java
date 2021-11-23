@@ -11,21 +11,43 @@ import modelo.Requisitos;
  * @author Daniel Gomes
  */
 public class FormRequisito extends javax.swing.JFrame {
-    
-    Requisitos objRequisitos;
 
+    
+    
+ 
     /**
      * Creates new form FormRequisito
      */
     public FormRequisito() {
+       
         
     /** Problema resolvido, recortar esta parte aqui em baixo.
      * Converter a string para integer, uma vez que ela é inteiro
      */
        
         Requisitos objRequisitos = new Requisitos();
-        String text = txtRequisitoId.getText();
-        objRequisitos.setIdRequisito(Integer.getInteger(text));
+        String idNumber = txtRequisitoId.getText();
+        String versaoNumber = txtVersao.getText();
+        String dataCriacaoConvertida = txtDataCriacao.getText();
+        String esforcoHoraNumber = txtEsforco.getText();
+        
+        objRequisitos.setIdRequisito(Integer.getInteger(idNumber));
+        objRequisitos.setModulo(txtModulo.getText());
+        objRequisitos.setVersao(Double.parseDouble(versaoNumber));
+        objRequisitos.setPrioridade(txtPrioridade.getText());
+        objRequisitos.setEstado(txtEstado.getText());
+        objRequisitos.setFase(txtFase.getText());
+        //objRequisitos.setDataCriacao();
+        //objRequisitos.setDataUltimaMod();        
+        objRequisitos.setAutor(txtAutor.getText());
+        objRequisitos.setFuncionalidades(txtFuncionalidades.getText());
+        objRequisitos.setComplexidade(txtComplexidade.getText());
+        objRequisitos.setAutorUltimaMod(txtAutorUltimaMod.getText());
+        objRequisitos.setEsforcoHoras(Double.parseDouble(esforcoHoraNumber));
+        
+        
+        
+        
 
         
         initComponents();
@@ -61,22 +83,22 @@ public class FormRequisito extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         txtRequisitoId = new javax.swing.JTextField();
-        jTextFieldNomeRequisito = new javax.swing.JTextField();
-        jTextFieldModulo = new javax.swing.JTextField();
-        jTextFieldVersao = new javax.swing.JTextField();
-        jTextFieldPrioridade = new javax.swing.JTextField();
-        jTextFieldEstado = new javax.swing.JTextField();
-        jTextFieldFase = new javax.swing.JTextField();
-        jTextFieldDescricao = new javax.swing.JTextField();
-        jTextFieldDataCriacao = new javax.swing.JTextField();
-        jTextFieldAutor = new javax.swing.JTextField();
-        jTextFieldComplexidade = new javax.swing.JTextField();
-        jTextFieldDataUltimaMod = new javax.swing.JTextField();
-        jTextFieldAutorUltimaMod = new javax.swing.JTextField();
-        jTextFieldEsforco = new javax.swing.JTextField();
-        jTextFieldFuncionalidades = new javax.swing.JTextField();
-        jButtonCancelarRequisito = new javax.swing.JButton();
-        jButtonSalvarRequisito1 = new javax.swing.JButton();
+        txtNomeRequisito = new javax.swing.JTextField();
+        txtModulo = new javax.swing.JTextField();
+        txtVersao = new javax.swing.JTextField();
+        txtPrioridade = new javax.swing.JTextField();
+        txtEstado = new javax.swing.JTextField();
+        txtFase = new javax.swing.JTextField();
+        txtDescricaoRequisito = new javax.swing.JTextField();
+        txtDataCriacao = new javax.swing.JTextField();
+        txtAutor = new javax.swing.JTextField();
+        txtComplexidade = new javax.swing.JTextField();
+        txtDataUltimaMod = new javax.swing.JTextField();
+        txtAutorUltimaMod = new javax.swing.JTextField();
+        txtEsforco = new javax.swing.JTextField();
+        txtFuncionalidades = new javax.swing.JTextField();
+        ButtonCancelarRequisito = new javax.swing.JButton();
+        ButtonSalvarRequisito1 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -141,20 +163,20 @@ public class FormRequisito extends javax.swing.JFrame {
             }
         });
 
-        jButtonCancelarRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonCancelarRequisito.setText("Cancelar");
-        jButtonCancelarRequisito.setToolTipText("");
-        jButtonCancelarRequisito.addActionListener(new java.awt.event.ActionListener() {
+        ButtonCancelarRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ButtonCancelarRequisito.setText("Cancelar");
+        ButtonCancelarRequisito.setToolTipText("");
+        ButtonCancelarRequisito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelarRequisitoActionPerformed(evt);
+                ButtonCancelarRequisitoActionPerformed(evt);
             }
         });
 
-        jButtonSalvarRequisito1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButtonSalvarRequisito1.setText("Salvar");
-        jButtonSalvarRequisito1.addActionListener(new java.awt.event.ActionListener() {
+        ButtonSalvarRequisito1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ButtonSalvarRequisito1.setText("Salvar");
+        ButtonSalvarRequisito1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalvarRequisito1ActionPerformed(evt);
+                ButtonSalvarRequisito1ActionPerformed(evt);
             }
         });
 
@@ -179,21 +201,18 @@ public class FormRequisito extends javax.swing.JFrame {
                                             .addComponent(jLabel4))
                                         .addGap(29, 29, 29)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldModulo, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextFieldNomeRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtModulo, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtNomeRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtRequisitoId, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextFieldVersao, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(txtVersao, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel7)
                                             .addComponent(jLabel8))
+                                        .addGap(10, 10, 10)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(10, 10, 10)
-                                                .addComponent(jTextFieldEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTextFieldPrioridade, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtPrioridade, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(75, 75, 75)))
                                 .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,9 +223,9 @@ public class FormRequisito extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jTextFieldAutor, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldDataCriacao, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldComplexidade, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                                            .addComponent(txtAutor, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtDataCriacao, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtComplexidade, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
                                         .addGap(26, 26, 26)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel14)
@@ -214,17 +233,17 @@ public class FormRequisito extends javax.swing.JFrame {
                                             .addComponent(jLabel16))
                                         .addGap(28, 28, 28)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldDataUltimaMod, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                                            .addComponent(jTextFieldAutorUltimaMod)
-                                            .addComponent(jTextFieldEsforco)))
+                                            .addComponent(txtDataUltimaMod, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                                            .addComponent(txtAutorUltimaMod)
+                                            .addComponent(txtEsforco)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel13)
                                         .addGap(18, 18, 18)
-                                        .addComponent(jTextFieldFuncionalidades))))
+                                        .addComponent(txtFuncionalidades))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addGap(49, 49, 49)
-                                .addComponent(jTextFieldFase, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtFase, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(118, 118, 118))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator2)
@@ -232,11 +251,11 @@ public class FormRequisito extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel17)
                         .addGap(10, 10, 10)
-                        .addComponent(jTextFieldDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDescricaoRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonCancelarRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ButtonCancelarRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonSalvarRequisito1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ButtonSalvarRequisito1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -255,13 +274,13 @@ public class FormRequisito extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel10)
                             .addComponent(txtRequisitoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldDataCriacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDataCriacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(jLabel11)
-                            .addComponent(jTextFieldNomeRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNomeRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
@@ -270,48 +289,48 @@ public class FormRequisito extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel12)
-                                    .addComponent(jTextFieldModulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldComplexidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtModulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtComplexidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel14)
-                            .addComponent(jTextFieldDataUltimaMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDataUltimaMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldAutorUltimaMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtAutorUltimaMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
-                            .addComponent(jTextFieldEsforco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtEsforco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextFieldVersao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtVersao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextFieldPrioridade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPrioridade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextFieldEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextFieldFase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17)
                             .addComponent(jLabel13)
-                            .addComponent(jTextFieldFuncionalidades, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtFuncionalidades, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonSalvarRequisito1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonCancelarRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jTextFieldDescricao))
+                            .addComponent(ButtonSalvarRequisito1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ButtonCancelarRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(txtDescricaoRequisito))
                 .addContainerGap())
         );
 
@@ -322,7 +341,7 @@ public class FormRequisito extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRequisitoIdActionPerformed
 
-    private void jButtonSalvarRequisito1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarRequisito1ActionPerformed
+    private void ButtonSalvarRequisito1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalvarRequisito1ActionPerformed
         // TODO add your handling code here:
         
         
@@ -330,11 +349,11 @@ public class FormRequisito extends javax.swing.JFrame {
         
         
         
-    }//GEN-LAST:event_jButtonSalvarRequisito1ActionPerformed
+    }//GEN-LAST:event_ButtonSalvarRequisito1ActionPerformed
 
-    private void jButtonCancelarRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarRequisitoActionPerformed
+    private void ButtonCancelarRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelarRequisitoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCancelarRequisitoActionPerformed
+    }//GEN-LAST:event_ButtonCancelarRequisitoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -378,9 +397,9 @@ public class FormRequisito extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static javax.swing.JButton ButtonCancelarRequisito;
+    private static javax.swing.JButton ButtonSalvarRequisito1;
     private javax.swing.JButton jButton1;
-    private static javax.swing.JButton jButtonCancelarRequisito;
-    private static javax.swing.JButton jButtonSalvarRequisito1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -400,21 +419,21 @@ public class FormRequisito extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelRequisito;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextFieldAutor;
-    private javax.swing.JTextField jTextFieldAutorUltimaMod;
-    private javax.swing.JTextField jTextFieldComplexidade;
-    private javax.swing.JTextField jTextFieldDataCriacao;
-    private javax.swing.JTextField jTextFieldDataUltimaMod;
-    private javax.swing.JTextField jTextFieldDescricao;
-    private javax.swing.JTextField jTextFieldEsforco;
-    private javax.swing.JTextField jTextFieldEstado;
-    private javax.swing.JTextField jTextFieldFase;
-    private javax.swing.JTextField jTextFieldFuncionalidades;
-    private javax.swing.JTextField jTextFieldModulo;
-    private javax.swing.JTextField jTextFieldNomeRequisito;
-    private javax.swing.JTextField jTextFieldPrioridade;
-    private javax.swing.JTextField jTextFieldVersao;
+    private javax.swing.JTextField txtAutor;
+    private javax.swing.JTextField txtAutorUltimaMod;
+    private javax.swing.JTextField txtComplexidade;
+    private javax.swing.JTextField txtDataCriacao;
+    private javax.swing.JTextField txtDataUltimaMod;
+    private javax.swing.JTextField txtDescricaoRequisito;
+    private javax.swing.JTextField txtEsforco;
+    private javax.swing.JTextField txtEstado;
+    private javax.swing.JTextField txtFase;
+    private javax.swing.JTextField txtFuncionalidades;
+    private javax.swing.JTextField txtModulo;
+    private javax.swing.JTextField txtNomeRequisito;
+    private javax.swing.JTextField txtPrioridade;
     private javax.swing.JTextField txtRequisitoId;
+    private javax.swing.JTextField txtVersao;
     // End of variables declaration//GEN-END:variables
 
 
