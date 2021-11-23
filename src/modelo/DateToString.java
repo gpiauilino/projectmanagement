@@ -8,8 +8,7 @@ import java.util.Locale;
 
 public class DateToString {  
     
-
-    Date date = new Date();  
+    Date date = new Date();
     SimpleDateFormat formatter = new SimpleDateFormat("dd MMMM yyyy");  
     String strDate = formatter.format(date);  
 

@@ -9,7 +9,10 @@ import modelo.Requisitos;
 import modelo.DateToString;
 import java.util.Date;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -41,10 +44,11 @@ public class FormRequisito extends javax.swing.JFrame {
        
         Requisitos objRequisitos = new Requisitos();
         DateToString data = new DateToString();
+        String dataCriacaoConvertida = txtDataCriacao.getText();
+        
         
         String idNumber = txtRequisitoId.getText();
         String versaoNumber = txtVersao.getText();
-        String dataCriacaoConvertida = txtDataCriacao.getText();
         String esforcoHoraNumber = txtEsforco.getText();
        
         
@@ -56,8 +60,21 @@ public class FormRequisito extends javax.swing.JFrame {
         objRequisitos.setPrioridade(txtPrioridade.getText());
         objRequisitos.setEstado(txtEstado.getText());
         objRequisitos.setFase(txtFase.getText());
-        objRequisitos.setDataCriacao(data.getStrDate());
-        //objRequisitos.setDataUltimaMod();        
+        
+        
+        String dttela = txtDataCriacao.getText();
+        Date date1 = null; 
+        try {
+            date1 = new SimpleDateFormat("dd/MM/yyyy").parse(dttela);
+        } catch (ParseException ex) {
+            Logger.getLogger(FormRequisito.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erro convertendo data: " + dttela);
+                    
+        }
+        objRequisitos.setDataCriacao(date1);
+        
+
+//objRequisitos.setDataUltimaMod();        
         objRequisitos.setAutor(txtAutor.getText());
         objRequisitos.setFuncionalidades(txtFuncionalidades.getText());
         objRequisitos.setComplexidade(txtComplexidade.getText());
@@ -192,6 +209,8 @@ public class FormRequisito extends javax.swing.JFrame {
                 txtRequisitoIdActionPerformed(evt);
             }
         });
+
+        txtDataUltimaMod.setToolTipText("DD/MM/AAAA");
 
         ButtonCancelarRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ButtonCancelarRequisito.setText("Cancelar");
