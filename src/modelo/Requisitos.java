@@ -28,6 +28,9 @@ public class Requisitos {
         private String autorUltimaMod;
         private int esforcoHoras;
 
+                  
+        
+        
     public int getIdRequisito() {
         return idRequisito;
     }

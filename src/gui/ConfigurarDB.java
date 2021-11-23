@@ -147,7 +147,9 @@ public class ConfigurarDB extends javax.swing.JDialog {
         Utilitarios.endereco = tfEndereco.getText();
         Utilitarios.porta = tfPorta.getText();
         Utilitarios.usuario = tfNome.getText();
-        Utilitarios.senha = Arrays.toString(tfSenha2.getPassword());
+        String passText = new String(tfSenha2.getPassword());
+        // esta var recebe uma atributo do tipo password e informa ao utilitario como uma string
+        Utilitarios.senha = passText;
         // sujestão do java usar o Array to string, pois vem um array char dentro do get psw.
         this.dispose();
     }//GEN-LAST:event_btSalvarActionPerformed
