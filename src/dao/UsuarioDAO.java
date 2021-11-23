@@ -1,6 +1,5 @@
 package dao;
 
-import gui.Inicio;
 import factory.ConnectionFactory;
 import modelo.Usuario;
 import java.sql.*;
@@ -16,6 +15,10 @@ public class UsuarioDAO {
     String cpf;
     String email;
     String telefone;
+    String senha;
+    int nivel;
+    String login;
+    
     
     public UsuarioDAO(Connection con) {
         connection = con;
@@ -25,18 +28,22 @@ public class UsuarioDAO {
         try {
             String sql;
             if (String.valueOf(objUsuario.getId()).isEmpty()) {
-                sql = "INSERT INTO usuario(nome,cpf,email,telefone) VALUES(?,?,?,?)";
+                sql = "INSERT INTO usuario(nome,cpf,email,telefone,nivel,senha,login) VALUES(?,?,?,?,?,?,?)";
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
                 stmt.setString(1, objUsuario.getNome());
                 stmt.setString(2, objUsuario.getCpf());
                 stmt.setString(3, objUsuario.getEmail());
                 stmt.setString(4, objUsuario.getTelefone());
+                stmt.setInt (5, objUsuario.getNivel());
+                stmt.setString (6, objUsuario.getSenha());
+                stmt.setString (7, objUsuario.getLogin());
+                
                 stmt.execute();
                 
 
             } else {
-                sql = "UPDATE usuario SET nome = ?, cpf = ?, email = ?, telefone = ? WHERE usuario.id = ?";
+                sql = "UPDATE usuario SET nome = ?, cpf = ?, email = ?, telefone = ?, nivel = ?, senha = ?, login = ?,  WHERE usuario.id = ?";
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -45,9 +52,12 @@ public class UsuarioDAO {
                 stmt.setString(2, objUsuario.getCpf());
                 stmt.setString(3, objUsuario.getEmail());
                 stmt.setString(4, objUsuario.getTelefone());
+                stmt.setInt(5, objUsuario.getNivel());
+                stmt.setString (6, objUsuario.getSenha());
+                stmt.setString (7, objUsuario.getLogin());
+           
                 stmt.execute();
-             
-
+           
             }
         } catch (SQLException u) {
             throw new RuntimeException(u);
@@ -65,21 +75,25 @@ public class UsuarioDAO {
             }
             ArrayList dado = new ArrayList();
 
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-
-                dado.add(new Object[]{
-                    rs.getInt("id"),
-                    rs.getString("nome"),
-                    rs.getString("cpf"),
-                    rs.getString("email"),
-                    rs.getString("telefone")
-                });
-
+            ResultSet rs;
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    
+                    dado.add(new Object[]{
+                        rs.getInt("id"),
+                        rs.getString("nome"),
+                        rs.getString("cpf"),
+                        rs.getString("email"),
+                        rs.getString("telefone"),
+                        rs.getString("cargo"),
+                        rs.getInt("nivel"),
+                        rs.getString("senha"),
+                        rs.getString("login"),
+                    });
+                    
+                }
             }
-            ps.close();
             rs.close();
             ////connection.close()
 
@@ -114,21 +128,25 @@ public class UsuarioDAO {
 
             ArrayList dado = new ArrayList();
 
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM usuario");
-            ResultSet rs = ps.executeQuery();
-
-            while (rs.next()) {
-
-                dado.add(new Object[]{
-                    rs.getInt("id"),
-                    rs.getString("nome"),
-                    rs.getString("cpf"),
-                    rs.getString("email"),
-                    rs.getString("telefone")
-                });
-
+            ResultSet rs;
+            try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM usuario")) {
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    
+                    dado.add(new Object[]{
+                        rs.getInt("id"),
+                        rs.getString("nome"),
+                        rs.getString("cpf"),
+                        rs.getString("email"),
+                        rs.getString("telefone"),
+                        rs.getString("cargo"),
+                        rs.getInt("nivel"),
+                        rs.getString("senha"),
+                        rs.getString("login"),
+                    });
+                    
+                }
             }
-            ps.close();
             rs.close();
             ////connection.close()
 

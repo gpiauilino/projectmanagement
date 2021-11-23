@@ -9,10 +9,15 @@ public class Usuario {
     private String cpf;
     private String email;
     private String telefone;
-    private String[] colunas = new String[]{"ID", "NOME", "CPF", "EMAIL", "TELEFONE"};
+    private String cargo;
+    private int nivel;
+    private String senha;
+    private String login;
+    private String[] colunas = new String[]{"ID", "NOME", "CPF", "EMAIL", "TELEFONE", "NIVEL", "SENHA", "LOGIN"};
 
     public Usuario() {
     }
+
     // Construtor
     public Usuario(String id) {
         this.id = id;
@@ -57,6 +62,38 @@ public class Usuario {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String[] getColunas() {

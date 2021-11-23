@@ -31,6 +31,9 @@ public class Requisitos {
         private Double esforcoHoras;
         private String descricao;
 
+                  
+        
+        
     public int getIdRequisito() {
         return idRequisito;
     }
