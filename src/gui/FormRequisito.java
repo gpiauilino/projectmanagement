@@ -132,7 +132,7 @@ public class FormRequisito extends javax.swing.JFrame {
         txtDescricaoRequisito = new javax.swing.JTextField();
         txtEsforco = new javax.swing.JTextField();
         txtFuncionalidades = new javax.swing.JTextField();
-        ButtonDeletarRequisito = new javax.swing.JButton();
+        ButtonCancelarRequisito = new javax.swing.JButton();
         ButtonSalvarRequisito1 = new javax.swing.JButton();
         ButtonLimparRequisito1 = new javax.swing.JButton();
         boxPrioridade = new javax.swing.JComboBox<>();
@@ -144,6 +144,7 @@ public class FormRequisito extends javax.swing.JFrame {
         LabelNomeAutor = new javax.swing.JLabel();
         LabelDataCriacao = new javax.swing.JLabel();
         LabelDataUltimaMod = new javax.swing.JLabel();
+        ButtonDeletarRequisito = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -195,12 +196,12 @@ public class FormRequisito extends javax.swing.JFrame {
             }
         });
 
-        ButtonDeletarRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        ButtonDeletarRequisito.setText("Cancelar");
-        ButtonDeletarRequisito.setToolTipText("");
-        ButtonDeletarRequisito.addActionListener(new java.awt.event.ActionListener() {
+        ButtonCancelarRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ButtonCancelarRequisito.setText("Cancelar");
+        ButtonCancelarRequisito.setToolTipText("");
+        ButtonCancelarRequisito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonDeletarRequisitoActionPerformed(evt);
+                ButtonCancelarRequisitoActionPerformed(evt);
             }
         });
 
@@ -274,6 +275,15 @@ public class FormRequisito extends javax.swing.JFrame {
         LabelDataUltimaMod.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LabelDataUltimaMod.setText("24/11/2021 20:50");
 
+        ButtonDeletarRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ButtonDeletarRequisito.setText("Deletar");
+        ButtonDeletarRequisito.setToolTipText("");
+        ButtonDeletarRequisito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonDeletarRequisitoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -284,9 +294,11 @@ public class FormRequisito extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(530, 530, 530)
+                                .addGap(428, 428, 428)
                                 .addComponent(ButtonDeletarRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
+                                .addComponent(ButtonCancelarRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(ButtonLimparRequisito1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(ButtonSalvarRequisito1))
@@ -348,6 +360,9 @@ public class FormRequisito extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jSeparator2)
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {ButtonCancelarRequisito, ButtonDeletarRequisito, ButtonLimparRequisito1, ButtonSalvarRequisito1});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -422,8 +437,9 @@ public class FormRequisito extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonSalvarRequisito1)
-                    .addComponent(ButtonDeletarRequisito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ButtonLimparRequisito1))
+                    .addComponent(ButtonCancelarRequisito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ButtonLimparRequisito1)
+                    .addComponent(ButtonDeletarRequisito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -444,9 +460,9 @@ public class FormRequisito extends javax.swing.JFrame {
         
     }//GEN-LAST:event_ButtonSalvarRequisito1ActionPerformed
 
-    private void ButtonDeletarRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDeletarRequisitoActionPerformed
+    private void ButtonCancelarRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelarRequisitoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ButtonDeletarRequisitoActionPerformed
+    }//GEN-LAST:event_ButtonCancelarRequisitoActionPerformed
 
     private void ButtonLimparRequisito1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLimparRequisito1ActionPerformed
         // TODO add your handling code here:
@@ -499,6 +515,10 @@ public class FormRequisito extends javax.swing.JFrame {
         
     }//GEN-LAST:event_boxPrioridadeActionPerformed
 
+    private void ButtonDeletarRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDeletarRequisitoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonDeletarRequisitoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -541,6 +561,7 @@ public class FormRequisito extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private static javax.swing.JButton ButtonCancelarRequisito;
     private static javax.swing.JButton ButtonDeletarRequisito;
     private static javax.swing.JButton ButtonLimparRequisito1;
     private static javax.swing.JButton ButtonSalvarRequisito1;
