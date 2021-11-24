@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import modelo.Requisitos;
 import modelo.DateToString;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -19,6 +20,11 @@ import modelo.ModelTable;
        
 
 >>>>>>> 6f10f99e96f9e3fad77f31c2806aa4765e84ced3
+=======
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+>>>>>>> parent of 6f10f99 (Update)
 
 
 /**
@@ -42,13 +48,12 @@ public class FormRequisito extends javax.swing.JFrame {
     /** Problema resolvido, recortar esta parte aqui em baixo.
      * Converter a string para integer, uma vez que ela é inteiro
      */
-        // Instanciando obj e DateToString
+       
         Requisitos objRequisitos = new Requisitos();
         DateToString data = new DateToString();
         String dataCriacaoConvertida = txtDataCriacao.getText();
         
         
-        // Variáveis
         String idNumber = txtRequisitoId.getText();
         String versaoNumber = txtVersao.getText();
 <<<<<<< HEAD
@@ -58,7 +63,7 @@ public class FormRequisito extends javax.swing.JFrame {
         String esforcoHoraNumber = txtEsforco.getText();
        
         
-        //Setters
+        
         objRequisitos.setIdRequisito(Integer.getInteger(idNumber));
         objRequisitos.setNomeRequisito(txtNomeRequisito.getText());
         objRequisitos.setModulo(txtModulo.getText());
@@ -67,6 +72,7 @@ public class FormRequisito extends javax.swing.JFrame {
         objRequisitos.setEstado(txtEstado.getText());
         objRequisitos.setFase(txtFase.getText());
         
+<<<<<<< HEAD
 <<<<<<< HEAD
         
         String dttela = txtDataCriacao.getText();
@@ -86,6 +92,9 @@ public class FormRequisito extends javax.swing.JFrame {
         // Não consegui fazer esse set de data, apanhei demais kkkk
         
         //objRequisitos.setDataCriacao(dataCriacaoConvertida);
+=======
+        objRequisitos.setDataCriacao(dataCriacaoConvertida);
+>>>>>>> parent of 6f10f99 (Update)
         //objRequisitos.setDataUltimaMod(); 
         
 >>>>>>> 6f10f99e96f9e3fad77f31c2806aa4765e84ced3
@@ -97,13 +106,13 @@ public class FormRequisito extends javax.swing.JFrame {
         objRequisitos.setDescricao(txtDescricaoRequisito.getText());
         
         
-        // CADASTRO REQUISITO DENTRO DO PROJETO
+        // DASTRO DE USUÁRIOSfazendo a valida��o dos dados
         if ((txtNomeRequisito.getText().isEmpty()) || (txtModulo.getText().isEmpty()) || (txtFuncionalidades.getText().isEmpty()) || (txtDescricaoRequisito.getText().isEmpty()) ) {
             JOptionPane.showMessageDialog(null, "Informe valores para os campos de: Nome do Requisito, Módulo, Funcionalidade e Descriação.");
         } else {
-            // instanciando a classe RequisitoDAO do pacote dao e criando seu objeto dao
-        //    Utilitarios.requisitoDAO.salvar(objRequisito);
-        //    JOptionPane.showMessageDialog(null, "Requisito" + txtNomeRequisito.getText() + " inserido com sucesso! ");
+            // instanciando a classe ProjetoDAO do pacote dao e criando seu objeto dao
+            Utilitarios.projDAO.salvar(objProjeto);
+            JOptionPane.showMessageDialog(null, "Usu�rio " + txtNome.getText() + " inserido com sucesso! ");
         }
         
         
@@ -157,9 +166,8 @@ public class FormRequisito extends javax.swing.JFrame {
         txtAutorUltimaMod = new javax.swing.JTextField();
         txtEsforco = new javax.swing.JTextField();
         txtFuncionalidades = new javax.swing.JTextField();
-        ButtonDeletarRequisito = new javax.swing.JButton();
-        ButtonLimparRequisito = new javax.swing.JButton();
-        ButtonSalvarRequisito2 = new javax.swing.JButton();
+        ButtonCancelarRequisito = new javax.swing.JButton();
+        ButtonSalvarRequisito1 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -207,12 +215,16 @@ public class FormRequisito extends javax.swing.JFrame {
         });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         txtDataUltimaMod.setToolTipText("DD/MM/AAAA");
 
+=======
+>>>>>>> parent of 6f10f99 (Update)
         ButtonCancelarRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ButtonCancelarRequisito.setText("Cancelar");
         ButtonCancelarRequisito.setToolTipText("");
         ButtonCancelarRequisito.addActionListener(new java.awt.event.ActionListener() {
+<<<<<<< HEAD
 =======
         ButtonDeletarRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ButtonDeletarRequisito.setText("Deletar");
@@ -227,16 +239,18 @@ public class FormRequisito extends javax.swing.JFrame {
         ButtonLimparRequisito.setText("Limpar");
         ButtonLimparRequisito.addActionListener(new java.awt.event.ActionListener() {
 >>>>>>> 6f10f99e96f9e3fad77f31c2806aa4765e84ced3
+=======
+>>>>>>> parent of 6f10f99 (Update)
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonLimparRequisitoActionPerformed(evt);
+                ButtonCancelarRequisitoActionPerformed(evt);
             }
         });
 
-        ButtonSalvarRequisito2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        ButtonSalvarRequisito2.setText("Salvar");
-        ButtonSalvarRequisito2.addActionListener(new java.awt.event.ActionListener() {
+        ButtonSalvarRequisito1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ButtonSalvarRequisito1.setText("Salvar");
+        ButtonSalvarRequisito1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonSalvarRequisito2ActionPerformed(evt);
+                ButtonSalvarRequisito1ActionPerformed(evt);
             }
         });
 
@@ -278,11 +292,9 @@ public class FormRequisito extends javax.swing.JFrame {
                                             .addComponent(jLabel13)))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(ButtonDeletarRequisito)
+                                            .addComponent(ButtonCancelarRequisito)
                                             .addGap(18, 18, 18)
-                                            .addComponent(ButtonLimparRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(ButtonSalvarRequisito2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(ButtonSalvarRequisito1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(layout.createSequentialGroup()
@@ -403,9 +415,8 @@ public class FormRequisito extends javax.swing.JFrame {
                                 .addComponent(txtDescricaoRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ButtonDeletarRequisito)
-                            .addComponent(ButtonSalvarRequisito2)
-                            .addComponent(ButtonLimparRequisito))))
+                            .addComponent(ButtonSalvarRequisito1)
+                            .addComponent(ButtonCancelarRequisito))))
                 .addContainerGap())
         );
 
@@ -416,39 +427,19 @@ public class FormRequisito extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtRequisitoIdActionPerformed
 
-    private void ButtonLimparRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLimparRequisitoActionPerformed
-    //    setClear();
-    //   carregarTable(null);
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_ButtonLimparRequisitoActionPerformed
-
-    private void ButtonDeletarRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonDeletarRequisitoActionPerformed
-    /*    objRequisito.setIdRequisito(txtID.getText());
-
-        // fazendo a valida��o dos dados
-        if ((txtID.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(null, "Informe valores para os campos");
-        } else {
-            // instanciando a classe ProjetoDAO do pacote dao e criando seu objeto dao
-            Utilitarios.projDAO.deletar(objProjeto);
-            JOptionPane.showMessageDialog(null, "Usu�rio Removido com Sucesso! ");
-        }
-
-        carregarTable(null);
-
-        // apaga os dados preenchidos nos campos de texto
-        setClear();
-    } */               
-    }//GEN-LAST:event_ButtonDeletarRequisitoActionPerformed
-
-    private void ButtonSalvarRequisito2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalvarRequisito2ActionPerformed
+    private void ButtonSalvarRequisito1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalvarRequisito1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ButtonSalvarRequisito2ActionPerformed
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_ButtonSalvarRequisito1ActionPerformed
+
+    private void ButtonCancelarRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCancelarRequisitoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonCancelarRequisitoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -492,9 +483,8 @@ public class FormRequisito extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static javax.swing.JButton ButtonDeletarRequisito;
-    private static javax.swing.JButton ButtonLimparRequisito;
-    private static javax.swing.JButton ButtonSalvarRequisito2;
+    private static javax.swing.JButton ButtonCancelarRequisito;
+    private static javax.swing.JButton ButtonSalvarRequisito1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
