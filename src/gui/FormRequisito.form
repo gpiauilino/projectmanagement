@@ -109,16 +109,13 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="txtEsforco" min="-2" pref="46" max="-2" attributes="0"/>
                                           <Component id="boxComplexidade" min="-2" pref="54" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                                              <Component id="boxEstado" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="boxFase" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="boxEstado" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="boxFase" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtFuncionalidades" min="-2" pref="361" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
