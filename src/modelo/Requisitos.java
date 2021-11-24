@@ -13,25 +13,24 @@ import java.util.Date;
  * @author Daniel Gomes
  */
 public class Requisitos {
-    
-        private int idRequisito;
-        private String nomeRequisito;
-        private String nomeProjeto;
-        private String modulo;
-        private Double versao;
-        private String prioridade;
-        private String estado;
-        private String fase;
-        private Date dataCriacao;
-        private String autor;
-        private String funcionalidades;
-        private String complexidade;
-        private Date dataUltimaMod;
-        private String autorUltimaMod;
-        private Double esforcoHoras;
-        private String descricao;
 
-                  
+    private int idRequisito;
+    private String nomeRequisito;
+    private String nomeProjeto;
+    private String modulo;
+    private Double versao;
+    private String prioridade;
+    private String estado;
+    private String fase;
+    private Date dataCriacao;
+    private String autor;
+    private String funcionalidades;
+    private String complexidade;
+    private Date dataUltimaMod;
+    private String autorUltimaMod;
+    private Double esforcoHoras;
+    private String descricao;
+               
         
         
     public int getIdRequisito() {
@@ -162,15 +161,4 @@ public class Requisitos {
         this.descricao = descricao;
     }
 
-   
-        
-        
-          
-        
-        
-        
-   
-      
-        
-    
 }
