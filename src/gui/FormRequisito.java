@@ -9,6 +9,7 @@ import modelo.Requisitos;
 import modelo.DateToString;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -20,6 +21,11 @@ import modelo.ModelTable;
        
 
 >>>>>>> 6f10f99e96f9e3fad77f31c2806aa4765e84ced3
+=======
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+>>>>>>> parent of 6f10f99 (Update)
 =======
 import java.util.Date;
 import java.text.DateFormat;
@@ -74,6 +80,7 @@ public class FormRequisito extends javax.swing.JFrame {
         
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         
         String dttela = txtDataCriacao.getText();
         Date date1 = null; 
@@ -92,6 +99,9 @@ public class FormRequisito extends javax.swing.JFrame {
         // Não consegui fazer esse set de data, apanhei demais kkkk
         
         //objRequisitos.setDataCriacao(dataCriacaoConvertida);
+=======
+        objRequisitos.setDataCriacao(dataCriacaoConvertida);
+>>>>>>> parent of 6f10f99 (Update)
 =======
         objRequisitos.setDataCriacao(dataCriacaoConvertida);
 >>>>>>> parent of 6f10f99 (Update)
@@ -216,14 +226,18 @@ public class FormRequisito extends javax.swing.JFrame {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         txtDataUltimaMod.setToolTipText("DD/MM/AAAA");
 
+=======
+>>>>>>> parent of 6f10f99 (Update)
 =======
 >>>>>>> parent of 6f10f99 (Update)
         ButtonCancelarRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ButtonCancelarRequisito.setText("Cancelar");
         ButtonCancelarRequisito.setToolTipText("");
         ButtonCancelarRequisito.addActionListener(new java.awt.event.ActionListener() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
         ButtonDeletarRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -239,6 +253,8 @@ public class FormRequisito extends javax.swing.JFrame {
         ButtonLimparRequisito.setText("Limpar");
         ButtonLimparRequisito.addActionListener(new java.awt.event.ActionListener() {
 >>>>>>> 6f10f99e96f9e3fad77f31c2806aa4765e84ced3
+=======
+>>>>>>> parent of 6f10f99 (Update)
 =======
 >>>>>>> parent of 6f10f99 (Update)
             public void actionPerformed(java.awt.event.ActionEvent evt) {
