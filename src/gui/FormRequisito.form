@@ -83,20 +83,11 @@
                                           <Component id="txtDataCriacao" alignment="0" max="32767" attributes="0"/>
                                           <Component id="txtComplexidade" pref="147" max="32767" attributes="0"/>
                                       </Group>
-<<<<<<< HEAD
                                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel14" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel16" min="-2" max="-2" attributes="0"/>
-=======
-                                  </Group>
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="ButtonCancelarRequisito" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="ButtonSalvarRequisito1" min="-2" pref="85" max="-2" attributes="0"/>
->>>>>>> c4ab4e403127bd967cb3d97caf250a872dad1c91
                                       </Group>
                                       <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
@@ -225,13 +216,8 @@
                       </Group>
                       <EmptySpace pref="36" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-<<<<<<< HEAD
                           <Component id="ButtonSalvarRequisito1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="ButtonCancelarRequisito" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-=======
-                          <Component id="ButtonSalvarRequisito1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ButtonCancelarRequisito" alignment="3" min="-2" max="-2" attributes="0"/>
->>>>>>> c4ab4e403127bd967cb3d97caf250a872dad1c91
                       </Group>
                   </Group>
                   <Component id="txtDescricaoRequisito" max="32767" attributes="0"/>
