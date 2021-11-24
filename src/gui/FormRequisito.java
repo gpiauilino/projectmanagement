@@ -7,12 +7,36 @@ package gui;
 import javax.swing.JOptionPane;
 import modelo.Requisitos;
 import modelo.DateToString;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> c4ab4e403127bd967cb3d97caf250a872dad1c91
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+<<<<<<< HEAD
+=======
+=======
+import modelo.ModelTable;
+       
+
+>>>>>>> 6f10f99e96f9e3fad77f31c2806aa4765e84ced3
+=======
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+>>>>>>> parent of 6f10f99 (Update)
+=======
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+>>>>>>> parent of 6f10f99 (Update)
+>>>>>>> c4ab4e403127bd967cb3d97caf250a872dad1c91
 
 
 /**
@@ -61,6 +85,12 @@ public class FormRequisito extends javax.swing.JFrame {
         objRequisitos.setEstado(txtEstado.getText());
         objRequisitos.setFase(txtFase.getText());
         
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> c4ab4e403127bd967cb3d97caf250a872dad1c91
         
         String dttela = txtDataCriacao.getText();
         Date date1 = null; 
@@ -75,6 +105,22 @@ public class FormRequisito extends javax.swing.JFrame {
         
 
 //objRequisitos.setDataUltimaMod();        
+<<<<<<< HEAD
+=======
+=======
+        // Não consegui fazer esse set de data, apanhei demais kkkk
+        
+        //objRequisitos.setDataCriacao(dataCriacaoConvertida);
+=======
+        objRequisitos.setDataCriacao(dataCriacaoConvertida);
+>>>>>>> parent of 6f10f99 (Update)
+=======
+        objRequisitos.setDataCriacao(dataCriacaoConvertida);
+>>>>>>> parent of 6f10f99 (Update)
+        //objRequisitos.setDataUltimaMod(); 
+        
+>>>>>>> 6f10f99e96f9e3fad77f31c2806aa4765e84ced3
+>>>>>>> c4ab4e403127bd967cb3d97caf250a872dad1c91
         objRequisitos.setAutor(txtAutor.getText());
         objRequisitos.setFuncionalidades(txtFuncionalidades.getText());
         objRequisitos.setComplexidade(txtComplexidade.getText());
@@ -84,8 +130,13 @@ public class FormRequisito extends javax.swing.JFrame {
         
         
         // DASTRO DE USUÁRIOSfazendo a valida��o dos dados
+<<<<<<< HEAD
         if ((txtNomeRequisito.getText().isEmpty()) || (txtModulo.getText().isEmpty()) || (txtVersao.getText().isEmpty()) || (txtVersao.getText().isEmpty()) || (txtFuncionalidades.getText().isEmpty()) || (txtComplexidade.getText().isEmpty()) || (txtDescricaoRequisito.getText().isEmpty()) ) {
             JOptionPane.showMessageDialog(null, "Informe valores para os campos");
+=======
+        if ((txtNomeRequisito.getText().isEmpty()) || (txtModulo.getText().isEmpty()) || (txtFuncionalidades.getText().isEmpty()) || (txtDescricaoRequisito.getText().isEmpty()) ) {
+            JOptionPane.showMessageDialog(null, "Informe valores para os campos de: Nome do Requisito, Módulo, Funcionalidade e Descriação.");
+>>>>>>> c4ab4e403127bd967cb3d97caf250a872dad1c91
         } else {
             // instanciando a classe ProjetoDAO do pacote dao e criando seu objeto dao
             Utilitarios.projDAO.salvar(objProjeto);
@@ -210,12 +261,45 @@ public class FormRequisito extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> c4ab4e403127bd967cb3d97caf250a872dad1c91
         txtDataUltimaMod.setToolTipText("DD/MM/AAAA");
 
+=======
+>>>>>>> parent of 6f10f99 (Update)
+=======
+>>>>>>> parent of 6f10f99 (Update)
         ButtonCancelarRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ButtonCancelarRequisito.setText("Cancelar");
         ButtonCancelarRequisito.setToolTipText("");
         ButtonCancelarRequisito.addActionListener(new java.awt.event.ActionListener() {
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        ButtonDeletarRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ButtonDeletarRequisito.setText("Deletar");
+        ButtonDeletarRequisito.setToolTipText("");
+        ButtonDeletarRequisito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonDeletarRequisitoActionPerformed(evt);
+            }
+        });
+
+        ButtonLimparRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        ButtonLimparRequisito.setText("Limpar");
+        ButtonLimparRequisito.addActionListener(new java.awt.event.ActionListener() {
+>>>>>>> 6f10f99e96f9e3fad77f31c2806aa4765e84ced3
+=======
+>>>>>>> parent of 6f10f99 (Update)
+=======
+>>>>>>> parent of 6f10f99 (Update)
+>>>>>>> c4ab4e403127bd967cb3d97caf250a872dad1c91
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonCancelarRequisitoActionPerformed(evt);
             }
@@ -277,6 +361,7 @@ public class FormRequisito extends javax.swing.JFrame {
                                             .addComponent(txtComplexidade, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
                                         .addGap(26, 26, 26)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
                                             .addComponent(jLabel14)
                                             .addComponent(jLabel15)
                                             .addComponent(jLabel16))
@@ -297,6 +382,48 @@ public class FormRequisito extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jSeparator2)
                         .addGap(598, 598, 598))
+=======
+                                            .addComponent(txtFuncionalidades, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel13)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(ButtonCancelarRequisito)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(ButtonSalvarRequisito1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addComponent(jLabel7)
+                                                    .addGap(47, 47, 47)
+                                                    .addComponent(txtPrioridade, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel10)
+                                                        .addComponent(jLabel6))
+                                                    .addGap(18, 18, 18)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(txtVersao, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(txtDataCriacao, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel11)
+                                                        .addComponent(jLabel12))
+                                                    .addGap(28, 28, 28)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(txtAutor)
+                                                        .addComponent(txtComplexidade, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addGap(46, 46, 46)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel14)
+                                                .addComponent(jLabel15)
+                                                .addComponent(jLabel16))
+                                            .addGap(28, 28, 28)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(txtAutorUltimaMod)
+                                                .addComponent(txtDataUltimaMod)
+                                                .addComponent(txtEsforco, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                        .addContainerGap(37, Short.MAX_VALUE))
+>>>>>>> c4ab4e403127bd967cb3d97caf250a872dad1c91
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel17)
                         .addGap(10, 10, 10)
@@ -350,6 +477,7 @@ public class FormRequisito extends javax.swing.JFrame {
                             .addComponent(txtAutorUltimaMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+<<<<<<< HEAD
                             .addComponent(jLabel16)
                             .addComponent(txtEsforco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -380,6 +508,10 @@ public class FormRequisito extends javax.swing.JFrame {
                             .addComponent(ButtonSalvarRequisito1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ButtonCancelarRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(txtDescricaoRequisito))
+=======
+                            .addComponent(ButtonSalvarRequisito1)
+                            .addComponent(ButtonCancelarRequisito))))
+>>>>>>> c4ab4e403127bd967cb3d97caf250a872dad1c91
                 .addContainerGap())
         );
 
