@@ -31,13 +31,13 @@ public class UsuarioDAO {
                 sql = "INSERT INTO usuario(nome,cpf,email,telefone,nivel,senha,login) VALUES(?,?,?,?,?,?,?)";
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
-                stmt.setString(1, objUsuario.getNome());
-                stmt.setString(2, objUsuario.getCpf());
-                stmt.setString(3, objUsuario.getEmail());
-                stmt.setString(4, objUsuario.getTelefone());
+                stmt.setString(1, objUsuario.getNome().trim());
+                stmt.setString(2, objUsuario.getCpf().trim());
+                stmt.setString(3, objUsuario.getEmail().trim());
+                stmt.setString(4, objUsuario.getTelefone().trim());
                 stmt.setInt(5, objUsuario.getNivel());
-                stmt.setString(6, objUsuario.getSenha());
-                stmt.setString(7, objUsuario.getLogin());
+                stmt.setString(6, objUsuario.getSenha().trim());
+                stmt.setString(7, objUsuario.getLogin().trim());
 
                 stmt.execute();
 
@@ -46,13 +46,13 @@ public class UsuarioDAO {
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
-                stmt.setString(1, objUsuario.getNome());
-                stmt.setString(2, objUsuario.getCpf());
-                stmt.setString(3, objUsuario.getEmail());
-                stmt.setString(4, objUsuario.getTelefone());
+                stmt.setString(1, objUsuario.getNome().trim());
+                stmt.setString(2, objUsuario.getCpf().trim());
+                stmt.setString(3, objUsuario.getEmail().trim());
+                stmt.setString(4, objUsuario.getTelefone().trim());
                 stmt.setInt(5, objUsuario.getNivel());
-                stmt.setString(6, objUsuario.getSenha());
-                stmt.setString(7, objUsuario.getLogin());
+                stmt.setString(6, objUsuario.getSenha().trim());
+                stmt.setString(7, objUsuario.getLogin().trim());
                 stmt.setLong(8, objUsuario.getId());
                 
                 stmt.execute();
