@@ -147,6 +147,7 @@ public class FormRequisito extends javax.swing.JFrame {
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(880, 580));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Id");
@@ -475,6 +476,8 @@ public class FormRequisito extends javax.swing.JFrame {
 
     private void ButtonLimparRequisito1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonLimparRequisito1ActionPerformed
         // TODO add your handling code here:
+     
+        
     }//GEN-LAST:event_ButtonLimparRequisito1ActionPerformed
 
     private void boxFaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxFaseActionPerformed
