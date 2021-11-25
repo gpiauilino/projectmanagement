@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class Requisitos {
 
-    private int idRequisito;
+    private long idRequisito;
     private String nomeRequisito;
     private String nomeProjeto;
     private String modulo;
@@ -33,11 +33,11 @@ public class Requisitos {
                
         
         
-    public int getIdRequisito() {
+    public long getIdRequisito() {
         return idRequisito;
     }
 
-    public void setIdRequisito(int idRequisito) {
+    public void setIdRequisito(long idRequisito) {
         this.idRequisito = idRequisito;
     }
 
