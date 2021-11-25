@@ -57,9 +57,9 @@ public class FormRequisito extends javax.swing.JFrame {
         objRequisitos.setNomeRequisito(txtNomeRequisito.getText());
         objRequisitos.setModulo(txtModulo.getText());
         objRequisitos.setVersao(Double.parseDouble(versaoNumber));
-        objRequisitos.setPrioridade(boxPrioridade.getText());
+        objRequisitos.setPrioridade(boxPrioridade.getSelectedItem());
         objRequisitos.setEstado(boxEstado.getSelectedItem());
-        objRequisitos.setFase(txtFase.getText());
+        objRequisitos.setFase(txtFase.getSelectedItem());
         
         
         String dttela = txtDataCriacao.getText();
@@ -77,19 +77,19 @@ public class FormRequisito extends javax.swing.JFrame {
         //objRequisitos.setDataUltimaMod();        
         //objRequisitos.setAutor();
         objRequisitos.setFuncionalidades(txtFuncionalidades.getText());
-        objRequisitos.setComplexidade(boxComplexidade.getText());
+        objRequisitos.setComplexidade(boxComplexidade.getSelectedItem());
         //objRequisitos.setAutorUltimaMod(txtAutorUltimaMod.getText());
         objRequisitos.setEsforcoHoras(Double.parseDouble(esforcoHoraNumber));
         objRequisitos.setDescricao(txtDescricaoRequisito.getText());
         
         
         // DASTRO DE USUÁRIOSfazendo a valida��o dos dados
-        if ((txtNomeRequisito.getText().isEmpty()) || (txtModulo.getText().isEmpty()) || (txtVersao.getText().isEmpty()) || (txtVersao.getText().isEmpty()) || (txtFuncionalidades.getText().isEmpty()) || (boxComplexidade.getText().isEmpty()) || (txtDescricaoRequisito.getText().isEmpty()) ) {
-            JOptionPane.showMessageDialog(null, "Informe valores para os campos");
+        if ((txtNomeRequisito.getText().isEmpty()) || (txtModulo.getText().isEmpty()) || (txtFuncionalidades.getText().isEmpty()) || (txtDescricaoRequisito.getText().isEmpty()) ) {
+            JOptionPane.showMessageDialog(null, "Informe valores para os campos: Nome, Módulo, Funcionalidades e Descrição.");
         } else {
             // instanciando a classe ProjetoDAO do pacote dao e criando seu objeto dao
-            Utilitarios.projDAO.salvar(objProjeto);
-            JOptionPane.showMessageDialog(null, "Usu�rio " + txtNome.getText() + " inserido com sucesso! ");
+            //Utilitarios.projDAO.salvar(objProjeto);
+            //JOptionPane.showMessageDialog(null, "Usu�rio " + txtNome.getText() + " inserido com sucesso! ");
         }
         
         
