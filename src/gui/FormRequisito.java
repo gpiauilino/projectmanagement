@@ -142,10 +142,7 @@ public class FormRequisito extends javax.swing.JFrame {
         LabelDataCriacao = new javax.swing.JLabel();
         LabelDataUltimaMod = new javax.swing.JLabel();
         ButtonDeletarRequisito = new javax.swing.JButton();
-        LabelAuthor1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        LabelNomeAutor1 = new javax.swing.JLabel();
-        LabelNomeAutor2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -154,8 +151,8 @@ public class FormRequisito extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Id");
 
-        jLabelRequisito.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabelRequisito.setText("Adicionar Requisito");
+        jLabelRequisito.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelRequisito.setText("+Novo Requisito");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Nome");
@@ -284,20 +281,8 @@ public class FormRequisito extends javax.swing.JFrame {
             }
         });
 
-        LabelAuthor1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        LabelAuthor1.setText("Projeto");
-
-        jLabel2.setText("ID do Projeto");
-
-        LabelNomeAutor1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        LabelNomeAutor1.setForeground(new java.awt.Color(102, 102, 255));
-        LabelNomeAutor1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        LabelNomeAutor1.setText("0001");
-
-        LabelNomeAutor2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        LabelNomeAutor2.setForeground(new java.awt.Color(102, 102, 255));
-        LabelNomeAutor2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        LabelNomeAutor2.setText("Nome do Proj");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setText("Projeto de \"Exemplo\"");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -319,24 +304,18 @@ public class FormRequisito extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(ButtonSalvarRequisito1))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelRequisito)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LabelNomeAutor2)
-                                    .addComponent(LabelAuthor1))
-                                .addGap(29, 29, 29)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(LabelNomeAutor1))
-                                .addGap(34, 34, 34)
+                                    .addComponent(jLabelRequisito)
+                                    .addComponent(jLabel3))
+                                .addGap(296, 296, 296)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(LabelAuthor)
                                     .addComponent(LabelNomeAutor))
-                                .addGap(40, 40, 40)
+                                .addGap(49, 49, 49)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(LabelCriadoEm)
                                     .addComponent(LabelDataCriacao))
-                                .addGap(18, 18, 18)
+                                .addGap(33, 33, 33)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(LabelUltimaMod)
                                     .addComponent(LabelDataUltimaMod)))))
@@ -388,30 +367,32 @@ public class FormRequisito extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LabelAuthor)
-                            .addComponent(jLabel2)
-                            .addComponent(LabelAuthor1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LabelNomeAutor)
-                            .addComponent(LabelNomeAutor1)
-                            .addComponent(LabelNomeAutor2)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jLabel3))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(LabelAuthor)))
+                        .addGap(18, 18, 18)
+                        .addComponent(LabelNomeAutor))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(LabelUltimaMod)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LabelDataUltimaMod))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(LabelCriadoEm)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LabelDataCriacao))
-                    .addComponent(jLabelRequisito))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(LabelUltimaMod)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(LabelCriadoEm)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LabelDataCriacao, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabelRequisito)
+                                        .addComponent(LabelDataUltimaMod)))))))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtRequisitoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -462,7 +443,7 @@ public class FormRequisito extends javax.swing.JFrame {
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtFuncionalidades, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonSalvarRequisito1)
                     .addComponent(ButtonCancelarRequisito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -594,13 +575,10 @@ public class FormRequisito extends javax.swing.JFrame {
     private static javax.swing.JButton ButtonLimparRequisito1;
     private static javax.swing.JButton ButtonSalvarRequisito1;
     private javax.swing.JLabel LabelAuthor;
-    private javax.swing.JLabel LabelAuthor1;
     private javax.swing.JLabel LabelCriadoEm;
     private javax.swing.JLabel LabelDataCriacao;
     private javax.swing.JLabel LabelDataUltimaMod;
     private javax.swing.JLabel LabelNomeAutor;
-    private javax.swing.JLabel LabelNomeAutor1;
-    private javax.swing.JLabel LabelNomeAutor2;
     private javax.swing.JLabel LabelUltimaMod;
     private javax.swing.JComboBox<String> boxComplexidade;
     private javax.swing.JComboBox<String> boxEstado;
@@ -612,7 +590,7 @@ public class FormRequisito extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
