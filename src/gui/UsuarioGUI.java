@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.ModelTable;
@@ -10,7 +11,7 @@ public final class UsuarioGUI extends javax.swing.JFrame {
     private Usuario objUsuario;
     //private UsuarioDAO objDAO;
     private boolean buscar = false;
-    
+
     /**
      * Creates new form UsuarioGUI
      */
@@ -24,16 +25,15 @@ public final class UsuarioGUI extends javax.swing.JFrame {
         this.setResizable(false);
         // Trocando cursor para HAND CURSOR(Maozinha)
         // jButtonRefresh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-       
+
         carregarTable(null);
     }
 
     // Metodo que realiza conexao com o banco, faz uma instrucao Query(select)
     // para jogar na JTable atraves do modelo de tabela (ModelTabel.java)
     public void carregarTable(Usuario objUsuario) {
-        
+
         //Filtro de busca da tabela visual UsuarioGUI
-        
         ArrayList dados;
         if (buscar) {
             dados = Utilitarios.usuDAO.buscar(objUsuario);
@@ -61,13 +61,49 @@ public final class UsuarioGUI extends javax.swing.JFrame {
     // na JTable, e realizar a vinculacao do mesmo nos TextFields
     public void selectRegistryTable() {
 
-        txtID.setText(tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 0).toString());
+        Object valorDaCelula = tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 0);
+        if (valorDaCelula == null) {
+            valorDaCelula = "";
+        }
+        txtID.setText(valorDaCelula.toString());
+        if (valorDaCelula.equals(1)) {
+            btnDeletar.setEnabled(false);
+            cbNivel.setEnabled(false);
+        } else {
+            btnDeletar.setEnabled(true);
+            cbNivel.setEnabled(true);
+        }
 
-        //Object objNome = tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 1);
-        txtNome.setText(tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 1).toString());
-        txtCPF.setText(tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 2).toString());
-        txtEmail.setText(tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 3).toString());
-        txtTelefone.setText(tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 4).toString());
+        valorDaCelula = tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 1);
+        if (valorDaCelula == null) {
+            valorDaCelula = "";
+        }
+        txtNome.setText(valorDaCelula.toString());
+
+        valorDaCelula = tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 4);
+        if (valorDaCelula == null) {
+            valorDaCelula = "";
+        }
+        txtCPF.setText(valorDaCelula.toString());
+
+        valorDaCelula = tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 2);
+        if (valorDaCelula == null) {
+            valorDaCelula = "";
+        }
+        txtEmail.setText(valorDaCelula.toString());
+
+        valorDaCelula = tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 3);
+        if (valorDaCelula == null) {
+            valorDaCelula = "";
+        }
+        txtTelefone.setText(valorDaCelula.toString());
+
+        valorDaCelula = tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 5);
+        if (valorDaCelula == null) {
+            valorDaCelula = "";
+        }
+        cbNivel.setSelectedItem(valorDaCelula);
+
     }
 
     /**
@@ -101,7 +137,7 @@ public final class UsuarioGUI extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbNivel = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -158,11 +194,11 @@ public final class UsuarioGUI extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "Cargo", "Email", "Telefone", "CPF"
+                "ID", "Nome", "Email", "Telefone", "CPF", "Nivel"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
                 false, true, true, true, true, true
@@ -210,7 +246,7 @@ public final class UsuarioGUI extends javax.swing.JFrame {
 
         jLabel8.setText("Senha");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", " " }));
+        cbNivel.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Gerente", "Funcionário" }));
 
         jLabel9.setText("Nivel");
 
@@ -266,9 +302,10 @@ public final class UsuarioGUI extends javax.swing.JFrame {
                                         .addComponent(btnDeletar)))
                                 .addGap(561, 561, 561)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 40, Short.MAX_VALUE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(0, 57, Short.MAX_VALUE))
+                                    .addComponent(cbNivel, 0, 1, Short.MAX_VALUE))))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -291,7 +328,7 @@ public final class UsuarioGUI extends javax.swing.JFrame {
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbNivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -310,8 +347,8 @@ public final class UsuarioGUI extends javax.swing.JFrame {
                     .addComponent(btnDeletar)
                     .addComponent(btnBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -322,32 +359,57 @@ public final class UsuarioGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNomeActionPerformed
 
     private void tbnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnSalvarActionPerformed
+        boolean validou = true;
+        String msg = "Informe ";
+        if (txtNome.getText().isEmpty()) {
+            msg = msg + " Nome";
+            validou = false;
+        }
 
-        objUsuario = new Usuario();
-        objUsuario.setId(txtID.getText());
-        objUsuario.setNome(txtNome.getText());
-        objUsuario.setCpf(txtCPF.getText());
-        objUsuario.setEmail(txtEmail.getText());
-        objUsuario.setTelefone(txtTelefone.getText());
+        if (txtCPF.getText().isEmpty()) {
+            msg = msg + " CPF";
+            txtCPF.setBackground(Color.red);
+            validou = false;
+        }
+        if (txtEmail.getText().isEmpty()) {
+            msg = msg + " Email";
+            validou = false;
+        }
 
-        // fazendo a validação dos dados
-        if ((txtNome.getText().isEmpty()) || (txtCPF.getText().isEmpty()) || (txtEmail.getText().isEmpty()) || (txtTelefone.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(null, "Informe valores para os campos");
-        } else {
+        if (txtTelefone.getText().isEmpty()) {
+            msg = msg + " Telefone";
+            validou = false;
+
+        }
+
+        if (validou) {
+
+            objUsuario = new Usuario();
+            if (!"".equals(txtID.getText())) {
+                objUsuario.setId(Long.parseLong(txtID.getText()));
+            }
+            objUsuario.setNome(txtNome.getText());
+            objUsuario.setCpf(txtCPF.getText());
+            objUsuario.setEmail(txtEmail.getText());
+            objUsuario.setTelefone(txtTelefone.getText());
+            objUsuario.setNivel(cbNivel.getSelectedIndex());
+
             // instanciando a classe UsuarioDAO do pacote dao e criando seu objeto dao
             //Msg de adição do usuário ao banco.
             Utilitarios.usuDAO.salvar(objUsuario);
             JOptionPane.showMessageDialog(null, "Usuario " + txtNome.getText() + " inserido com sucesso! ");
+        } else {
+            JOptionPane.showMessageDialog(this, msg);
         }
 
         carregarTable(null);
 
         // apaga os dados preenchidos nos campos de texto
-        setClear();
+        limparTela();
     }//GEN-LAST:event_tbnSalvarActionPerformed
 
     private void tbnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnLimparActionPerformed
-        setClear();
+        limparTela();
         carregarTable(null);
     }//GEN-LAST:event_tbnLimparActionPerformed
 
@@ -361,21 +423,30 @@ public final class UsuarioGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tbListagemUsuarioMouseClicked
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        objUsuario.setId(txtID.getText());
 
         // fazendo a valida��o dos dados
         if ((txtID.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(null, "Informe valores para os campos");
+            JOptionPane.showMessageDialog(null, "Selecione um usuar da lista");
         } else {
-            // instanciando a classe UsuarioDAO do pacote dao e criando seu objeto dao
-            Utilitarios.usuDAO.deletar(objUsuario);
-            JOptionPane.showMessageDialog(null, "Usu�rio Removido com Sucesso! ");
+            if (("1".equals(txtID.getText()))) {
+                JOptionPane.showMessageDialog(null, "Proibido apagar o um");
+            } else {
+                objUsuario = new Usuario();
+                objUsuario.setId(Long.parseLong(txtID.getText()));
+
+                // instanciando a classe UsuarioDAO do pacote dao e criando seu objeto dao
+                if (Utilitarios.usuDAO.deletar(objUsuario)) {
+                    JOptionPane.showMessageDialog(null, "Usurio Removido com Sucesso! ");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Falha ao remover usuario ");
+                }
+            }
         }
 
         carregarTable(null);
 
         // apaga os dados preenchidos nos campos de texto
-        setClear();
+        limparTela();
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -388,25 +459,28 @@ public final class UsuarioGUI extends javax.swing.JFrame {
             // instanciando a classe UsuarioDAO do pacote dao e criando seu objeto dao
             buscar = true;
             carregarTable(objUsuario);
-        }else{
+        } else {
             buscar = false;
             carregarTable(null);
         }
 
         // apaga os dados preenchidos nos campos de texto
-        setClear();
+        limparTela();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCPFActionPerformed
 
-    public void setClear() {
+    public void limparTela() {
         txtID.setText(null);
         txtNome.setText(null);
         txtCPF.setText(null);
         txtEmail.setText(null);
         txtTelefone.setText(null);
+
+        btnDeletar.setEnabled(true);
+        cbNivel.setEnabled(true);
     }
 
     /**
@@ -430,7 +504,7 @@ public final class UsuarioGUI extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
         //</editor-fold>
         //</editor-fold>
 
@@ -443,7 +517,7 @@ public final class UsuarioGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnDeletar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbNivel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
