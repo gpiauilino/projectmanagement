@@ -55,7 +55,7 @@ public class Utilitarios {
                     + " senha VARCHAR(255),"
                     + " login VARCHAR(255),"
                     //Nivel de priv.*
-                    + " nivel INT,"
+                    + " nivel INT default 2,"
                     + " PRIMARY KEY (id)"
                     + ");");
 
@@ -71,9 +71,9 @@ public class Utilitarios {
             // Tabela de projetos
             myResult = s.executeUpdate("CREATE TABLE IF NOT EXISTS projeto ("
                     + " id BIGINT(10) AUTO_INCREMENT,"
-                    + " nome VARCHAR(255),"
-                    + " descricao VARCHAR(255),"
-                    + " usuario_id BIGINT(10),"
+                    + " nome VARCHAR(255) DEFAULT '',"
+                    + " descricao VARCHAR(255) DEFAULT '',"
+                    + " usuario_id BIGINT(10) DEFAULT 0,"
                     + " PRIMARY KEY (id), "
                     + " FOREIGN KEY (usuario_id) REFERENCES usuario(id)"
                     + ");");
@@ -82,16 +82,16 @@ public class Utilitarios {
             myResult = s.executeUpdate("CREATE TABLE IF NOT EXISTS requisito ("
                     + " id BIGINT(10) AUTO_INCREMENT,"
                     + " descricao VARCHAR(255),"
-                    + " modulo VARCHAR(255),"
-                    + " versao DOUBLE,"
-                    + " estado VARCHAR(255),"
-                    + " fase VARCHAR(255),"
+                    + " modulo VARCHAR(255) DEFAULT '',"
+                    + " versao DOUBLE DEFAULT 0.0,"
+                    + " estado VARCHAR(255) DEFAULT '',"
+                    + " fase VARCHAR(255) DEFAULT '',"
                     + " data_criacao DATETIME,"
-                    + " funcionalidades VARCHAR(255),"
-                    + " complexidade VARCHAR(255),"
+                    + " funcionalidades VARCHAR(255) DEFAULT '',"
+                    + " complexidade VARCHAR(255) DEFAULT '',"
                     + " data_ultima_mod DATETIME,"
                     + " autor_ultima_mod DATETIME,"
-                    + " esforco_horas DOUBLE,"
+                    + " esforco_horas DOUBLE DEFAULT 0.0,"
                     + " PRIMARY KEY (id)"
                     + ");");
 
@@ -103,7 +103,7 @@ public class Utilitarios {
             }
             if (i == 0) {
                 myResult = s.executeUpdate("INSERT INTO usuario (nome, nivel, login, senha)"
-                        + "VALUES ('Administrador', 1, 'admin', 'admin');");
+                        + "VALUES ('Administrador', 0, 'admin', 'admin');");
             }
 
         } catch (SQLException ex) {
