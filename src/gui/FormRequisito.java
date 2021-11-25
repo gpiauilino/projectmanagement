@@ -57,9 +57,9 @@ public class FormRequisito extends javax.swing.JFrame {
         objRequisitos.setNomeRequisito(txtNomeRequisito.getText());
         objRequisitos.setModulo(txtModulo.getText());
         objRequisitos.setVersao(Double.parseDouble(versaoNumber));
-        objRequisitos.setPrioridade(boxPrioridade.getSelectedItem());
-        objRequisitos.setEstado(boxEstado.getSelectedItem());
-        objRequisitos.setFase(txtFase.getSelectedItem());
+        objRequisitos.setPrioridade((String) boxPrioridade.getSelectedItem());
+        objRequisitos.setEstado((String) boxEstado.getSelectedItem());
+        objRequisitos.setFase((String) boxFase.getSelectedItem());
         
         
         String dttela = txtDataCriacao.getText();
@@ -71,14 +71,11 @@ public class FormRequisito extends javax.swing.JFrame {
             System.out.println("erro convertendo data: " + dttela);
                     
         }
-        objRequisitos.setDataCriacao(date1);
-        
+        objRequisitos.setDataCriacao(date1);     
 
-        //objRequisitos.setDataUltimaMod();        
-        //objRequisitos.setAutor();
+     
         objRequisitos.setFuncionalidades(txtFuncionalidades.getText());
-        objRequisitos.setComplexidade(boxComplexidade.getSelectedItem());
-        //objRequisitos.setAutorUltimaMod(txtAutorUltimaMod.getText());
+        objRequisitos.setComplexidade((String) boxComplexidade.getSelectedItem());        
         objRequisitos.setEsforcoHoras(Double.parseDouble(esforcoHoraNumber));
         objRequisitos.setDescricao(txtDescricaoRequisito.getText());
         
