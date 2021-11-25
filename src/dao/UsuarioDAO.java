@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class UsuarioDAO {
+
     private final Connection connection;
-    
+
     Long id;
     String nome;
     String cpf;
@@ -18,8 +19,7 @@ public class UsuarioDAO {
     String senha;
     int nivel;
     String login;
-    
-    
+
     public UsuarioDAO(Connection con) {
         connection = con;
     }
@@ -27,7 +27,7 @@ public class UsuarioDAO {
     public void salvar(Usuario objUsuario) {
         try {
             String sql;
-            if (String.valueOf(objUsuario.getId()).isEmpty()) {
+            if (objUsuario.getId() == 0) {
                 sql = "INSERT INTO usuario(nome,cpf,email,telefone,nivel,senha,login) VALUES(?,?,?,?,?,?,?)";
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -35,29 +35,28 @@ public class UsuarioDAO {
                 stmt.setString(2, objUsuario.getCpf());
                 stmt.setString(3, objUsuario.getEmail());
                 stmt.setString(4, objUsuario.getTelefone());
-                stmt.setInt (5, objUsuario.getNivel());
-                stmt.setString (6, objUsuario.getSenha());
-                stmt.setString (7, objUsuario.getLogin());
-                
+                stmt.setInt(5, objUsuario.getNivel());
+                stmt.setString(6, objUsuario.getSenha());
+                stmt.setString(7, objUsuario.getLogin());
+
                 stmt.execute();
-                
 
             } else {
-                sql = "UPDATE usuario SET nome = ?, cpf = ?, email = ?, telefone = ?, nivel = ?, senha = ?, login = ?,  WHERE usuario.id = ?";
+                sql = "UPDATE usuario SET nome = ?, cpf = ?, email = ?, telefone = ?, nivel = ?, senha = ?, login = ? WHERE id = ?";
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
-                stmt.setString(5, objUsuario.getId());
                 stmt.setString(1, objUsuario.getNome());
                 stmt.setString(2, objUsuario.getCpf());
                 stmt.setString(3, objUsuario.getEmail());
                 stmt.setString(4, objUsuario.getTelefone());
                 stmt.setInt(5, objUsuario.getNivel());
-                stmt.setString (6, objUsuario.getSenha());
-                stmt.setString (7, objUsuario.getLogin());
-           
+                stmt.setString(6, objUsuario.getSenha());
+                stmt.setString(7, objUsuario.getLogin());
+                stmt.setLong(8, objUsuario.getId());
+                
                 stmt.execute();
-           
+
             }
         } catch (SQLException u) {
             throw new RuntimeException(u);
@@ -79,9 +78,9 @@ public class UsuarioDAO {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    
+
                     dado.add(new Object[]{
-                        rs.getInt("id"),
+                        rs.getLong("id"),
                         rs.getString("nome"),
                         rs.getString("cpf"),
                         rs.getString("email"),
@@ -89,9 +88,7 @@ public class UsuarioDAO {
                         rs.getString("cargo"),
                         rs.getInt("nivel"),
                         rs.getString("senha"),
-                        rs.getString("login"),
-                    });
-                    
+                        rs.getString("login"),});
                 }
             }
             rs.close();
@@ -106,18 +103,21 @@ public class UsuarioDAO {
 
     }
 
-    public void deletar(Usuario objUsuario) {
+    public boolean deletar(Usuario objUsuario) {
         try {
             String sql;
             if (!String.valueOf(objUsuario.getId()).isEmpty()) {
-                sql = "DELETE FROM usuario WHERE usuario.id = ?";
-                PreparedStatement stmt = connection.prepareStatement(sql);
+                if (!"1".equals(objUsuario.getId())) {
+                    sql = "DELETE FROM usuario WHERE usuario.id = ?";
+                    PreparedStatement stmt = connection.prepareStatement(sql);
 
-                stmt.setString(1, objUsuario.getId());
-                stmt.execute();
-                
+                    stmt.setLong(1, objUsuario.getId());
+                    stmt.execute();
 
+                    return true;
+                }
             }
+            return false;
         } catch (SQLException u) {
             throw new RuntimeException(u);
         }
@@ -132,19 +132,33 @@ public class UsuarioDAO {
             try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM usuario")) {
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    
+
+                    String nivelnome;
+                    int n = rs.getInt("nivel");
+                    switch (n) {
+                        case 0:
+                            nivelnome = "Admin";
+                            break;
+                        case 1:
+                            nivelnome = "Gerente";
+                            break;
+                        case 2:
+                            nivelnome = "Funcionário";
+                            break;
+                        default:
+                            nivelnome = "indef";
+                    }
+
                     dado.add(new Object[]{
                         rs.getInt("id"),
                         rs.getString("nome"),
                         rs.getString("cpf"),
                         rs.getString("email"),
                         rs.getString("telefone"),
-                        rs.getString("cargo"),
-                        rs.getInt("nivel"),
+                        nivelnome,
                         rs.getString("senha"),
-                        rs.getString("login"),
-                    });
-                    
+                        rs.getString("login"),});
+
                 }
             }
             rs.close();
@@ -152,8 +166,7 @@ public class UsuarioDAO {
 
             return dado;
         } catch (SQLException e) {
-            e.getMessage();
-            JOptionPane.showMessageDialog(null, "Erro preencher o ArrayList");
+            JOptionPane.showMessageDialog(null, "Falha grave ao listar todos os usuários: " + e.getMessage());
             return null;
         }
     }
