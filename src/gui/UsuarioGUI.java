@@ -384,9 +384,11 @@ public final class UsuarioGUI extends javax.swing.JFrame {
 
         if (validou) {
 
+            String palavra_msg = "inserido";
             objUsuario = new Usuario();
             if (!"".equals(txtID.getText())) {
                 objUsuario.setId(Long.parseLong(txtID.getText()));
+                palavra_msg = "atualizado";
             }
             objUsuario.setNome(txtNome.getText());
             objUsuario.setCpf(txtCPF.getText());
@@ -397,7 +399,7 @@ public final class UsuarioGUI extends javax.swing.JFrame {
             // instanciando a classe UsuarioDAO do pacote dao e criando seu objeto dao
             //Msg de adição do usuário ao banco.
             Utilitarios.usuDAO.salvar(objUsuario);
-            JOptionPane.showMessageDialog(null, "Usuario " + txtNome.getText() + " inserido com sucesso! ");
+            JOptionPane.showMessageDialog(this, "Usuário " + txtNome.getText() + " "+palavra_msg+" com sucesso! ");
         } else {
             JOptionPane.showMessageDialog(this, msg);
         }

@@ -192,6 +192,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
@@ -220,14 +221,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         Utilitarios.usuDAO = new UsuarioDAO(utilz.getConnection());
         Utilitarios.projDAO = new ProjetoDAO(utilz.getConnection());
+
+        Login dialog = new Login(new javax.swing.JFrame(), true);
+        dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                //System.exit(0);
+            }
+        });
+        dialog.setVisible(true);
+
+
     }//GEN-LAST:event_formComponentShown
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
 
-        
-
         new UsuarioGUI().setVisible(true);
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_openMenuItemActionPerformed
 
