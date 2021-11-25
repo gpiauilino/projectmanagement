@@ -4,7 +4,7 @@ package modelo;
 
 public class Usuario {
 
-    private String id;
+    private Long id;
     private String nome;
     private String cpf;
     private String email;
@@ -16,10 +16,11 @@ public class Usuario {
     private String[] colunas = new String[]{"ID", "NOME", "CPF", "EMAIL", "TELEFONE", "NIVEL", "SENHA", "LOGIN"};
 
     public Usuario() {
+        id = 0l;
     }
 
     // Construtor
-    public Usuario(String id) {
+    public Usuario(Long id) {
         this.id = id;
     }
 
@@ -40,11 +41,11 @@ public class Usuario {
 
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
