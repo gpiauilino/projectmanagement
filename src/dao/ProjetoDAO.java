@@ -21,6 +21,9 @@ public class ProjetoDAO {
     }
 
     public void salvar(Projeto objProjeto) {
+        
+        String strGetIdProjeto = String.valueOf(objProjeto.getId());
+        
         try {
             String sql;
             if (String.valueOf(objProjeto.getId()).isEmpty()) {
@@ -39,7 +42,7 @@ public class ProjetoDAO {
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
-                stmt.setString(5, objProjeto.getId());
+                stmt.setString(5, strGetIdProjeto);
                 stmt.setString(1, objProjeto.getNome());
                 stmt.setString(2, objProjeto.getDescricao());
                 stmt.setString(3, objProjeto.getEmail());
@@ -70,7 +73,7 @@ public class ProjetoDAO {
             while (rs.next()) {
 
                 dado.add(new Object[]{
-                    rs.getInt("id"),
+                    rs.getLong("id"),
                     rs.getString("nome"),
                     rs.getString("descricao"),
                     rs.getString("email"),
@@ -92,13 +95,16 @@ public class ProjetoDAO {
     }
 
     public void deletar(Projeto objProjeto) {
+        
+    String strGetIdProjeto = String.valueOf(objProjeto.getId());
+    
         try {
             String sql;
-            if (!String.valueOf(objProjeto.getId()).isEmpty()) {
+            if (!String.valueOf(strGetIdProjeto).isEmpty()) {
                 sql = "DELETE FROM projeto WHERE projeto.id = ?";
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
-                stmt.setString(1, objProjeto.getId());
+                stmt.setString(1, strGetIdProjeto);
                 stmt.execute();
                 
 
@@ -119,7 +125,7 @@ public class ProjetoDAO {
             while (rs.next()) {
 
                 dado.add(new Object[]{
-                    rs.getInt("id"),
+                    rs.getLong("id"),
                     rs.getString("nome"),
                     rs.getString("descricao"),
                     rs.getString("email"),
