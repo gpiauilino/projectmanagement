@@ -48,12 +48,12 @@ public class Utilitarios {
             //Tabela de usuarios
             myResult = s.executeUpdate("CREATE TABLE IF NOT EXISTS usuario ("
                     + " id BIGINT(10) AUTO_INCREMENT,"
-                    + " nome VARCHAR(255),"
-                    + " cpf VARCHAR(255),"
-                    + " email VARCHAR(255),"
-                    + " telefone VARCHAR(255),"
-                    + " senha VARCHAR(255),"
-                    + " login VARCHAR(255),"
+                    + " nome VARCHAR(255) DEFAULT '',"
+                    + " cpf VARCHAR(255) DEFAULT '',"
+                    + " email VARCHAR(255) DEFAULT '',"
+                    + " telefone VARCHAR(255) DEFAULT '',"
+                    + " senha VARCHAR(255) DEFAULT '',"
+                    + " login VARCHAR(255) DEFAULT '',"
                     //Nivel de priv.*
                     + " nivel INT default 2,"
                     + " PRIMARY KEY (id)"
@@ -62,9 +62,9 @@ public class Utilitarios {
             // Tabela de cargos
             myResult = s.executeUpdate("CREATE TABLE IF NOT EXISTS cargo ("
                     + " id BIGINT(10) AUTO_INCREMENT,"
-                    + " cargo_nome VARCHAR(255),"
-                    + " descricao VARCHAR(255),"
-                    + " setor VARCHAR(255),"
+                    + " cargo_nome VARCHAR(255)DEFAULT '',"
+                    + " descricao VARCHAR(255)DEFAULT '',"
+                    + " setor VARCHAR(255)DEFAULT '',"
                     + " PRIMARY KEY (id)"
                     + ");");
 
