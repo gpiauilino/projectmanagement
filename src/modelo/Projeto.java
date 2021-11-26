@@ -2,43 +2,31 @@ package modelo;
 
 public class Projeto {
 
-    private String id;
+    private long id;
+    private String login;
     private String nome;
     private String descricao;
     private String email;
     private String telefone;
-    private String[] colunas = new String[]{"ID", "NOME", "DESCRICAO", "EMAIL", "TELEFONE"};
+    private String[] colunas = new String[]{"ID", "LOGIN", "NOME", "DESCRICAO", "EMAIL", "TELEFONE"};
 
     public Projeto() {
     }
 
-    public Projeto(String id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String d) {
-        this.descricao = d;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-
-    }
-
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getNome() {
@@ -47,6 +35,22 @@ public class Projeto {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getTelefone() {
@@ -61,8 +65,11 @@ public class Projeto {
         return colunas;
     }
 
-    public void setColunas(String[] Colunas) {
-        this.colunas = Colunas;
+    public void setColunas(String[] colunas) {
+        this.colunas = colunas;
     }
+
+   
+    
 
 }

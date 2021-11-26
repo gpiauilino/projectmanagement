@@ -150,7 +150,7 @@ public class UsuarioDAO {
                     }
 
                     dado.add(new Object[]{
-                        rs.getInt("id"),
+                        rs.getLong("id"),
                         rs.getString("nome"),
                         rs.getString("cpf"),
                         rs.getString("email"),

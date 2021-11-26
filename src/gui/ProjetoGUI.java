@@ -288,7 +288,8 @@ public class ProjetoGUI extends javax.swing.JFrame {
     private void tbnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnSalvarActionPerformed
 
         objProjeto = new Projeto();
-        objProjeto.setId(txtID.getText());
+               
+        objProjeto.setId(Long.parseLong(txtID.getText()));
         objProjeto.setNome(txtNome.getText());
         objProjeto.setDescricao(txtDescricao.getText());
         objProjeto.setEmail(txtEmail.getText());
@@ -324,7 +325,7 @@ public class ProjetoGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tbListagemProjetoMouseClicked
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        objProjeto.setId(txtID.getText());
+        objProjeto.setId(Long.parseLong(txtID.getText()));
 
         // fazendo a valida��o dos dados
         if ((txtID.getText().isEmpty())) {
