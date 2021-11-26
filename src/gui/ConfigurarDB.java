@@ -1,7 +1,5 @@
 package gui;
 
-import java.util.Arrays;
-
 public class ConfigurarDB extends javax.swing.JDialog {
 
     public ConfigurarDB(java.awt.Frame parent, boolean modal) {
@@ -145,12 +143,12 @@ public class ConfigurarDB extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        Utilitarios.endereco = tfEndereco.getText();
-        Utilitarios.porta = tfPorta.getText();
-        Utilitarios.usuario = tfNome.getText();
+        
         String passText = new String(tfSenha2.getPassword());
         // esta var recebe uma atributo do tipo password e informa ao utilitario como uma string
-        Utilitarios.senha = passText;
+        
+        Utilitarios.armazenarPrefs(tfEndereco.getText(), tfPorta.getText(), tfNome.getText(), passText);
+        
         // sujestão do java usar o Array to string, pois vem um array char dentro do get psw.
         this.dispose();
     }//GEN-LAST:event_btSalvarActionPerformed
