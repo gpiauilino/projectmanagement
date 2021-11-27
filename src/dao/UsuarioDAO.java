@@ -1,7 +1,7 @@
 package dao;
 
 import factory.ConnectionFactory;
-import modelo.Usuario;
+import modelo.UsuarioModel;
 import java.sql.*;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ public class UsuarioDAO {
         connection = con;
     }
 
-    public void salvar(Usuario objUsuario) {
+    public void salvar(UsuarioModel objUsuario) {
         try {
             String sql;
             if (objUsuario.getId() == 0) {
@@ -54,7 +54,7 @@ public class UsuarioDAO {
                 stmt.setString(6, objUsuario.getSenha().trim());
                 stmt.setString(7, objUsuario.getLogin().trim());
                 stmt.setLong(8, objUsuario.getId());
-                
+
                 stmt.execute();
 
             }
@@ -62,8 +62,30 @@ public class UsuarioDAO {
             throw new RuntimeException(u);
         }
     }
-
-    public ArrayList buscar(Usuario objUsuario) {
+    
+    public long testarLogin(String login, String senha) {
+        long retorno = 0l;
+        try {
+           try (PreparedStatement st = connection.prepareStatement(
+                    "SELECT id, login, senha FROM usuario WHERE usuario.login=? and usuario.senha=?")) {
+     
+                    st.setString(1, login);
+                    st.setString(2, senha);
+                    ResultSet rs = st.executeQuery();
+                    if (rs.next()) {
+                        System.out.println("achou usuario");
+                        retorno = rs.getLong("id");
+                    }
+                    rs.close();
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao selecionar:" + e.getMessage());
+        }
+        return retorno;
+    }
+  
+    
+    public ArrayList buscar(UsuarioModel objUsuario) {
         try {
             String sql = "";
             if (!objUsuario.getNome().isEmpty()) {
@@ -79,16 +101,33 @@ public class UsuarioDAO {
                 rs = ps.executeQuery();
                 while (rs.next()) {
 
+                    String nivelnome;
+                    int n = rs.getInt("nivel");
+                    switch (n) {
+                        case 0:
+                            nivelnome = "Admin";
+                            break;
+                        case 1:
+                            nivelnome = "Gerente";
+                            break;
+                        case 2:
+                            nivelnome = "Funcionário";
+                            break;
+                        default:
+                            nivelnome = "indef";
+                    }
+
                     dado.add(new Object[]{
                         rs.getLong("id"),
                         rs.getString("nome"),
                         rs.getString("cpf"),
                         rs.getString("email"),
                         rs.getString("telefone"),
-                        rs.getString("cargo"),
-                        rs.getInt("nivel"),
+                        rs.getString("data_criacao"),
                         rs.getString("senha"),
-                        rs.getString("login"),});
+                        rs.getString("login"),
+                        nivelnome
+                    });
                 }
             }
             rs.close();
@@ -96,18 +135,16 @@ public class UsuarioDAO {
 
             return dado;
         } catch (SQLException e) {
-            e.getMessage();
-            JOptionPane.showMessageDialog(null, "Erro preencher o ArrayList");
+            JOptionPane.showMessageDialog(null, "Erro ao selecionar:" + e.getMessage());
             return null;
         }
-
     }
 
-    public boolean deletar(Usuario objUsuario) {
+    public boolean deletar(UsuarioModel objUsuario) {
         try {
             String sql;
             if (!String.valueOf(objUsuario.getId()).isEmpty()) {
-                if (!"1".equals(objUsuario.getId())) {
+                if (objUsuario.getId() != 1) {
                     sql = "DELETE FROM usuario WHERE usuario.id = ?";
                     PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -155,9 +192,11 @@ public class UsuarioDAO {
                         rs.getString("cpf"),
                         rs.getString("email"),
                         rs.getString("telefone"),
-                        nivelnome,
+                        rs.getString("data_criacao"),
                         rs.getString("senha"),
-                        rs.getString("login"),});
+                        rs.getString("login"),
+                        nivelnome
+                    });
 
                 }
             }
