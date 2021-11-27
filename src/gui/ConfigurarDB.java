@@ -25,6 +25,7 @@ public class ConfigurarDB extends javax.swing.JDialog {
         tfSenha2 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         tfEndereco.setText("127.0.0.1");
         tfEndereco.addActionListener(new java.awt.event.ActionListener() {
