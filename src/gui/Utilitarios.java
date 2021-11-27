@@ -23,6 +23,8 @@ public class Utilitarios {
     public static String endereco;
     public static String porta;
     
+    public static Long usuarioId;
+    
     private static Preferences prefs;
     
     public Utilitarios(){
@@ -60,32 +62,36 @@ public class Utilitarios {
             //Tabela de usuarios
             myResult = s.executeUpdate("CREATE TABLE IF NOT EXISTS usuario ("
                     + " id BIGINT(10) AUTO_INCREMENT,"
-                    + " nome VARCHAR(255) DEFAULT '',"
-                    + " cpf VARCHAR(255) DEFAULT '',"
-                    + " email VARCHAR(255) DEFAULT '',"
-                    + " telefone VARCHAR(255) DEFAULT '',"
-                    + " senha VARCHAR(255) DEFAULT '',"
-                    + " login VARCHAR(255) DEFAULT '',"
+                    + " nome VARCHAR(255) NOT NULL,"
+                    + " cpf VARCHAR(255) NOT NULL,"
+                    + " email VARCHAR(255) NOT NULL,"
+                    + " telefone VARCHAR(255) NOT NULL,"
+                    + " data_criacao DATETIME ,"
+                    + " senha VARCHAR(255) NOT NULL,"
+                    + " login VARCHAR(255) NOT NULL,"
                     //Nivel de priv.*
                     + " nivel INT default 2,"
                     + " PRIMARY KEY (id)"
                     + ");");
 
             // Tabela de cargos
-            myResult = s.executeUpdate("CREATE TABLE IF NOT EXISTS cargo ("
-                    + " id BIGINT(10) AUTO_INCREMENT,"
-                    + " cargo_nome VARCHAR(255)DEFAULT '',"
-                    + " descricao VARCHAR(255)DEFAULT '',"
-                    + " setor VARCHAR(255)DEFAULT '',"
-                    + " PRIMARY KEY (id)"
-                    + ");");
+//            myResult = s.executeUpdate("CREATE TABLE IF NOT EXISTS cargo ("
+//                    + " id BIGINT(10) AUTO_INCREMENT,"
+//                    + " cargo_nome VARCHAR(255) DEFAULT '',"
+//                    + " data_criacao DATETIME,"
+//                    + " descricao VARCHAR(255)DEFAULT '',"
+//                    + " setor VARCHAR(255)DEFAULT '',"
+//                    + " PRIMARY KEY (id)"
+//                    + ");");
 
             // Tabela de projetos
             myResult = s.executeUpdate("CREATE TABLE IF NOT EXISTS projeto ("
                     + " id BIGINT(10) AUTO_INCREMENT,"
                     + " nome VARCHAR(255) DEFAULT '',"
                     + " descricao VARCHAR(255) DEFAULT '',"
-                    + " usuario_id BIGINT(10) DEFAULT 0,"
+                    + " data_criacao DATETIME ,"
+                    + " data_modificacao DATETIME ,"
+                    + " usuario_id BIGINT(10),"
                     + " PRIMARY KEY (id), "
                     + " FOREIGN KEY (usuario_id) REFERENCES usuario(id)"
                     + ");");
