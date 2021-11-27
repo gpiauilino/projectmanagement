@@ -4,11 +4,11 @@ import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.ModelTable;
-import modelo.Usuario;
+import modelo.UsuarioModel;
 
 public final class UsuarioGUI extends javax.swing.JFrame {
 
-    private Usuario objUsuario;
+    private UsuarioModel objUsuario;
     //private UsuarioDAO objDAO;
     private boolean buscar = false;
 
@@ -31,14 +31,14 @@ public final class UsuarioGUI extends javax.swing.JFrame {
 
     // Metodo que realiza conexao com o banco, faz uma instrucao Query(select)
     // para jogar na JTable atraves do modelo de tabela (ModelTabel.java)
-    public void carregarTable(Usuario objUsuario) {
+    public void carregarTable(UsuarioModel objUsuario) {
 
         //Filtro de busca da tabela visual UsuarioGUI
         ArrayList dados;
         if (buscar) {
             dados = Utilitarios.usuDAO.buscar(objUsuario);
         } else {
-            objUsuario = new Usuario();
+            objUsuario = new UsuarioModel();
             dados = Utilitarios.usuDAO.listarTodos();
         }
         String[] colunas = objUsuario.getColunas();
@@ -385,7 +385,7 @@ public final class UsuarioGUI extends javax.swing.JFrame {
         if (validou) {
 
             String palavra_msg = "inserido";
-            objUsuario = new Usuario();
+            objUsuario = new UsuarioModel();
             if (!"".equals(txtID.getText())) {
                 objUsuario.setId(Long.parseLong(txtID.getText()));
                 palavra_msg = "atualizado";
@@ -433,7 +433,7 @@ public final class UsuarioGUI extends javax.swing.JFrame {
             if (("1".equals(txtID.getText()))) {
                 JOptionPane.showMessageDialog(null, "Proibido apagar o um");
             } else {
-                objUsuario = new Usuario();
+                objUsuario = new UsuarioModel();
                 objUsuario.setId(Long.parseLong(txtID.getText()));
 
                 // instanciando a classe UsuarioDAO do pacote dao e criando seu objeto dao
@@ -452,7 +452,7 @@ public final class UsuarioGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        objUsuario = new Usuario();
+        objUsuario = new UsuarioModel();
         objUsuario.setNome(txtNome.getText());
         objUsuario.setCpf(txtCPF.getText());
 

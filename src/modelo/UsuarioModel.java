@@ -2,25 +2,26 @@ package modelo;
 
 //Obj Usuário
 
-public class Usuario {
+public class UsuarioModel {
 
     private Long id;
     private String nome;
     private String cpf;
     private String email;
     private String telefone;
-    private String cargo;
-    private int nivel;
+    private String data_criacao;
     private String senha;
     private String login;
-    private String[] colunas = new String[]{"ID", "NOME", "CPF", "EMAIL", "TELEFONE", "NIVEL", "SENHA", "LOGIN"};
-
-    public Usuario() {
+    private int nivel;
+    
+    private String[] colunas = new String[]{"ID", "NOME", "CPF", "EMAIL", "TELEFONE", "DATA_CRIACAO", "SENHA", "LOGIN", "NIVEL"};
+   
+    public UsuarioModel() {
         id = 0l;
     }
 
     // Construtor
-    public Usuario(Long id) {
+    public UsuarioModel(Long id) {
         this.id = id;
     }
 
@@ -73,14 +74,6 @@ public class Usuario {
         this.nivel = nivel;
     }
 
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-
     public String getSenha() {
         return senha;
     }
@@ -97,6 +90,14 @@ public class Usuario {
         this.login = login;
     }
 
+    public String getData_criacao() {
+        return data_criacao;
+    }
+
+    public void setData_criacao(String data_criacao) {
+        this.data_criacao = data_criacao;
+    }
+    
     public String[] getColunas() {
         return colunas;
     }
