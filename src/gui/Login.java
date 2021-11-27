@@ -42,7 +42,6 @@ public class Login extends javax.swing.JDialog {
 
         jLabel3.setText("Senha:");
 
-        tfSenha.setText("jPasswordField1");
         tfSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfSenhaActionPerformed(evt);
@@ -182,13 +181,13 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_btEntrarActionPerformed
 
     private void tfSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSenhaActionPerformed
-
+        btEntrar.requestFocus();
     }//GEN-LAST:event_tfSenhaActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
 
         System.exit(0);
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btCancelarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
