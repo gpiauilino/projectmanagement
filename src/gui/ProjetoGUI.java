@@ -291,7 +291,7 @@ public class ProjetoGUI extends javax.swing.JFrame {
         if (!txtID.getText().isEmpty()) {
             objProjeto.setId(Long.parseLong(txtID.getText()));
         }
-        // u id do usuario logado sera repassado para cada projetro criado
+        // u id do db_username logado sera repassado para cada projetro criado
         objProjeto.setId_usu(Utilitarios.usuarioId);
         
         objProjeto.setNome(txtNome.getText());

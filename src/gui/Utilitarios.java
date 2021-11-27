@@ -18,10 +18,10 @@ public class Utilitarios {
     private static Connection connection;
     public static ProjetoDAO projDAO;
     public static UsuarioDAO usuDAO;
-    public static String usuario;
-    public static String senha;
-    public static String endereco;
-    public static String porta;
+    public static String db_username;
+    public static String db_password;
+    public static String db_hostname;
+    public static String db_port;
     
     public static Long usuarioId;
     
@@ -30,10 +30,10 @@ public class Utilitarios {
     public Utilitarios(){
        prefs = Preferences.userRoot().node(this.getClass().getName());
         
-        endereco = prefs.get("db_adress", "");
-        usuario = prefs.get("db_usuario", "");
-        senha = prefs.get("db_senha", "");
-        porta = prefs.get("db_porta", "3306");
+        db_hostname = prefs.get("db_adress", "");
+        db_username = prefs.get("db_usuario", "");
+        db_password = prefs.get("db_senha", "");
+        db_port = prefs.get("db_porta", "3306");
     }
     
     public boolean inicializarDB() {
@@ -136,10 +136,10 @@ public class Utilitarios {
     }
 
     public static void armazenarPrefs(String address, String porta, String usuario, String password) {
-        Utilitarios.endereco = address;
-        Utilitarios.usuario = usuario;
-        Utilitarios.senha = password;
-        Utilitarios.porta = porta;
+        Utilitarios.db_hostname = address;
+        Utilitarios.db_username = usuario;
+        Utilitarios.db_password = password;
+        Utilitarios.db_port = porta;
         
         prefs.put("db_adress", address);
         prefs.put("db_usuario", usuario);
