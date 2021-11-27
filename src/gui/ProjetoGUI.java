@@ -5,11 +5,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.ModelTable;
-import modelo.Projeto;
+import modelo.ProjetoModel;
 
 public class ProjetoGUI extends javax.swing.JFrame {
 
-    private Projeto objProjeto;
+    private ProjetoModel objProjeto;
 
     private boolean buscar = false;
     
@@ -32,13 +32,13 @@ public class ProjetoGUI extends javax.swing.JFrame {
 
     // Metodo que realiza conexao com o banco, faz uma instrucao Query(select)
     // para jogar na JTable atraves do modelo de tabela (ModelTabel.java)
-    public void carregarTable(Projeto objProjeto) {
+    public void carregarTable(ProjetoModel objProjeto) {
 
         ArrayList dados = new ArrayList();
         if (buscar) {
             dados = Utilitarios.projDAO.buscar(objProjeto);
         } else {
-            objProjeto = new Projeto();
+            objProjeto = new ProjetoModel();
             dados = Utilitarios.projDAO.listarTodos();
         }
         String[] colunas = objProjeto.getColunas();
@@ -90,13 +90,13 @@ public class ProjetoGUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         tbnLimpar = new javax.swing.JButton();
         tbnSalvar = new javax.swing.JButton();
-        tbnExit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbListagemProjeto = new javax.swing.JTable();
         txtID = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         btnDeletar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
+        tfData = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -134,13 +134,6 @@ public class ProjetoGUI extends javax.swing.JFrame {
         tbnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbnSalvarActionPerformed(evt);
-            }
-        });
-
-        tbnExit.setText("Sair");
-        tbnExit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tbnExitActionPerformed(evt);
             }
         });
 
@@ -195,6 +188,12 @@ public class ProjetoGUI extends javax.swing.JFrame {
             }
         });
 
+        tfData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfDataActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -206,37 +205,36 @@ public class ProjetoGUI extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5)
+                                .addComponent(txtNome)
+                                .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtEmail)
+                                .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel5)
-                                        .addComponent(txtNome)
-                                        .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtEmail)
-                                        .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(tbnSalvar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(tbnLimpar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnDeletar)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
-                                .addComponent(btnBuscar)
+                                .addComponent(tbnSalvar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tbnExit))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(0, 623, Short.MAX_VALUE)))
-                        .addGap(86, 86, 86))
+                                .addComponent(tbnLimpar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDeletar)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
+                        .addComponent(btnBuscar)
+                        .addGap(154, 154, 154))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(0, 709, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(367, 367, 367)
+                                .addComponent(tfData))
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(139, 139, 139))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,7 +244,9 @@ public class ProjetoGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
                 .addGap(15, 15, 15)
-                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -267,7 +267,6 @@ public class ProjetoGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tbnLimpar)
                     .addComponent(tbnSalvar)
-                    .addComponent(tbnExit)
                     .addComponent(btnDeletar)
                     .addComponent(btnBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -287,21 +286,26 @@ public class ProjetoGUI extends javax.swing.JFrame {
 
     private void tbnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnSalvarActionPerformed
 
-        objProjeto = new Projeto();
+        objProjeto = new ProjetoModel();
                
-        objProjeto.setId(Long.parseLong(txtID.getText()));
+        if (!txtID.getText().isEmpty()) {
+            objProjeto.setId(Long.parseLong(txtID.getText()));
+        }
+        // u id do usuario logado sera repassado para cada projetro criado
+        objProjeto.setId_usu(Utilitarios.usuarioId);
+        
         objProjeto.setNome(txtNome.getText());
         objProjeto.setDescricao(txtDescricao.getText());
-        objProjeto.setEmail(txtEmail.getText());
-        objProjeto.setTelefone(txtTelefone.getText());
+        objProjeto.setData_criacao(tfData.getText());
+        objProjeto.setData_modificacao(tfData.getText() + "FAZWER");
 
         // DASTRO DE USUÁRIOSfazendo a valida��o dos dados
-        if ((txtNome.getText().isEmpty()) || (txtDescricao.getText().isEmpty()) || (txtEmail.getText().isEmpty()) || (txtTelefone.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(null, "Informe valores para os campos");
+        if (txtNome.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Informe Nome");
         } else {
             // instanciando a classe ProjetoDAO do pacote dao e criando seu objeto dao
             Utilitarios.projDAO.salvar(objProjeto);
-            JOptionPane.showMessageDialog(null, "Usu�rio " + txtNome.getText() + " inserido com sucesso! ");
+            JOptionPane.showMessageDialog(null, "Usuario " + txtNome.getText() + " inserido com sucesso! ");
         }
 
         carregarTable(null);
@@ -314,10 +318,6 @@ public class ProjetoGUI extends javax.swing.JFrame {
         setClear();
         carregarTable(null);
     }//GEN-LAST:event_tbnLimparActionPerformed
-
-    private void tbnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnExitActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_tbnExitActionPerformed
 
     private void tbListagemProjetoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListagemProjetoMouseClicked
         // TODO add your handling code here:
@@ -343,7 +343,7 @@ public class ProjetoGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        objProjeto = new Projeto();
+        objProjeto = new ProjetoModel();
         objProjeto.setNome(txtNome.getText());
         objProjeto.setDescricao(txtDescricao.getText());
 
@@ -360,6 +360,10 @@ public class ProjetoGUI extends javax.swing.JFrame {
         // apaga os dados preenchidos nos campos de texto
         setClear();
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void tfDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfDataActionPerformed
 
     public void setClear() {
         txtID.setText(null);
@@ -381,9 +385,9 @@ public class ProjetoGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbListagemProjeto;
-    private javax.swing.JButton tbnExit;
     private javax.swing.JButton tbnLimpar;
     private javax.swing.JButton tbnSalvar;
+    private javax.swing.JTextField tfData;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtID;

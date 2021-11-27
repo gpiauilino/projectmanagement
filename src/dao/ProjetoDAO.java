@@ -1,7 +1,7 @@
 package dao;
 
 import factory.ConnectionFactory;
-import modelo.Projeto;
+import modelo.ProjetoModel;
 import java.sql.*;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
@@ -10,17 +10,19 @@ import javax.swing.JOptionPane;
 public class ProjetoDAO {
 
     private final Connection connection;
-    Long id;
-    String nome;
-    String descricao;
-    String email;
-    String telefone;
+    private long id;
+    private long id_usu;
+    private String nome;
+    private String descricao;
+    private String data_criacao;
+    private String data_modificacao;
 
+    
     public ProjetoDAO(Connection con) {
         this.connection = con;
     }
 
-    public void salvar(Projeto objProjeto) {
+    public void salvar(ProjetoModel objProjeto) {
         
         String strGetIdProjeto = String.valueOf(objProjeto.getId());
         
@@ -32,8 +34,9 @@ public class ProjetoDAO {
 
                 stmt.setString(1, objProjeto.getNome());
                 stmt.setString(2, objProjeto.getDescricao());
-                stmt.setString(3, objProjeto.getEmail());
-                stmt.setString(4, objProjeto.getTelefone());
+                //TODO demais campos faltam aqui
+                //stmt.setString(3, objProjeto.getEmail());
+                //stmt.setString(4, objProjeto.getTelefone());
                 stmt.execute();
                 
 
@@ -45,10 +48,12 @@ public class ProjetoDAO {
                 stmt.setString(5, strGetIdProjeto);
                 stmt.setString(1, objProjeto.getNome());
                 stmt.setString(2, objProjeto.getDescricao());
-                stmt.setString(3, objProjeto.getEmail());
-                stmt.setString(4, objProjeto.getTelefone());
-                stmt.execute();
                 
+                //TODO demais campos faltam aqui
+                //stmt.setString(3, objProjeto.getEmail());
+                //stmt.setString(4, objProjeto.getTelefone());
+                stmt.execute();
+
 
             }
         } catch (SQLException u) {
@@ -56,7 +61,7 @@ public class ProjetoDAO {
         }
     }
 
-    public ArrayList buscar(Projeto objProjeto) {
+    public ArrayList buscar(ProjetoModel objProjeto) {
         try {
             String sql = "";
             if (!objProjeto.getNome().isEmpty()) {
@@ -94,7 +99,7 @@ public class ProjetoDAO {
 
     }
 
-    public void deletar(Projeto objProjeto) {
+    public void deletar(ProjetoModel objProjeto) {
         
     String strGetIdProjeto = String.valueOf(objProjeto.getId());
     

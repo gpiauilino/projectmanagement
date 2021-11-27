@@ -1,7 +1,7 @@
 package gui;
 
 import javax.swing.JOptionPane;
-import modelo.Requisitos;
+import modelo.RequisitosModel;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
@@ -25,7 +25,7 @@ public class FormRequisito extends javax.swing.JFrame {
      */  
   
                  
-        Requisitos objRequisitos = new Requisitos();        
+        RequisitosModel objRequisitos = new RequisitosModel();        
         
         String idNumber = txtRequisitoId.getText();
         String versaoNumber = txtVersao.getText();

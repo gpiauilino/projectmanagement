@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author Daniel Gomes
  */
-public class Requisitos {
+public class RequisitosModel {
 
     private long idRequisito;
     private String nomeRequisito;
