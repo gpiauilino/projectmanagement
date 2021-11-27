@@ -18,6 +18,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     public TelaPrincipal(Utilitarios utils) {
         utilz = utils;
+
         initComponents();
     }
 
@@ -223,14 +224,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Utilitarios.projDAO = new ProjetoDAO(utilz.getConnection());
 
         Login dialog = new Login(new javax.swing.JFrame(), true);
+        dialog.setLocationRelativeTo(null);
         dialog.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
-                //System.exit(0);
+                System.exit(0);
             }
         });
         dialog.setVisible(true);
-
 
     }//GEN-LAST:event_formComponentShown
 
