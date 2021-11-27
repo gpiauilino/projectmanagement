@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.prefs.Preferences;
 
 public class Utilitarios {
 //Variaveis de conexão que serão utilizadas em outras classes.
@@ -17,11 +18,22 @@ public class Utilitarios {
     private static Connection connection;
     public static ProjetoDAO projDAO;
     public static UsuarioDAO usuDAO;
-    public static String usuario = "";
-    public static String senha = "";
-    public static String endereco = "";
-    public static String porta = "3306";
-
+    public static String usuario;
+    public static String senha;
+    public static String endereco;
+    public static String porta;
+    
+    private static Preferences prefs;
+    
+    public Utilitarios(){
+       prefs = Preferences.userRoot().node(this.getClass().getName());
+        
+        endereco = prefs.get("db_adress", "");
+        usuario = prefs.get("db_usuario", "");
+        senha = prefs.get("db_senha", "");
+        porta = prefs.get("db_porta", "3306");
+    }
+    
     public boolean inicializarDB() {
         boolean testconect;
         do {
@@ -115,5 +127,19 @@ public class Utilitarios {
 
     public Connection getConnection() {
         return connection;
+    }
+
+    public static void armazenarPrefs(String address, String porta, String usuario, String password) {
+        Utilitarios.endereco = address;
+        Utilitarios.usuario = usuario;
+        Utilitarios.senha = password;
+        Utilitarios.porta = porta;
+        
+        prefs.put("db_adress", address);
+        prefs.put("db_usuario", usuario);
+        prefs.put("db_senha", password);
+        prefs.put("db_porta", porta);
+        // https://stackoverflow.com/a/25537303
+        // armazena em HOME/.java/.userPrefs
     }
 }
