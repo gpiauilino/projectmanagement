@@ -4,6 +4,9 @@ Projeto da Faculdade, trabalho A3.
 Link para biblioteca JDBC que deve ser informada como Lib do projeto:
 https://dev.mysql.com/downloads/connector/j/?os=26
 
+Link para Documentação:
+https://docs.google.com/document/d/1TyMf71cnStuSivxaycKtHXL5P6F2tvDOcCI7gnLJ56E/edit?usp=sharing
+
 Para criar os esquemas:
 
 create schema if not exists db_projusu;
