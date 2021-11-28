@@ -8,6 +8,15 @@ public class ProjetoModel {
     private String descricao;
     private String data_criacao;
     private String data_modificacao;
+    private String autor;
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
 
     private String[] colunas = new String[]{"ID", "NOME", "DESCRICAO", "DATA_CRIACAO", "DATA_MODIFICACAO", "ID_USU"};
 

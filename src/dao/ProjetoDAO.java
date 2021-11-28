@@ -16,6 +16,7 @@ public class ProjetoDAO {
     private String descricao;
     private String data_criacao;
     private String data_modificacao;
+    private String autor;
 
     
     public ProjetoDAO(Connection con) {
