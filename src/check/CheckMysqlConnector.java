@@ -15,7 +15,7 @@ public class CheckMysqlConnector {
         
     public static void main(String[] args){
     
-        String className = "com.mysql.jdbc.Driver";
+        String className = "com.mysql.cj.jdbc.Driver";
         try {
             Class.forName(className);
             System.out.println("Driver carregou com sucesso.");
