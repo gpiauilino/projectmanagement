@@ -25,36 +25,32 @@ public class ProjetoDAO {
 
     public void salvar(ProjetoModel objProjeto) {
         
-        String strGetIdProjeto = String.valueOf(objProjeto.getId());
+        //String strGetIdProjeto = String.valueOf(objProjeto.getId());
         
         try {
             String sql;
             if (String.valueOf(objProjeto.getId()).isEmpty()) {
-                sql = "INSERT INTO projeto(nome,descricao,email,telefone) VALUES(?,?,?,?)";
+                sql = "INSERT INTO projeto(nome,descricao, id_usuario) VALUES(?,?,?)";
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
                 stmt.setString(1, objProjeto.getNome());
                 stmt.setString(2, objProjeto.getDescricao());
-                //TODO demais campos faltam aqui
-                //stmt.setString(3, objProjeto.getEmail());
+                stmt.setLong(3, objProjeto.getId_usu());
                 //stmt.setString(4, objProjeto.getTelefone());
                 stmt.execute();
                 
 
             } else {
-                sql = "UPDATE projeto SET nome = ?, descricao = ?, email = ?, telefone = ? WHERE projeto.id = ?";
+                sql = "UPDATE projeto "
+                        + "SET nome = ?, descricao = ? WHERE projeto.id = ?";
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
-
-                stmt.setString(5, strGetIdProjeto);
-                stmt.setString(1, objProjeto.getNome());
+      stmt.setString(1, objProjeto.getNome());
                 stmt.setString(2, objProjeto.getDescricao());
                 
                 //TODO demais campos faltam aqui
-                //stmt.setString(3, objProjeto.getEmail());
-                //stmt.setString(4, objProjeto.getTelefone());
+                stmt.setLong(3, objProjeto.getId());
                 stmt.execute();
-
 
             }
         } catch (SQLException u) {
@@ -82,8 +78,6 @@ public class ProjetoDAO {
                     rs.getLong("id"),
                     rs.getString("nome"),
                     rs.getString("descricao"),
-                    rs.getString("email"),
-                    rs.getString("telefone")
                 });
 
             }
@@ -133,9 +127,7 @@ public class ProjetoDAO {
                 dado.add(new Object[]{
                     rs.getLong("id"),
                     rs.getString("nome"),
-                    rs.getString("descricao"),
-                    rs.getString("email"),
-                    rs.getString("telefone")
+                    rs.getString("descricao")
                 });
 
             }
@@ -150,11 +142,4 @@ public class ProjetoDAO {
             return null;
         }
     }
-
-    public static void testarConexao() throws SQLException {
-        try (Connection objConnection = new ConnectionFactory().getConnection()) {
-            JOptionPane.showMessageDialog(null, "Conex�o realizada com sucesso! ");
-        }
-    }
-
 }
