@@ -41,7 +41,7 @@ public class RequisitoDAO {
         try {
             String sql;
             if (String.valueOf(objRequisito.getIdRequisito()).isEmpty()) {
-                sql = "INSERT INTO projeto(nome,descricao, id_usuario) VALUES(?,?,?)";
+                sql = "INSERT INTO requisito(nome,descricao, usuario_id, projeto_id, modulo, funcionalidades, versao, esforcoHoras, prioridade, estado, fase, complexidade, dataCriacao, dataUltimamod) VALUES(?,?,?)";
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
                 stmt.setLong(1, objRequisito.getIdRequisito());
@@ -70,8 +70,10 @@ public class RequisitoDAO {
                 
 
             } else {
-                sql = "UPDATE projeto "
-                        + "SET nome = ?, descricao = ? WHERE projeto.id = ?";
+                sql = "UPDATE requisito "
+                        + "SET nome = ?, descricao = ?, modulo = ?, funcionalidades = ?, versao = ?, esforco = ?, prioridade = ?, estado = ?, fase = ?, complexidade = ?, data criacao = ?, data ultima modificacao = ?, WHERE requisito.id = ?";
+                
+               
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
       stmt.setString(1, objRequisito.getNomeRequisito());
@@ -109,10 +111,10 @@ public class RequisitoDAO {
         try {
             String sql = "";
             if (!objRequisito.getNomeRequisito().isEmpty()) {
-                sql = "SELECT * FROM projeto WHERE nome LIKE '%" + objRequisito.getNomeRequisito()+ "%' ";
+                sql = "SELECT * FROM requisito WHERE nome LIKE '%" + objRequisito.getNomeRequisito()+ "%' ";
 
             } else if (!objRequisito.getDescricao().isEmpty()) {
-                sql = "SELECT * FROM projeto WHERE descricao LIKE '%" + objRequisito.getDescricao() + "%' ";
+                sql = "SELECT * FROM requisito WHERE descricao LIKE '%" + objRequisito.getDescricao() + "%' ";
             }
             ArrayList dado = new ArrayList();
 
@@ -163,7 +165,7 @@ public class RequisitoDAO {
         try {
             String sql;
             if (!String.valueOf(strGetIdProjeto).isEmpty()) {
-                sql = "DELETE FROM projeto WHERE projeto.id = ?";
+                sql = "DELETE FROM requisito WHERE requisito.id = ?";
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
                 stmt.setString(1, strGetIdProjeto);
@@ -189,8 +191,21 @@ public class RequisitoDAO {
                 
                 dado.add(new Object[]{
                     rs.getLong("id"),
+                    rs.getLong("usuario"),
+                    rs.getLong("projeto"),                    
                     rs.getString("nome"),
-                    rs.getString("descricao")
+                    rs.getString("modulo"),
+                    rs.getString("funcionalidades"),
+                    rs.getString("descricao"),
+                    rs.getDouble("versao"),
+                    rs.getDouble("esforco"),
+                    rs.getInt("prioridade"),
+                    rs.getInt("prioridade"),
+                    rs.getInt("estado"),
+                    rs.getInt("fase"),
+                    rs.getInt("complexidade"),
+                    rs.getTimestamp("Data criacao"),
+                    rs.getTimestamp("Data Ultima Modificacao"),
                   
                 });
 
