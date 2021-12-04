@@ -22,20 +22,20 @@ public class Utilitarios {
     public static String db_password;
     public static String db_hostname;
     public static String db_port;
-    
+
     public static Long usuarioId;
-    
+
     private static Preferences prefs;
-    
-    public Utilitarios(){
-       prefs = Preferences.userRoot().node(this.getClass().getName());
-        
+
+    public Utilitarios() {
+        prefs = Preferences.userRoot().node(this.getClass().getName());
+
         db_hostname = prefs.get("db_adress", "");
         db_username = prefs.get("db_usuario", "");
         db_password = prefs.get("db_senha", "");
         db_port = prefs.get("db_porta", "3306");
     }
-    
+
     public boolean inicializarDB() {
         boolean testconect;
         do {
@@ -59,58 +59,53 @@ public class Utilitarios {
             //Após criado e definido o nome do db para projusu, ele define este para o uso.
             myResult = s.executeUpdate("USE db_projusu");
 
+            // sobre o data_criacao e data_modf que se atualizam sozinhas
+            // # dizem q eh assim agora no mysql 8: https://stackoverflow.com/a/60247492
             //Tabela de usuarios
-            myResult = s.executeUpdate("CREATE TABLE IF NOT EXISTS usuario ("
-                    + " id BIGINT(10) AUTO_INCREMENT,"
-                    + " nome VARCHAR(255) DEFAULT '',"
-                    + " cpf VARCHAR(255) DEFAULT '',"
-                    + " email VARCHAR(255) DEFAULT '',"
-                    + " telefone VARCHAR(255) DEFAULT '',"
-                    + " data_criacao DATETIME ,"
-                    + " senha VARCHAR(255) DEFAULT '',"
-                    + " login VARCHAR(255) DEFAULT '',"
-                    //Nivel de priv.*
-                    + " nivel INT default 2,"
-                    + " PRIMARY KEY (id)"
+            myResult = s.executeUpdate("CREATE TABLE IF NOT EXISTS usuario ( "
+                    + "    id BIGINT(10) AUTO_INCREMENT, "
+                    + "    nome VARCHAR(255) DEFAULT '',"
+                    + "    cpf VARCHAR(255) DEFAULT '',"
+                    + "    email VARCHAR(255) DEFAULT '', "
+                    + "    telefone VARCHAR(255) DEFAULT '',"
+                    + "    senha VARCHAR(255) DEFAULT '',"
+                    + "    login VARCHAR(255) DEFAULT '',"
+                    + "    nivel INT default 2,"
+                    + "    data_criacao datetime DEFAULT CURRENT_TIMESTAMP, "
+                    + "    data_modificacao datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,"
+                    + "    PRIMARY KEY (id)"
                     + ");");
-
-            // Tabela de cargos
-//            myResult = s.executeUpdate("CREATE TABLE IF NOT EXISTS cargo ("
-//                    + " id BIGINT(10) AUTO_INCREMENT,"
-//                    + " cargo_nome VARCHAR(255) DEFAULT '',"
-//                    + " data_criacao DATETIME,"
-//                    + " descricao VARCHAR(255)DEFAULT '',"
-//                    + " setor VARCHAR(255)DEFAULT '',"
-//                    + " PRIMARY KEY (id)"
-//                    + ");");
 
             // Tabela de projetos
             myResult = s.executeUpdate("CREATE TABLE IF NOT EXISTS projeto ("
-                    + " id BIGINT(10) AUTO_INCREMENT,"
-                    + " nome VARCHAR(255) DEFAULT '',"
-                    + " descricao VARCHAR(255) DEFAULT '',"
-                    + " data_criacao DATETIME ,"
-                    + " data_modificacao DATETIME ,"
-                    + " usuario_id BIGINT(10),"
-                    + " PRIMARY KEY (id), "
-                    + " FOREIGN KEY (usuario_id) REFERENCES usuario(id)"
+                    + "    id BIGINT(10) AUTO_INCREMENT,"
+                    + "    nome VARCHAR(255),"
+                    + "    descricao VARCHAR(255),"
+                    + "    usuario_id BIGINT(10),"
+                    + "    data_criacao datetime DEFAULT CURRENT_TIMESTAMP,"
+                    + "    data_modificacao datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,"
+                    + "    PRIMARY KEY (id),"
+                    + "    FOREIGN KEY (usuario_id) REFERENCES usuario(id)"
                     + ");");
 
             // Tabela de requisitos
             myResult = s.executeUpdate("CREATE TABLE IF NOT EXISTS requisito ("
-                    + " id BIGINT(10) AUTO_INCREMENT,"
-                    + " descricao VARCHAR(255),"
-                    + " modulo VARCHAR(255) DEFAULT '',"
-                    + " versao DOUBLE DEFAULT 0.0,"
-                    + " estado VARCHAR(255) DEFAULT '',"
-                    + " fase VARCHAR(255) DEFAULT '',"
-                    + " data_criacao DATETIME,"
-                    + " funcionalidades VARCHAR(255) DEFAULT '',"
-                    + " complexidade VARCHAR(255) DEFAULT '',"
-                    + " data_ultima_mod DATETIME,"
-                    + " autor_ultima_mod DATETIME,"
-                    + " esforco_horas DOUBLE DEFAULT 0.0,"
-                    + " PRIMARY KEY (id)"
+                    + "    id BIGINT(10) AUTO_INCREMENT,"
+                    + "    descricao VARCHAR(255),"
+                    + "    modulo VARCHAR(255) DEFAULT '', "
+                    + "    versao DOUBLE DEFAULT 0.0,"
+                    + "    estado VARCHAR(255) DEFAULT '',"
+                    + "    fase VARCHAR(255) DEFAULT '',"
+                    + "    funcionalidades VARCHAR(255) DEFAULT '',"
+                    + "    complexidade VARCHAR(255) DEFAULT '',"
+                    + "    esforco_horas DOUBLE DEFAULT 0.0,"
+                    + "    data_criacao datetime DEFAULT CURRENT_TIMESTAMP,"
+                    + "    data_modificacao datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,"
+                    + "    usuario_id BIGINT(10),"
+                    + "    projeto_id BIGINT(10),"
+                    + "    PRIMARY KEY (id), "
+                    + "    FOREIGN KEY (projeto_id) REFERENCES projeto(id),"
+                    + "    FOREIGN KEY (usuario_id) REFERENCES usuario(id)"
                     + ");");
 
             // Aqui estou definindo login de admin na criação do database
@@ -140,7 +135,7 @@ public class Utilitarios {
         Utilitarios.db_username = usuario;
         Utilitarios.db_password = password;
         Utilitarios.db_port = porta;
-        
+
         prefs.put("db_adress", address);
         prefs.put("db_usuario", usuario);
         prefs.put("db_senha", password);
