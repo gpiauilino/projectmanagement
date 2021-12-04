@@ -1,6 +1,5 @@
 package dao;
 
-import factory.ConnectionFactory;
 import modelo.UsuarioModel;
 import java.sql.*;
 import java.sql.PreparedStatement;
@@ -207,12 +206,6 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Falha grave ao listar todos os usuários: " + e.getMessage());
             return null;
-        }
-    }
-
-    public static void testarConexao() throws SQLException {
-        try (Connection objConnection = new ConnectionFactory().getConnection()) {
-            JOptionPane.showMessageDialog(null, "Conexão realizada com sucesso! ");
         }
     }
 }
