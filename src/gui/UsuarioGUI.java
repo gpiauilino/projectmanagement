@@ -61,12 +61,18 @@ public final class UsuarioGUI extends javax.swing.JFrame {
     // na JTable, e realizar a vinculacao do mesmo nos TextFields
     public void selectRegistryTable() {
 
+        // valor quando retorna da taela, no caso o valor da celula da linha selecionada 
+        // coluna de posicao 0, como se trata de uma ID o objeto calordaCelula eh um Long
         Object valorDaCelula = tbListagemUsuario.getValueAt(tbListagemUsuario.getSelectedRow(), 0);
         if (valorDaCelula == null) {
             valorDaCelula = "";
         }
+
         txtID.setText(valorDaCelula.toString());
-        if (valorDaCelula.equals(1)) {
+
+        // testar o valir da celula, com 1l pq eh o id do admin e desablitar 
+        // ou nao o bt de Deletar e liberar o alterar nivel
+        if (valorDaCelula.equals(1l)) {
             btnDeletar.setEnabled(false);
             cbNivel.setEnabled(false);
         } else {
@@ -139,6 +145,7 @@ public final class UsuarioGUI extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         cbNivel = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
+        tbnSalvar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -250,6 +257,13 @@ public final class UsuarioGUI extends javax.swing.JFrame {
 
         jLabel9.setText("Nivel");
 
+        tbnSalvar1.setText("Adicionar");
+        tbnSalvar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbnSalvar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -291,7 +305,6 @@ public final class UsuarioGUI extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
                                     .addGroup(layout.createSequentialGroup()
@@ -305,7 +318,12 @@ public final class UsuarioGUI extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel9)
                                         .addGap(0, 57, Short.MAX_VALUE))
-                                    .addComponent(cbNivel, 0, 1, Short.MAX_VALUE))))
+                                    .addComponent(cbNivel, 0, 1, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(309, 309, 309)
+                                .addComponent(tbnSalvar1)
+                                .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -314,10 +332,15 @@ public final class UsuarioGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addGap(10, 10, 10)
-                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(10, 10, 10)
+                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(tbnSalvar1)
+                        .addGap(21, 21, 21)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5)
@@ -347,7 +370,7 @@ public final class UsuarioGUI extends javax.swing.JFrame {
                     .addComponent(btnDeletar)
                     .addComponent(btnBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -420,7 +443,7 @@ public final class UsuarioGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tbnExitActionPerformed
 
     private void tbListagemUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListagemUsuarioMouseClicked
-        // TODO add your handling code here:
+        // ao clicar num item da tabelas
         selectRegistryTable();
     }//GEN-LAST:event_tbListagemUsuarioMouseClicked
 
@@ -474,6 +497,14 @@ public final class UsuarioGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCPFActionPerformed
 
+    private void tbnSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnSalvar1ActionPerformed
+        
+
+        new UsuarioInserir().setVisible(true);
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_tbnSalvar1ActionPerformed
+
     public void limparTela() {
         txtID.setText(null);
         txtNome.setText(null);
@@ -505,6 +536,7 @@ public final class UsuarioGUI extends javax.swing.JFrame {
     private javax.swing.JButton tbnExit;
     private javax.swing.JButton tbnLimpar;
     private javax.swing.JButton tbnSalvar;
+    private javax.swing.JButton tbnSalvar1;
     private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtID;
