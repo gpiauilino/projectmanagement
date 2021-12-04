@@ -26,7 +26,7 @@ public class UsuarioDAO {
     public void salvar(UsuarioModel objUsuario) {
         try {
             String sql;
-            if (objUsuario.getId() == 0) {
+            if (objUsuario.getId() == 0l) {
                 sql = "INSERT INTO usuario(nome,cpf,email,telefone,nivel,senha,login) VALUES(?,?,?,?,?,?,?)";
                 PreparedStatement stmt = connection.prepareStatement(sql);
 
@@ -61,29 +61,28 @@ public class UsuarioDAO {
             throw new RuntimeException(u);
         }
     }
-    
+
     public long testarLogin(String login, String senha) {
         long retorno = 0l;
         try {
-           try (PreparedStatement st = connection.prepareStatement(
+            try (PreparedStatement st = connection.prepareStatement(
                     "SELECT id, login, senha FROM usuario WHERE usuario.login=? and usuario.senha=?")) {
-     
-                    st.setString(1, login);
-                    st.setString(2, senha);
-                    ResultSet rs = st.executeQuery();
+
+                st.setString(1, login);
+                st.setString(2, senha);
+                try (ResultSet rs = st.executeQuery()) {
                     if (rs.next()) {
                         System.out.println("achou usuario");
                         retorno = rs.getLong("id");
                     }
-                    rs.close();
+                }
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao selecionar:" + e.getMessage());
         }
         return retorno;
     }
-  
-    
+
     public ArrayList buscar(UsuarioModel objUsuario) {
         try {
             String sql = "";
@@ -130,7 +129,6 @@ public class UsuarioDAO {
                 }
             }
             rs.close();
-            ////connection.close()
 
             return dado;
         } catch (SQLException e) {
@@ -142,14 +140,16 @@ public class UsuarioDAO {
     public boolean deletar(UsuarioModel objUsuario) {
         try {
             String sql;
-            if (!String.valueOf(objUsuario.getId()).isEmpty()) {
-                if (objUsuario.getId() != 1) {
+            if (objUsuario.getId() > 0l) {
+                if (objUsuario.getId() != 1l) {
                     sql = "DELETE FROM usuario WHERE usuario.id = ?";
                     PreparedStatement stmt = connection.prepareStatement(sql);
 
                     stmt.setLong(1, objUsuario.getId());
                     stmt.execute();
 
+                    //TODO acho q tinha q repassar esse esquema de retornar 
+                    // confirmacao se deletou ou nao pras outras DAO
                     return true;
                 }
             }
@@ -162,7 +162,7 @@ public class UsuarioDAO {
     public ArrayList listarTodos() {
         try {
 
-            ArrayList dado = new ArrayList();
+            ArrayList lista_de_usuarios = new ArrayList();
 
             ResultSet rs;
             try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM usuario")) {
@@ -185,7 +185,7 @@ public class UsuarioDAO {
                             nivelnome = "indef";
                     }
 
-                    dado.add(new Object[]{
+                    lista_de_usuarios.add(new Object[]{
                         rs.getLong("id"),
                         rs.getString("nome"),
                         rs.getString("cpf"),
@@ -200,9 +200,8 @@ public class UsuarioDAO {
                 }
             }
             rs.close();
-            ////connection.close()
 
-            return dado;
+            return lista_de_usuarios;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Falha grave ao listar todos os usuários: " + e.getMessage());
             return null;
