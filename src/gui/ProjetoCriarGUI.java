@@ -5,10 +5,6 @@ import modelo.ProjetoModel;
 
 public class ProjetoCriarGUI extends javax.swing.JFrame {
 
-    private ProjetoModel objProjeto;
-
-    private final boolean buscar = false;
-
     public ProjetoCriarGUI() {
 
         initComponents();
@@ -47,12 +43,6 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
         jLabel1.setText("+ Novo Projeto");
 
         jLabel2.setText("Nome");
-
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("Descrição");
 
@@ -119,14 +109,10 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
-
     private void tbnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnSalvarActionPerformed
 
         // nao DEVE setar o id pq com isso o sistemas sabe q deve CROAR um registro novo
-        objProjeto = new ProjetoModel();
+        ProjetoModel objProjeto = new ProjetoModel();
 
         // u id do db_username logado sera repassado para cada projetro criado
         objProjeto.setId_usu(Utilitarios.usuarioId);
