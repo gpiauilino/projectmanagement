@@ -1,7 +1,5 @@
 package modelo;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -17,7 +15,7 @@ public class RequisitosModel {
     private String nomeProjeto;
     private String modulo;
     private String autor;
-    private String funcionalidades; 
+    private String funcionalidades;
     private String autorUltimaMod;
     private String descricao;
     private Double versao;
@@ -28,11 +26,16 @@ public class RequisitosModel {
     private int complexidade;
     private Date dataCriacao;
     private Date dataUltimaMod;
-   
-    
-    
 
-    public long getIdRequisito() {
+    //TODO nome das colunas conforme o CREATE table e reisar o no Utilitarios:94
+    // declarar tudo de acordo /home/gabriel/Desktop/ProjectMngnToolCreates.sql
+    // ou alterar o SQL e testar novamente se decidir modificar o banco
+    private final String[] colunas = new String[]{"ID", "NOME", "CPF", "EMAIL", "TELEFONE", "DATA_CRIACAO", "SENHA", "LOGIN", "NIVEL"};
+
+    public RequisitosModel() {
+    }
+
+    public long getId() {
         return idRequisito;
     }
 
@@ -86,6 +89,10 @@ public class RequisitosModel {
 
     public void setVersao(Double versao) {
         this.versao = versao;
+    }
+
+    public String[] getColunas() {
+        return colunas;
     }
 
     public int getPrioridade() {
@@ -175,12 +182,5 @@ public class RequisitosModel {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-               
-    
-    public RequisitosModel() {
-    }
-        
-        
-   
 
 }
