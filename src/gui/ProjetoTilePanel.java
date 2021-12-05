@@ -11,11 +11,16 @@ package gui;
  */
 public class ProjetoTilePanel extends javax.swing.JPanel {
 
-    /**
-     * Creates new form NewJPanel
-     */
-    public ProjetoTilePanel() {
+    public ProjetoTilePanel(Object[] objProjet) {
         initComponents();
+        
+        if (objProjet != null){
+            String s = objProjet[1].toString();
+            System.out.println("labelNomeProjeto: " + s);
+           
+            labelNomeProjeto.setText(s);
+        }
+            
     }
 
     /**
