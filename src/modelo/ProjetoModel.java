@@ -10,6 +10,13 @@ public class ProjetoModel {
     private String data_modificacao;
     private String autor;
 
+    public ProjetoModel() {
+    }
+
+    public ProjetoModel(long i) {
+        this.id = i;
+    }
+
     public String getAutor() {
         return autor;
     }
@@ -32,19 +39,8 @@ public class ProjetoModel {
         return data_criacao;
     }
 
-    public void setData_criacao(String data_criacao) {
-        this.data_criacao = data_criacao;
-    }
-
     public String getData_modificacao() {
         return data_modificacao;
-    }
-
-    public void setData_modificacao(String data_modificacao) {
-        this.data_modificacao = data_modificacao;
-    }
-
-    public ProjetoModel() {
     }
 
     public long getId() {
