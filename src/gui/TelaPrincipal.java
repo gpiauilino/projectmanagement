@@ -245,16 +245,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 if (Utilitarios.usuarioId == null || Utilitarios.usuarioId == 0l) {
                     System.exit(0);
                 } else {
-                    ArrayList projs_lista = Utilitarios.projDAO.listarTodos();
+                    ArrayList<Object[]> projs_lista = Utilitarios.projDAO.listarTodos();
                     if (!projs_lista.isEmpty()) {
 
                         // remove msg de Sem Projeto da tela
                         jPanel1.remove(labelNoProjeto);
 
-                        for (Object projeto : projs_lista) {
+                        for (Object[] projeto : projs_lista) {
                             //TODO repassar o objeto projeto pra dentro dessa 
                             // panel pra ela usar e mostrar os valores
-                            ProjetoTilePanel tile = new ProjetoTilePanel();
+                            ProjetoTilePanel tile = new ProjetoTilePanel(projeto);
                             areaTilesProjetos.add(tile);
                         }
                         
@@ -320,7 +320,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // remove msg de Sem Projeto da tela
         jPanel1.remove(labelNoProjeto);
 
-        ProjetoTilePanel tile = new ProjetoTilePanel();
+        ProjetoTilePanel tile = new ProjetoTilePanel(null);
         areaTilesProjetos.add(tile);
         this.pack();
     }//GEN-LAST:event_jButton2ActionPerformed
