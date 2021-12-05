@@ -3,6 +3,7 @@ package gui;
 
 import dao.ProjetoDAO;
 import dao.UsuarioDAO;
+import dao.RequisitoDAO;
 import factory.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,6 +19,7 @@ public class Utilitarios {
     private static Connection connection;
     public static ProjetoDAO projDAO;
     public static UsuarioDAO usuDAO;
+    public static RequisitoDAO reqDAO;
     public static String db_username;
     public static String db_password;
     public static String db_hostname;
