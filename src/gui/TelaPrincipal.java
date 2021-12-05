@@ -7,6 +7,10 @@ package gui;
 
 import dao.ProjetoDAO;
 import dao.UsuarioDAO;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,11 +31,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        labelNoProjeto = new javax.swing.JLabel();
+        areaTilesProjetos = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btCriarProjeto = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -48,6 +52,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         aboutMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(500, 400));
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -60,72 +65,56 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Nenhum Projeto");
+        labelNoProjeto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelNoProjeto.setText("Nenhum Projeto");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        areaTilesProjetos.setLayout(new javax.swing.BoxLayout(areaTilesProjetos, javax.swing.BoxLayout.Y_AXIS));
 
-        jLabel2.setText("Primeiro Prjoeto");
+        jLabel2.setText("Lista Projetos");
+        areaTilesProjetos.add(jLabel2);
 
-        jLabel3.setText("Dono do projeto");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel3)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addGap(0, 64, Short.MAX_VALUE))
-        );
-
-        jButton1.setText("Criar");
-        jButton1.setToolTipText("Adicionar um projeto");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btCriarProjeto.setText("Criar");
+        btCriarProjeto.setToolTipText("Adicionar um projeto");
+        btCriarProjeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btCriarProjetoActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(164, 164, 164)
-                .addComponent(jLabel1)
-                .addContainerGap(122, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(labelNoProjeto, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(areaTilesProjetos, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .add(jButton2)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 317, Short.MAX_VALUE)
+                        .add(btCriarProjeto)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(22, 22, 22))
+                .add(areaTilesProjetos, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(labelNoProjeto, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+                .add(9, 9, 9)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(btCriarProjeto)
+                    .add(jButton2))
+                .addContainerGap())
         );
 
         fileMenu.setMnemonic('a');
@@ -201,15 +190,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(menuBar);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -243,15 +232,68 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Utilitarios.usuDAO = new UsuarioDAO(utilz.getConnection());
         Utilitarios.projDAO = new ProjetoDAO(utilz.getConnection());
 
-        Login dialog = new Login(new javax.swing.JFrame(), true);
-        dialog.setLocationRelativeTo(null);
-        dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+        Login telaLogin = new Login(this, true);
+        telaLogin.setLocationRelativeTo(null);
+
+        // cuidar do evento de Fecar a jaela para encerrar toda a aplicacao
+        telaLogin.addWindowListener(new java.awt.event.WindowAdapter() {
+            
+            // windowClosed eh chamada quando rola um dispose no Dialog
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                // se nao cancelou o Login entao nao setou UsuarioID, e encerra APP
+                if (Utilitarios.usuarioId == null || Utilitarios.usuarioId == 0l) {
+                    System.exit(0);
+                } else {
+                    ArrayList projs_lista = Utilitarios.projDAO.listarTodos();
+                    if (!projs_lista.isEmpty()) {
+
+                        // remove msg de Sem Projeto da tela
+                        jPanel1.remove(labelNoProjeto);
+
+                        for (Object projeto : projs_lista) {
+                            //TODO repassar o objeto projeto pra dentro dessa 
+                            // panel pra ela usar e mostrar os valores
+                            ProjetoTilePanel tile = new ProjetoTilePanel();
+                            areaTilesProjetos.add(tile);
+                        }
+                        
+                        //esse pack compacta a tela e ajusta o tamanho, vai precisar 
+                        //rever isso q com muitos projetos nao ficam legal
+                        pack();
+                    }
+                }
+            }
+
+            // este windowsClosinh eh chamado quando se clica no X da janela
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
+                System.out.println("windwClosing");
                 System.exit(0);
             }
         });
-        dialog.setVisible(true);
+
+        // add a component listener
+        telaLogin.addComponentListener(new ComponentListener() {
+            public void componentHidden(ComponentEvent e) {
+                System.out.println("dialog hidden");
+            }
+
+            public void componentMoved(ComponentEvent e) {
+                System.out.println("dialog moved");
+            }
+
+            public void componentResized(ComponentEvent e) {
+                System.out.println("dialog resized");
+            }
+
+            public void componentShown(ComponentEvent e) {
+                System.out.println("dialog shown");
+            }
+        });
+
+        telaLogin.setVisible(true);
+        //telaLogin.dispose();
 
     }//GEN-LAST:event_formComponentShown
 
@@ -259,7 +301,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         new UsuarioGUI().setVisible(true);
 
-        // TODO add your handling code here:
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
@@ -268,16 +309,30 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_saveMenuItemActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+    private void btCriarProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCriarProjetoActionPerformed
 
         new ProjetoCriarGUI().setVisible(true);
 
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btCriarProjetoActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
+        // remove msg de Sem Projeto da tela
+        jPanel1.remove(labelNoProjeto);
+
+        ProjetoTilePanel tile = new ProjetoTilePanel();
+        areaTilesProjetos.add(tile);
+        this.pack();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    public void atualizarProjetosLista() {
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem aboutMenuItem;
+    private javax.swing.JPanel areaTilesProjetos;
+    private javax.swing.JButton btCriarProjeto;
     private javax.swing.JMenuItem contentsMenuItem;
     private javax.swing.JMenuItem copyMenuItem;
     private javax.swing.JMenuItem cutMenuItem;
@@ -286,12 +341,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel labelNoProjeto;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem pasteMenuItem;
