@@ -27,7 +27,6 @@ public class RequisitosModel {
     private String funcionalidades;
     private String complexidade;
     private Date dataUltimaMod;
-    private String autorUltimaMod;
     private Double esforcoHoras;
     private String descricao;
                
@@ -99,11 +98,7 @@ public class RequisitosModel {
 
     public Date getDataCriacao() {
         return dataCriacao;
-    }
-
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
+    }   
 
     public String getAutor() {
         return autor;
@@ -136,15 +131,7 @@ public class RequisitosModel {
     public void setDataUltimaMod(Date dataUltimaMod) {
         this.dataUltimaMod = dataUltimaMod;
     }
-
-    public String getAutorUltimaMod() {
-        return autorUltimaMod;
-    }
-
-    public void setAutorUltimaMod(String autorUltimaMod) {
-        this.autorUltimaMod = autorUltimaMod;
-    }
-
+    
     public Double getEsforcoHoras() {
         return esforcoHoras;
     }
