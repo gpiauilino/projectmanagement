@@ -98,10 +98,10 @@ public class ProjetoDAO {
         }
     }
 
-    public ArrayList listarTodos() {
+    public ArrayList<Object[]> listarTodos() {
         try {
 
-            ArrayList lista_de_projetos = new ArrayList();
+            ArrayList<Object[]> lista_de_projetos = new ArrayList<>();
 
             ResultSet rs;
             try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM projeto")) {
