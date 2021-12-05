@@ -1,51 +1,52 @@
 package gui;
 
-import dao.ProjetoDAO;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import modelo.ModelTable;
 import modelo.ProjetoModel;
 
-public class ProjetoGUI extends javax.swing.JFrame {
-
-    private ProjetoModel objProjeto;
-
-    private boolean buscar = false;
+public final class ProjetoGUI extends javax.swing.JFrame {
     
-    /**
-     * Creates new form ProjetoGUI
-     */
     public ProjetoGUI() {
 
         initComponents();
 
-        //Centralizando a janela
-        this.setLocationRelativeTo(null);
         // Impede que a janela seja redimencionada 
         // this.setResizable(false);
         // Trocando cursor para HAND CURSOR(Maozinha)
         // jButtonRefresh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         // Variavel con recebendo a conexao
-        carregarTable(null);
+
     }
 
-    // Metodo que realiza conexao com o banco, faz uma instrucao Query(select)
+    // Metodo que faz uma instrucao Query(select)
     // para jogar na JTable atraves do modelo de tabela (ModelTabel.java)
     public void carregarTable(ProjetoModel objProjeto) {
-
-        ArrayList dados = new ArrayList();
-        if (buscar) {
-            dados = Utilitarios.projDAO.buscar(objProjeto);
-        } else {
+        ArrayList lista_de_projetos;
+        
+        // se o objPRojeto chegou como 'null' entao eh pra Selecionar todos
+        if (objProjeto == null) {
+            //
             objProjeto = new ProjetoModel();
-            dados = Utilitarios.projDAO.listarTodos();
+            lista_de_projetos = Utilitarios.projDAO.listarTodos();
+
+        } else {
+            // senao chama o projDao.buscar passando um obj prpjeto que 'deverá' 
+            //conter descricao ou nome preenchido
+            lista_de_projetos = Utilitarios.projDAO.buscar(objProjeto);
+
         }
-        String[] colunas = objProjeto.getColunas();
+        
+        String[] nome_colunas = objProjeto.getColunas();
 
-        ModelTable modelo = new ModelTable(dados, colunas);
-
+        // cria um ModelTable passando a lista de obs projetos e o nome das colunas
+        ModelTable modelo = new ModelTable(lista_de_projetos, nome_colunas);
+        
+        // defini a jtable com esse modelo jah preenchido com lista de projetos 
+        // e colunas na mesma sequencia que a lista
         tbListagemProjeto.setModel(modelo);
+        
+        // para ajustar os tamanhos de largura das colunas
         tbListagemProjeto.getColumnModel().getColumn(0).setPreferredWidth(80);
         tbListagemProjeto.getColumnModel().getColumn(0).setResizable(false);
         tbListagemProjeto.getColumnModel().getColumn(1).setPreferredWidth(120);
@@ -59,9 +60,10 @@ public class ProjetoGUI extends javax.swing.JFrame {
 
     // Metodo responsavel por selecionar um registro ao clicar ou seguir com as setas do teclado
     // na JTable, e realizar a vinculacao do mesmo nos TextFields
-    public void selectRegistryTable() {
+    public void linhaTableSelecionado() {
 
-        txtID.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 0).toString());
+        //TODO tinha q ver uma maneira de pegar esses valores
+        labelID.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 0).toString());
 
         //Object objNome = tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 1);
         txtNome.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 1).toString());
@@ -87,31 +89,23 @@ public class ProjetoGUI extends javax.swing.JFrame {
         tbnLimpar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbListagemProjeto = new javax.swing.JTable();
-        txtID = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        labelID = new javax.swing.JLabel();
         btnDeletar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         LabelAuthor = new javax.swing.JLabel();
         LabelNomeAutor = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Projetos");
 
         jLabel2.setText("Nome");
-
-        txtNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeActionPerformed(evt);
-            }
-        });
-
-        txtDescricao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDescricaoActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("Descrição");
 
@@ -155,9 +149,9 @@ public class ProjetoGUI extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tbListagemProjeto);
 
-        txtID.setEditable(false);
-
-        jLabel6.setText("ID");
+        labelID.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        labelID.setText("ID 9999");
+        labelID.setEnabled(false);
 
         btnDeletar.setText("Deletar");
         btnDeletar.addActionListener(new java.awt.event.ActionListener() {
@@ -181,137 +175,142 @@ public class ProjetoGUI extends javax.swing.JFrame {
         LabelNomeAutor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LabelNomeAutor.setText("Gabriel Almeida");
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2))
-                                .addGap(111, 111, 111)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LabelAuthor)
-                                    .addComponent(LabelNomeAutor)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnBuscar)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .add(21, 21, 21)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 259, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(jLabel3)
+                            .add(txtNome, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 168, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(layout.createSequentialGroup()
+                                .add(jLabel2)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(labelID)))
+                        .add(111, 111, 111)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(LabelAuthor)
+                            .add(LabelNomeAutor)))
+                    .add(layout.createSequentialGroup()
+                        .add(txtDescricao, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(btnBuscar)))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tbnLimpar)
-                .addGap(61, 61, 61)
-                .addComponent(btnDeletar)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .add(tbnLimpar)
+                .add(61, 61, 61)
+                .add(btnDeletar)
+                .add(0, 0, Short.MAX_VALUE))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addGap(15, 15, 15)
-                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(LabelAuthor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LabelNomeAutor)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tbnLimpar)
-                    .addComponent(btnDeletar))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .add(23, 23, 23)
+                .add(jLabel1)
+                .add(77, 77, 77)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel2)
+                            .add(labelID))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(txtNome, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jLabel3))
+                    .add(layout.createSequentialGroup()
+                        .add(LabelAuthor)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(LabelNomeAutor)))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(txtDescricao, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(btnBuscar))
+                .add(18, 18, 18)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(tbnLimpar)
+                    .add(btnDeletar))
+                .add(18, 18, 18)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeActionPerformed
-
-    private void txtDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescricaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDescricaoActionPerformed
-
     private void tbnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnLimparActionPerformed
-        setClear();
+        
+        limparTela();
+        
         carregarTable(null);
+        
     }//GEN-LAST:event_tbnLimparActionPerformed
 
     private void tbListagemProjetoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListagemProjetoMouseClicked
-        // TODO add your handling code here:
-        selectRegistryTable();
+        
+        linhaTableSelecionado();
+        
     }//GEN-LAST:event_tbListagemProjetoMouseClicked
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-        objProjeto.setId(Long.parseLong(txtID.getText()));
+       
+        ProjetoModel objProjeto = new ProjetoModel(Long.parseLong(labelID.getText()));
 
-        // fazendo a valida��o dos dados
-        if ((txtID.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(null, "Informe valores para os campos");
+        // somente pode deletar se houver um ID no campo labelID
+        if ((labelID.getText().isEmpty())) {
+            JOptionPane.showMessageDialog(null, "Selecione um Projeto para deletar");
         } else {
-            // instanciando a classe ProjetoDAO do pacote dao e criando seu objeto dao
+            //usa o utilizarios.projDAO.deletar para deletar um projeto
             Utilitarios.projDAO.deletar(objProjeto);
-            JOptionPane.showMessageDialog(null, "Usu�rio Removido com Sucesso! ");
+            
+            //TODO, podia testar se realemnte deletou de alguma maneira verificando o retorno do ResultSet
+            JOptionPane.showMessageDialog(null, "Projeto removido com Sucesso! (talvez)");
         }
 
+        
         carregarTable(null);
 
         // apaga os dados preenchidos nos campos de texto
-        setClear();
+        limparTela();
     }//GEN-LAST:event_btnDeletarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        objProjeto = new ProjetoModel();
+        ProjetoModel objProjeto = new ProjetoModel();
         objProjeto.setNome(txtNome.getText());
         objProjeto.setDescricao(txtDescricao.getText());
 
-        // fazendo a valida��o dos dados
+        // havendo nome ou descricao preechidos, altera 'buscar' para True 
         if ((!txtNome.getText().isEmpty()) || (!txtDescricao.getText().isEmpty())) {
-            // instanciando a classe ProjetoDAO do pacote dao e criando seu objeto dao
-            buscar = true;
+        
+            
             carregarTable(objProjeto);
+        
         }else{
-            buscar = false;
+
             carregarTable(null);
         }
 
         // apaga os dados preenchidos nos campos de texto
-        setClear();
+        limparTela();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    public void setClear() {
-        txtID.setText("");
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        
+        carregarTable(null);
+        
+    }//GEN-LAST:event_formComponentShown
+
+    public void limparTela() {
+        labelID.setText("ID 99999");
         txtNome.setText("");
         txtDescricao.setText("");
         LabelNomeAutor.setText("");
@@ -326,12 +325,11 @@ public class ProjetoGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelID;
     private javax.swing.JTable tbListagemProjeto;
     private javax.swing.JButton tbnLimpar;
     private javax.swing.JTextField txtDescricao;
-    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }
