@@ -42,7 +42,7 @@ public class UsuarioModel {
 
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
