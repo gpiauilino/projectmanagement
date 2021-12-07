@@ -30,8 +30,11 @@ public class RequisitosModel {
     //TODO nome das colunas conforme o CREATE table e reisar o no Utilitarios:94
     // declarar tudo de acordo /home/gabriel/Desktop/ProjectMngnToolCreates.sql
     // ou alterar o SQL e testar novamente se decidir modificar o banco
-    private final String[] colunas = new String[]{"ID", "NOME", "CPF", "EMAIL", "TELEFONE", "DATA_CRIACAO", "SENHA", "LOGIN", "NIVEL"};
-
+    private final String[] colunas = new String[]{"ID", "NOME", "Desc", "mod", "vers", 
+                        "estad", "fae", "func", "compl", "esfH",
+                        "prior", "datCr", "datMod", "usuID", "orid_id",
+                        "nomeProj", "nomeUsu"};
+    
     public RequisitosModel() {
     }
 

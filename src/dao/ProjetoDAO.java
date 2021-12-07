@@ -35,7 +35,7 @@ public class ProjetoDAO {
                 stmt.setString(2, objProjeto.getDescricao());
                 stmt.setLong(3, objProjeto.getId_usu());
                 stmt.setLong(4, objProjeto.getId());
-                
+
                 stmt.execute();
 
             }
@@ -104,7 +104,10 @@ public class ProjetoDAO {
             ArrayList<Object[]> lista_de_projetos = new ArrayList<>();
 
             ResultSet rs;
-            try (PreparedStatement ps = connection.prepareStatement("SELECT * FROM projeto")) {
+            try (PreparedStatement ps = connection.prepareStatement(
+                    "select p.id, p.nome, p.descricao, p.data_criacao, p.data_modificacao, p.usuario_id, u.nome as nomeUsu"
+                    + " FROM usuario u "
+                    + " JOIN projeto p ON u.id = p.id")) {
                 rs = ps.executeQuery();
                 while (rs.next()) {
 
@@ -114,7 +117,8 @@ public class ProjetoDAO {
                         rs.getString("descricao"),
                         rs.getString("data_criacao"),
                         rs.getString("data_modificacao"),
-                        rs.getLong("usuario_id")
+                        rs.getLong("usuario_id"),
+                        rs.getString("nomeUsu")
                     });
 
                 }

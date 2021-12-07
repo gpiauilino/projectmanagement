@@ -98,10 +98,10 @@ public class RequisitoDAO {
         try {
             String sql = "SELECT * FROM requisito WHERE id = ?";
 
-           Object[] obj = null;
+            Object[] obj = null;
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setLong(1, id);
-            
+
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -200,7 +200,6 @@ public class RequisitoDAO {
         }
     }
 
-    
     public ArrayList listarTodos() {
         try {
 
@@ -238,14 +237,28 @@ public class RequisitoDAO {
             return null;
         }
     }
+
     public ArrayList listarTodosDoProjeto(long id_do_projeto) {
         try {
 
             ArrayList dado = new ArrayList();
 
-            PreparedStatement ps = connection.prepareStatement("SELECT * FROM requisito WHERE projeto_id = ?");
+            //PreparedStatement ps = connection.prepareStatement("SELECT * FROM requisito WHERE projeto_id = ?");
+//            PreparedStatement ps = connection.prepareStatement(
+//                    "select p.id, p.nome, p.descricao, p.modulo, p.versao, p.estado, p.fase, p.funcionalidades, p.complexidade,"
+//                    + "p.esforco_horas, p.prioridade, p.data_criacao, p.data_modificacao, p.usuario_id, p.projeto_id, u.nome as nomeUsu"
+//                    + " FROM usuario u"
+//                    + " JOIN projeto p ON u.id = p.id;");
+            PreparedStatement ps = connection.prepareStatement(
+                    "select r.id, r.nome, r.descricao, r.modulo, r.versao, r.estado, r.fase, r.funcionalidades, r.complexidade,"
+                    + "r.esforco_horas, r.prioridade, r.data_criacao, r.data_modificacao, r.usuario_id, r.projeto_id, p.nome as nomeProj, u.nome as nomeUsu"
+                    + " FROM requisito r "
+                    + " JOIN projeto p ON r.id = p.id"
+                    + " JOIN usuario u ON r.id = u.id"
+                    + " WHERE r.projeto_id = ?;");
+
             ps.setLong(1, id_do_projeto);
-            
+
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 dado.add(new Object[]{
@@ -263,7 +276,9 @@ public class RequisitoDAO {
                     rs.getTimestamp("data_criacao"),
                     rs.getTimestamp("data_modificacao"),
                     rs.getLong("usuario_id"),
-                    rs.getLong("projeto_id")
+                    rs.getLong("projeto_id"),
+                    rs.getString("nomeProj"),
+                    rs.getString("nomeUsu")
                 });
 
             }

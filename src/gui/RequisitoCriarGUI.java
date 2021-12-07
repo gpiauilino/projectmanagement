@@ -9,10 +9,11 @@ import modelo.RequisitosModel;
  */
 public class RequisitoCriarGUI extends javax.swing.JFrame {
 
-    public RequisitoCriarGUI(long id_do_prjeto, long id_do_requisito) {
+    public RequisitoCriarGUI(long id_do_prjeto, String nome_projeto, long id_do_requisito) {
 
         initComponents();
         
+        jLabel3.setText("Projeto: "+ nome_projeto);
         // guarda na tela pra usar dps quando salvar
         labelIDProjeto.setText(Long.toString(id_do_prjeto));
         

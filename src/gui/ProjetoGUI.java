@@ -69,10 +69,10 @@ public final class ProjetoGUI extends javax.swing.JFrame {
         //Object objNome = tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 1);
         txtNome.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 1).toString());
         txtDescricao.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 2).toString());
-        LabelNomeAutor.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 3).toString());
+        LabelNomeAutor.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 6).toString());
 
         btnDeletar.setEnabled(true);
-        btnAddRequisito.setEnabled(true);
+        btnAddRequisito1.setEnabled(true);
 
     }
 
@@ -86,20 +86,20 @@ public final class ProjetoGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txtNome = new javax.swing.JTextField();
-        txtDescricao = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         tbnLimpar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbListagemProjeto = new javax.swing.JTable();
         labelID = new javax.swing.JLabel();
         btnDeletar = new javax.swing.JButton();
-        btnBuscar = new javax.swing.JButton();
         LabelAuthor = new javax.swing.JLabel();
         LabelNomeAutor = new javax.swing.JLabel();
-        btnAddRequisito = new javax.swing.JButton();
         btnAddRequisito1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
+        txtDescricao = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -110,10 +110,6 @@ public final class ProjetoGUI extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Projetos");
-
-        jLabel2.setText("Nome");
-
-        jLabel3.setText("Descrição");
 
         tbnLimpar.setText("Limpar");
         tbnLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -166,13 +162,6 @@ public final class ProjetoGUI extends javax.swing.JFrame {
             }
         });
 
-        btnBuscar.setText("Buscar");
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
-            }
-        });
-
         LabelAuthor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         LabelAuthor.setText("Autor");
 
@@ -181,90 +170,110 @@ public final class ProjetoGUI extends javax.swing.JFrame {
         LabelNomeAutor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LabelNomeAutor.setText("Gabriel Almeida");
 
-        btnAddRequisito.setText("Add Requisito");
-        btnAddRequisito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddRequisitoActionPerformed(evt);
-            }
-        });
-
-        btnAddRequisito1.setText("Listar Requisitos");
+        btnAddRequisito1.setText("Requisitos");
         btnAddRequisito1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddRequisito1ActionPerformed(evt);
             }
         });
 
+        jLabel2.setText("Nome");
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Descrição");
+
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .add(jLabel2)
+                        .add(134, 134, 134)
+                        .add(jLabel3)
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(jPanel1Layout.createSequentialGroup()
+                        .add(txtNome, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 168, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(txtDescricao)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(btnBuscar)
+                        .add(18, 18, 18))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel2)
+                    .add(jLabel3))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(txtNome, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(txtDescricao, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(btnBuscar))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(21, 21, 21)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 259, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+            .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(jLabel3)
-                            .add(txtNome, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 168, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(layout.createSequentialGroup()
-                                .add(jLabel2)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .add(labelID)))
-                        .add(111, 111, 111)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(LabelAuthor)
-                            .add(LabelNomeAutor)))
-                    .add(layout.createSequentialGroup()
-                        .add(txtDescricao, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(btnBuscar)))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(tbnLimpar)
-                        .add(61, 61, 61)
-                        .add(btnDeletar)
+                        .addContainerGap()
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                        .add(21, 21, 21)
+                        .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 259, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(btnAddRequisito))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(0, 0, Short.MAX_VALUE)
-                        .add(btnAddRequisito1)))
+                        .add(labelID))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(btnDeletar)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(btnAddRequisito1))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(tbnLimpar)
+                        .add(206, 206, 206)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .add(LabelAuthor)
+                                .add(0, 0, Short.MAX_VALUE))
+                            .add(LabelNomeAutor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(23, 23, 23)
-                .add(jLabel1)
-                .add(77, 77, 77)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel1)
+                    .add(labelID))
+                .add(1, 1, 1)
+                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel2)
-                            .add(labelID))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(txtNome, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel3))
                     .add(layout.createSequentialGroup()
                         .add(LabelAuthor)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(LabelNomeAutor)))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(LabelNomeAutor))
+                    .add(tbnLimpar))
+                .add(92, 92, 92)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(txtDescricao, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(btnBuscar))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(btnAddRequisito1)
-                .add(5, 5, 5)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(tbnLimpar)
-                    .add(btnDeletar)
-                    .add(btnAddRequisito))
+                    .add(btnAddRequisito1)
+                    .add(btnDeletar))
                 .add(18, 18, 18)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                 .addContainerGap())
@@ -334,12 +343,6 @@ public final class ProjetoGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formComponentShown
 
-    private void btnAddRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRequisitoActionPerformed
-       
-        new RequisitoCriarGUI(Long.parseLong(labelID.getText()), 0l).setVisible(true);
-
-    }//GEN-LAST:event_btnAddRequisitoActionPerformed
-
     private void btnAddRequisito1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRequisito1ActionPerformed
                
         new RequisitoGUI(Long.parseLong(labelID.getText())).setVisible(true);
@@ -352,20 +355,20 @@ public final class ProjetoGUI extends javax.swing.JFrame {
         txtDescricao.setText("");
         LabelNomeAutor.setText("");
         btnDeletar.setEnabled(false);
-        btnAddRequisito.setEnabled(false);
+        btnAddRequisito1.setEnabled(false);
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelAuthor;
     private javax.swing.JLabel LabelNomeAutor;
-    private javax.swing.JButton btnAddRequisito;
     private javax.swing.JButton btnAddRequisito1;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnDeletar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelID;
     private javax.swing.JTable tbListagemProjeto;

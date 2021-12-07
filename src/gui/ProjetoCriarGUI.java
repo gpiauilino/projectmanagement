@@ -12,6 +12,8 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
         //Centralizando a janela
         this.setLocationRelativeTo(null);
 
+        btRequisitos.setVisible(false)
+                ;
         // Impede que a janela seja redimencionada 
         // this.setResizable(false);
 
@@ -33,6 +35,7 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
         // alterar os textos para parecer q a tela agora eh de Editar e nao criar projeto
         tbnSalvar.setText("Alterar");
         jLabel1.setText("Editar Projeto");
+        btRequisitos.setVisible(true);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,6 +55,7 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tfDescricao = new javax.swing.JTextArea();
         labelID = new javax.swing.JLabel();
+        btRequisitos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -84,6 +88,13 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
         labelID.setEnabled(false);
         labelID.setFocusable(false);
 
+        btRequisitos.setText("Requisitos");
+        btRequisitos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRequisitosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,7 +104,8 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btRequisitos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(tbnSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tbnLimpar))
@@ -125,7 +137,8 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tbnLimpar)
-                    .addComponent(tbnSalvar))
+                    .addComponent(tbnSalvar)
+                    .addComponent(btRequisitos))
                 .addGap(44, 44, 44))
         );
 
@@ -154,22 +167,31 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
         }
 
         // apaga os dados preenchidos nos campos de texto
-        setClear();
+        limparTela();
     }//GEN-LAST:event_tbnSalvarActionPerformed
 
     private void tbnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnLimparActionPerformed
-        setClear();
+        limparTela();
     }//GEN-LAST:event_tbnLimparActionPerformed
 
-    public void setClear() {
+    private void btRequisitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRequisitosActionPerformed
+               
+        new RequisitoGUI(Long.parseLong(labelID.getText())).setVisible(true);
+
+    }//GEN-LAST:event_btRequisitosActionPerformed
+
+    public void limparTela() {
         txtNome.setText("");
         tfDescricao.setText("");
         labelID.setText("0");
         tbnSalvar.setText("Salvar");
+        
+        btRequisitos.setVisible(false);
     }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btRequisitos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

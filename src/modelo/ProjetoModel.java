@@ -25,7 +25,7 @@ public class ProjetoModel {
         this.autor = autor;
     }
 
-    private String[] colunas = new String[]{"ID", "NOME", "DESCRICAO", "DATA_CRIACAO", "DATA_MODIFICACAO", "ID_USU"};
+    private String[] colunas = new String[]{"ID", "NOME", "DESCRICAO", "DATA_CRIACAO", "DATA_MODIFICACAO", "ID_USU", "NOME_USU"};
 
     public long getId_usu() {
         return id_usu;

@@ -78,8 +78,10 @@ public final class RequisitoGUI extends javax.swing.JFrame {
         //Object objNome = tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 1);
         txtNome.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 1).toString());
         txtDescricao.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 2).toString());
-        LabelNomeAutor.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 3).toString());
-
+        
+        labelProj.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 15).toString());
+        LabelNomeAutor.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 16).toString());
+        
         btnDeletar.setEnabled(true);
         btnAddRequisito.setEnabled(true);
 
@@ -94,7 +96,7 @@ public final class RequisitoGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        labelTitulo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtDescricao = new javax.swing.JTextField();
@@ -109,6 +111,8 @@ public final class RequisitoGUI extends javax.swing.JFrame {
         LabelNomeAutor = new javax.swing.JLabel();
         btnAddRequisito = new javax.swing.JButton();
         labelIDProjeto = new javax.swing.JLabel();
+        labelAutor = new javax.swing.JLabel();
+        labelProj = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -117,8 +121,8 @@ public final class RequisitoGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("Requisitos");
+        labelTitulo.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        labelTitulo.setText("Requisitos");
 
         jLabel2.setText("Nome");
 
@@ -191,6 +195,7 @@ public final class RequisitoGUI extends javax.swing.JFrame {
         LabelNomeAutor.setText("Gabriel Almeida");
 
         btnAddRequisito.setText("Add Requisito");
+        btnAddRequisito.setEnabled(false);
         btnAddRequisito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddRequisitoActionPerformed(evt);
@@ -200,6 +205,14 @@ public final class RequisitoGUI extends javax.swing.JFrame {
         labelIDProjeto.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         labelIDProjeto.setText("ID 9999");
         labelIDProjeto.setEnabled(false);
+
+        labelAutor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelAutor.setText("Projeto");
+
+        labelProj.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        labelProj.setForeground(new java.awt.Color(102, 102, 255));
+        labelProj.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelProj.setText("Gabriel Almeida");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,25 +224,31 @@ public final class RequisitoGUI extends javax.swing.JFrame {
                         .add(21, 21, 21)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
-                                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 259, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(labelTitulo, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 259, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .add(labelIDProjeto))
                             .add(layout.createSequentialGroup()
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                                    .add(jLabel3)
-                                    .add(txtNome, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 168, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                        .add(jLabel3)
+                                        .add(txtNome, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 168, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .add(layout.createSequentialGroup()
+                                            .add(jLabel2)
+                                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .add(labelID)))
                                     .add(layout.createSequentialGroup()
-                                        .add(jLabel2)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .add(labelID)))
+                                        .add(txtDescricao, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                                        .add(btnBuscar)))
                                 .add(111, 111, 111)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(LabelAuthor)
-                                    .add(LabelNomeAutor)))
-                            .add(layout.createSequentialGroup()
-                                .add(txtDescricao, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 108, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                .add(btnBuscar))))
+                                    .add(LabelNomeAutor, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .add(labelProj, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .add(layout.createSequentialGroup()
+                                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                            .add(LabelAuthor)
+                                            .add(labelAutor))
+                                        .add(0, 0, Short.MAX_VALUE))))))
                     .add(layout.createSequentialGroup()
                         .addContainerGap()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -248,7 +267,7 @@ public final class RequisitoGUI extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
                         .add(23, 23, 23)
-                        .add(jLabel1))
+                        .add(labelTitulo))
                     .add(layout.createSequentialGroup()
                         .addContainerGap()
                         .add(labelIDProjeto)))
@@ -261,20 +280,24 @@ public final class RequisitoGUI extends javax.swing.JFrame {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(txtNome, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel3))
+                        .add(jLabel3)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(txtDescricao, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(btnBuscar))
+                        .add(18, 18, 18)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(tbnLimpar)
+                            .add(btnDeletar)
+                            .add(btnAddRequisito)))
                     .add(layout.createSequentialGroup()
                         .add(LabelAuthor)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(LabelNomeAutor)))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(txtDescricao, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(btnBuscar))
-                .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(tbnLimpar)
-                    .add(btnDeletar)
-                    .add(btnAddRequisito))
+                        .add(LabelNomeAutor)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(labelAutor)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(labelProj)))
                 .add(18, 18, 18)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
                 .addContainerGap())
@@ -349,7 +372,7 @@ public final class RequisitoGUI extends javax.swing.JFrame {
 
     private void btnAddRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRequisitoActionPerformed
        
-        new RequisitoCriarGUI(Long.parseLong(labelIDProjeto.getText()), 0l).setVisible(true);
+        new RequisitoCriarGUI(Long.parseLong(labelIDProjeto.getText()), labelProj.getText(), 0l).setVisible(true);
 
     }//GEN-LAST:event_btnAddRequisitoActionPerformed
 
@@ -369,12 +392,14 @@ public final class RequisitoGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnAddRequisito;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnDeletar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelAutor;
     private javax.swing.JLabel labelID;
     private javax.swing.JLabel labelIDProjeto;
+    private javax.swing.JLabel labelProj;
+    private javax.swing.JLabel labelTitulo;
     private javax.swing.JTable tbListagemProjeto;
     private javax.swing.JButton tbnLimpar;
     private javax.swing.JTextField txtDescricao;
