@@ -18,7 +18,22 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
         // Trocando cursor para HAND CURSOR(Maozinha)
         // jButtonRefresh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     }
+    
+    public ProjetoCriarGUI(Object[] obj_projeto) {
+        initComponents();
 
+        labelID.setText(obj_projeto[0].toString());
+        txtNome.setText(obj_projeto[1].toString());
+        tfDescricao.setText(obj_projeto[2].toString());
+        //TODO criar todos os campos e seguir na mesma ordem de declaracao do objeco[]
+        // criado em ProjetoDAO.listartodos
+        // tipo isso mais ou menos
+        //txtDATAcriacao.set(obj_projeto[2].toString());
+        
+        // alterar os textos para parecer q a tela agora eh de Editar e nao criar projeto
+        tbnSalvar.setText("Alterar");
+        jLabel1.setText("Editar Projeto");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,6 +51,7 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
         tbnSalvar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tfDescricao = new javax.swing.JTextArea();
+        labelID = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -64,6 +80,10 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
         tfDescricao.setRows(5);
         jScrollPane1.setViewportView(tfDescricao);
 
+        labelID.setText("0");
+        labelID.setEnabled(false);
+        labelID.setFocusable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,14 +103,17 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(txtNome))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelID)))
                 .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(labelID))
                 .addGap(33, 33, 33)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -117,6 +140,7 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
         // u id do db_username logado sera repassado para cada projetro criado
         objProjeto.setId_usu(Utilitarios.usuarioId);
 
+        objProjeto.setId(Long.parseLong(labelID.getText()));
         objProjeto.setNome(txtNome.getText());
         objProjeto.setDescricao(tfDescricao.getText());
 
@@ -138,17 +162,19 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tbnLimparActionPerformed
 
     public void setClear() {
-        txtNome.setText(null);
-        tfDescricao.setText(null);
-
+        txtNome.setText("");
+        tfDescricao.setText("");
+        labelID.setText("0");
+        tbnSalvar.setText("Salvar");
     }
-
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelID;
     private javax.swing.JButton tbnLimpar;
     private javax.swing.JButton tbnSalvar;
     private javax.swing.JTextArea tfDescricao;
