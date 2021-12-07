@@ -21,13 +21,14 @@ public class RequisitoDAO {
 
             // campos do tipo Long, como os IDs devem ser comparados usando long n como String
             if (objRequisito.getId() > 0) {
+                //TODO revisar se faltam colunas
                 sql = "INSERT INTO requisito("
                         + "nome,"
                         + "descricao,"
                         + "modulo,"
                         + "funcionalidades,"
                         + "versao,"
-                        + "esforcoHoras,"
+                        + "esforco_horas,"
                         + "prioridade, "
                         + "estado,"
                         + "fase,"
@@ -53,13 +54,14 @@ public class RequisitoDAO {
                 stmt.execute();
 
             } else {
+                //TODO pela quantidade visviel faltam colunas
                 sql = "UPDATE requisito "
                         + "SET nome = ?, "
                         + "descricao = ?, "
                         + "modulo = ?, "
                         + "funcionalidades = ?, "
                         + "versao = ?, "
-                        + "esforco = ?, "
+                        + "esforco_horas = ?, "
                         + "prioridade = ?, "
                         + "estado = ?, "
                         + "fase = ?, "
@@ -92,6 +94,47 @@ public class RequisitoDAO {
         }
     }
 
+    public Object[] buscarPorId(long id) {
+        try {
+            String sql = "SELECT * FROM requisito WHERE id = ?";
+
+           Object[] obj = null;
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setLong(1, id);
+            
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                obj = new Object[]{
+                    rs.getLong("id"),
+                    rs.getString("nome"),
+                    rs.getString("descricao"),
+                    rs.getString("modulo"),
+                    rs.getDouble("versao"),
+                    rs.getInt("estado"),
+                    rs.getInt("fase"),
+                    rs.getString("funcionalidades"),
+                    rs.getInt("complexidade"),
+                    rs.getDouble("esforco_horas"),
+                    rs.getInt("prioridade"),
+                    rs.getTimestamp("data_criacao"),
+                    rs.getTimestamp("data_modificacao"),
+                    rs.getLong("usuario_id"),
+                    rs.getLong("projeto_id")
+                };
+            }
+            ps.close();
+            rs.close();
+
+            return obj;
+        } catch (SQLException e) {
+            e.getMessage();
+            JOptionPane.showMessageDialog(null, "Erro preencher o ArrayList: " + e.getMessage());
+            return null;
+        }
+
+    }
+
     public ArrayList buscar(RequisitosModel objRequisito) {
         try {
             String sql = "";
@@ -107,23 +150,22 @@ public class RequisitoDAO {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-
                 dado.add(new Object[]{
                     rs.getLong("id"),
-                    rs.getLong("usuario"),
-                    rs.getLong("projeto"),
                     rs.getString("nome"),
-                    rs.getString("modulo"),
-                    rs.getString("funcionalidades"),
                     rs.getString("descricao"),
+                    rs.getString("modulo"),
                     rs.getDouble("versao"),
-                    rs.getDouble("esforco"),
-                    rs.getInt("prioridade"),
                     rs.getInt("estado"),
                     rs.getInt("fase"),
+                    rs.getString("funcionalidades"),
                     rs.getInt("complexidade"),
+                    rs.getDouble("esforco_horas"),
+                    rs.getInt("prioridade"),
                     rs.getTimestamp("data_criacao"),
-                    rs.getTimestamp("data_modificacao")
+                    rs.getTimestamp("data_modificacao"),
+                    rs.getLong("usuario_id"),
+                    rs.getLong("projeto_id")
                 });
 
             }
@@ -158,6 +200,7 @@ public class RequisitoDAO {
         }
     }
 
+    
     public ArrayList listarTodos() {
         try {
 
@@ -168,20 +211,59 @@ public class RequisitoDAO {
             while (rs.next()) {
                 dado.add(new Object[]{
                     rs.getLong("id"),
-                    rs.getLong("usuario"),
-                    rs.getLong("projeto"),
                     rs.getString("nome"),
-                    rs.getString("modulo"),
-                    rs.getString("funcionalidades"),
                     rs.getString("descricao"),
+                    rs.getString("modulo"),
                     rs.getDouble("versao"),
-                    rs.getDouble("esforco"),
-                    rs.getInt("prioridade"),
                     rs.getInt("estado"),
                     rs.getInt("fase"),
+                    rs.getString("funcionalidades"),
                     rs.getInt("complexidade"),
+                    rs.getDouble("esforco_horas"),
+                    rs.getInt("prioridade"),
                     rs.getTimestamp("data_criacao"),
-                    rs.getTimestamp("data_modificacao")
+                    rs.getTimestamp("data_modificacao"),
+                    rs.getLong("usuario_id"),
+                    rs.getLong("projeto_id")
+                });
+
+            }
+            ps.close();
+            rs.close();
+
+            return dado;
+        } catch (SQLException e) {
+            e.getMessage();
+            JOptionPane.showMessageDialog(null, "Erro Exception SQL: " + e.getMessage());
+            return null;
+        }
+    }
+    public ArrayList listarTodosDoProjeto(long id_do_projeto) {
+        try {
+
+            ArrayList dado = new ArrayList();
+
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM requisito WHERE projeto_id = ?");
+            ps.setLong(1, id_do_projeto);
+            
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                dado.add(new Object[]{
+                    rs.getLong("id"),
+                    rs.getString("nome"),
+                    rs.getString("descricao"),
+                    rs.getString("modulo"),
+                    rs.getDouble("versao"),
+                    rs.getInt("estado"),
+                    rs.getInt("fase"),
+                    rs.getString("funcionalidades"),
+                    rs.getInt("complexidade"),
+                    rs.getDouble("esforco_horas"),
+                    rs.getInt("prioridade"),
+                    rs.getTimestamp("data_criacao"),
+                    rs.getTimestamp("data_modificacao"),
+                    rs.getLong("usuario_id"),
+                    rs.getLong("projeto_id")
                 });
 
             }
