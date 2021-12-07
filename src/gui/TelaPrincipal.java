@@ -1,20 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import dao.ProjetoDAO;
+import dao.RequisitoDAO;
 import dao.UsuarioDAO;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 /**
  *
- * @author celio_ukd8
+ * @author Gabriel
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
@@ -59,12 +52,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                jPanel1ComponentShown(evt);
-            }
-        });
-
         labelNoProjeto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNoProjeto.setText("Nenhum Projeto");
 
@@ -73,7 +60,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel2.setText("Lista Projetos");
         areaTilesProjetos.add(jLabel2);
 
-        btCriarProjeto.setText("Criar");
+        btCriarProjeto.setText("Criar Projeto");
         btCriarProjeto.setToolTipText("Adicionar um projeto");
         btCriarProjeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,7 +68,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Atualizar Lista");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -99,7 +86,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .add(areaTilesProjetos, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
                         .add(jButton2)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 317, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 218, Short.MAX_VALUE)
                         .add(btCriarProjeto)))
                 .addContainerGap())
         );
@@ -138,13 +125,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         fileMenu.add(saveMenuItem);
 
-        saveAsMenuItem.setMnemonic('a');
-        saveAsMenuItem.setText("Save As ...");
-        saveAsMenuItem.setDisplayedMnemonicIndex(5);
+        saveAsMenuItem.setMnemonic('r');
+        saveAsMenuItem.setText("Requisitos");
         fileMenu.add(saveAsMenuItem);
 
-        exitMenuItem.setMnemonic('x');
-        exitMenuItem.setText("Exit");
+        exitMenuItem.setMnemonic('s');
+        exitMenuItem.setText("Sair");
         exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitMenuItemActionPerformed(evt);
@@ -209,11 +195,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
-    private void jPanel1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentShown
-
-
-    }//GEN-LAST:event_jPanel1ComponentShown
-
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
 
         while (!utilz.inicializarDB()) {
@@ -231,13 +212,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         Utilitarios.usuDAO = new UsuarioDAO(utilz.getConnection());
         Utilitarios.projDAO = new ProjetoDAO(utilz.getConnection());
+        Utilitarios.reqDAO = new RequisitoDAO(utilz.getConnection());
 
         Login telaLogin = new Login(this, true);
         telaLogin.setLocationRelativeTo(null);
 
         // cuidar do evento de Fecar a jaela para encerrar toda a aplicacao
         telaLogin.addWindowListener(new java.awt.event.WindowAdapter() {
-            
+
             // windowClosed eh chamada quando rola um dispose no Dialog
             @Override
             public void windowClosed(java.awt.event.WindowEvent e) {
@@ -245,23 +227,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 if (Utilitarios.usuarioId == null || Utilitarios.usuarioId == 0l) {
                     System.exit(0);
                 } else {
-                    ArrayList<Object[]> projs_lista = Utilitarios.projDAO.listarTodos();
-                    if (!projs_lista.isEmpty()) {
-
-                        // remove msg de Sem Projeto da tela
-                        jPanel1.remove(labelNoProjeto);
-
-                        for (Object[] projeto : projs_lista) {
-                            //TODO repassar o objeto projeto pra dentro dessa 
-                            // panel pra ela usar e mostrar os valores
-                            ProjetoTilePanel tile = new ProjetoTilePanel(projeto);
-                            areaTilesProjetos.add(tile);
-                        }
-                        
-                        //esse pack compacta a tela e ajusta o tamanho, vai precisar 
-                        //rever isso q com muitos projetos nao ficam legal
-                        pack();
-                    }
+                    atualizarProjetosLista();
                 }
             }
 
@@ -270,25 +236,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             public void windowClosing(java.awt.event.WindowEvent e) {
                 System.out.println("windwClosing");
                 System.exit(0);
-            }
-        });
-
-        // add a component listener
-        telaLogin.addComponentListener(new ComponentListener() {
-            public void componentHidden(ComponentEvent e) {
-                System.out.println("dialog hidden");
-            }
-
-            public void componentMoved(ComponentEvent e) {
-                System.out.println("dialog moved");
-            }
-
-            public void componentResized(ComponentEvent e) {
-                System.out.println("dialog resized");
-            }
-
-            public void componentShown(ComponentEvent e) {
-                System.out.println("dialog shown");
             }
         });
 
@@ -317,16 +264,34 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
-        // remove msg de Sem Projeto da tela
-        jPanel1.remove(labelNoProjeto);
+        atualizarProjetosLista();
 
-        ProjetoTilePanel tile = new ProjetoTilePanel(null);
-        areaTilesProjetos.add(tile);
-        this.pack();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     public void atualizarProjetosLista() {
 
+        ArrayList<Object[]> projs_lista = Utilitarios.projDAO.listarTodos();
+        if (!projs_lista.isEmpty()) {
+
+            // remove msg de Sem Projeto da tela
+            jPanel1.remove(labelNoProjeto);
+
+            // limpa a area de tiles
+            areaTilesProjetos.removeAll();
+            areaTilesProjetos.revalidate();
+            areaTilesProjetos.repaint();
+
+            for (Object[] projeto : projs_lista) {
+                //TODO repassar o objeto projeto pra dentro dessa 
+                // panel pra ela usar e mostrar os valores
+                ProjetoTilePanel tile = new ProjetoTilePanel(projeto);
+                areaTilesProjetos.add(tile);
+            }
+
+            //esse pack compacta a tela e ajusta o tamanho, vai precisar 
+            //rever isso q com muitos itens na lista ainda nao ficam legal
+            pack();
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

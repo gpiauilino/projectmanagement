@@ -9,31 +9,43 @@ import modelo.RequisitosModel;
  */
 public class RequisitoCriarGUI extends javax.swing.JFrame {
 
-    public RequisitoCriarGUI(RequisitosModel objRequisitos) {
+    public RequisitoCriarGUI(long id_do_prjeto, long id_do_requisito) {
 
         initComponents();
-
+        
+        // guarda na tela pra usar dps quando salvar
+        labelIDProjeto.setText(Long.toString(id_do_prjeto));
+        
         // esse objeto eh recebido da janela parente
         //RequisitosModel objRequisitos = new RequisitosModel();
         //apenas se ele nao for null que sera usado para mostrar na tela
         // com isso essa tela passa a ser uma tela de UPDATE e nao de INSERT
-        if (objRequisitos != null) {
-            String idNumber = txtRequisitoId.getText();
-            String versaoNumber = txtVersao.getText();
-            String esforcoHoraNumber = txtEsforco.getText();
+        if (id_do_requisito > 0l) {
 
-            objRequisitos.setIdRequisito(Integer.getInteger(idNumber));
-            objRequisitos.setNomeRequisito(txtNomeRequisito.getText());
-            objRequisitos.setModulo(txtModulo.getText());
-            objRequisitos.setVersao(Double.parseDouble(versaoNumber));
-            objRequisitos.setPrioridade((int) boxPrioridade.getSelectedItem());
-            objRequisitos.setEstado((int) boxEstado.getSelectedItem());
-            objRequisitos.setFase((int) boxFase.getSelectedItem());
-            objRequisitos.setFuncionalidades(tfFuncionalidades.getText());
-            objRequisitos.setComplexidade((int) boxComplexidade.getSelectedItem());
-            objRequisitos.setEsforcoHoras(Double.parseDouble(esforcoHoraNumber));
-            objRequisitos.setDescricao(tfDescricaoRequisito.getText());
+            Object[] obj = Utilitarios.reqDAO.buscarPorId(id_do_requisito);
+            txtRequisitoId.setText(obj[0].toString());
+            txtNomeRequisito.setText(obj[1].toString());
 
+            labelIDProjeto.setText(obj[14].toString());
+            //TODO preencher todos os campos
+
+            /*
+                    rs.getLong("id"),
+                    rs.getString("nome"),
+                    rs.getString("descricao"),
+                    rs.getString("modulo"),
+                    rs.getDouble("versao"),
+                    rs.getInt("estado"),
+                    rs.getInt("fase"),
+                    rs.getString("funcionalidades"),
+                    rs.getInt("complexidade"),
+                    rs.getDouble("esforco"),
+                    rs.getInt("prioridade"),
+                    rs.getTimestamp("data_criacao"),
+                    rs.getTimestamp("data_modificacao"),
+                    rs.getLong("usuario_id"),
+                    rs.getLong("projeto_id")
+             */
             // DASTRO DE USUÁRIOSfazendo a valida��o dos dados
             if ((txtNomeRequisito.getText().isEmpty()) || (txtModulo.getText().isEmpty()) || (tfFuncionalidades.getText().isEmpty()) || (tfDescricaoRequisito.getText().isEmpty())) {
                 JOptionPane.showMessageDialog(null, "Informe valores para os campos: Nome, Módulo, Funcionalidades e Descrição.");
@@ -88,10 +100,11 @@ public class RequisitoCriarGUI extends javax.swing.JFrame {
         tfFuncionalidades = new javax.swing.JTextArea();
         jScrollPane1 = new javax.swing.JScrollPane();
         tfDescricaoRequisito = new javax.swing.JTextArea();
+        labelIDProjeto = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(880, 580));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -229,7 +242,7 @@ public class RequisitoCriarGUI extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Projeto de \"Exemplo\"");
+        jLabel3.setText("Nome do Projeto Pai");
 
         tfFuncionalidades.setColumns(20);
         tfFuncionalidades.setRows(5);
@@ -238,6 +251,10 @@ public class RequisitoCriarGUI extends javax.swing.JFrame {
         tfDescricaoRequisito.setColumns(20);
         tfDescricaoRequisito.setRows(5);
         jScrollPane1.setViewportView(tfDescricaoRequisito);
+
+        labelIDProjeto.setText("ID projeto");
+        labelIDProjeto.setEnabled(false);
+        labelIDProjeto.setFocusable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -266,31 +283,37 @@ public class RequisitoCriarGUI extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(jLabel17)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(ButtonDeletarRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(ButtonCancelarRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ButtonLimparRequisito1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(ButtonSalvarRequisito1))
-                    .addComponent(jLabel12)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel16))
-                        .addGap(63, 63, 63)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(boxComplexidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEsforco, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(boxFase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel13)
-                    .addComponent(jScrollPane2))
-                .addContainerGap(92, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ButtonDeletarRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(ButtonCancelarRequisito, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ButtonLimparRequisito1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(ButtonSalvarRequisito1))
+                            .addComponent(jLabel12)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel16))
+                                .addGap(63, 63, 63)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(boxComplexidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEsforco, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(boxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(boxFase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel13)
+                            .addComponent(jScrollPane2))
+                        .addContainerGap(92, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelIDProjeto)
+                        .addGap(67, 67, 67))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,7 +367,8 @@ public class RequisitoCriarGUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(txtRequisitoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtRequisitoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelIDProjeto))
                         .addGap(6, 6, 6)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -412,8 +436,30 @@ public class RequisitoCriarGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtRequisitoIdActionPerformed
 
     private void ButtonSalvarRequisito1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonSalvarRequisito1ActionPerformed
-        // TODO add your handling code here:
 
+        RequisitosModel obj_requisito = new RequisitosModel();
+
+        String idNumber = txtRequisitoId.getText();
+        String versaoNumber = txtVersao.getText();
+        String esforcoHoraNumber = txtEsforco.getText();
+
+        obj_requisito.setIdRequisito(Long.parseLong(idNumber));
+        obj_requisito.setProjeto_id(Long.parseLong(labelIDProjeto.getText()));
+        obj_requisito.setUsuario_id(Utilitarios.usuarioId);
+
+        obj_requisito.setNomeRequisito(txtNomeRequisito.getText());
+        obj_requisito.setModulo(txtModulo.getText());
+        obj_requisito.setVersao(0.1);
+        obj_requisito.setPrioridade(1);
+        obj_requisito.setEstado(2);
+        obj_requisito.setFase(2);
+        obj_requisito.setFuncionalidades(tfFuncionalidades.getText());
+        obj_requisito.setComplexidade(1);
+        obj_requisito.setEsforcoHoras(0.2);
+        obj_requisito.setDescricao(tfDescricaoRequisito.getText());
+
+        Utilitarios.reqDAO.salvar(obj_requisito);
+        JOptionPane.showMessageDialog(null, "Requisit " + txtNomeRequisito.getText() + " inserido com sucesso! (talvez)");
 
     }//GEN-LAST:event_ButtonSalvarRequisito1ActionPerformed
 
@@ -504,6 +550,7 @@ public class RequisitoCriarGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel labelIDProjeto;
     private javax.swing.JTextArea tfDescricaoRequisito;
     private javax.swing.JTextArea tfFuncionalidades;
     private javax.swing.JTextField txtEsforco;

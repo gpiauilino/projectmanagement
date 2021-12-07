@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 /**
@@ -11,14 +6,24 @@ package gui;
  */
 public class ProjetoTilePanel extends javax.swing.JPanel {
 
+    Object[] obj_projeto;
+    
     public ProjetoTilePanel(Object[] objProjet) {
         initComponents();
         
         if (objProjet != null){
+            
+            // guardar o id aqui pra lembrar dps quando for chamar a edicao do msmo
+            obj_projeto = objProjet;
+            
+            // sabe-se q nessa posicao tem o nome do projeto
             String s = objProjet[1].toString();
             System.out.println("labelNomeProjeto: " + s);
            
             labelNomeProjeto.setText(s);
+            
+            // e na posicao 2 tem a descricao
+            labelDescricao.setText(objProjet[2].toString());
         }
             
     }
@@ -35,7 +40,7 @@ public class ProjetoTilePanel extends javax.swing.JPanel {
         labelNomeProjeto = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        tfNomeDono = new javax.swing.JTextField();
+        labelDescricao = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -50,7 +55,7 @@ public class ProjetoTilePanel extends javax.swing.JPanel {
 
         jLabel1.setText("Descricao");
 
-        tfNomeDono.setText("jTextField1");
+        labelDescricao.setText("Descricao");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -64,8 +69,8 @@ public class ProjetoTilePanel extends javax.swing.JPanel {
                 .addGap(38, 38, 38)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfNomeDono, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelDescricao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
         );
@@ -77,23 +82,26 @@ public class ProjetoTilePanel extends javax.swing.JPanel {
                     .addComponent(jButton1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelNomeProjeto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(tfNomeDono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))))
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(labelDescricao))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
+        ProjetoCriarGUI telaEditarProjeto = new ProjetoCriarGUI(obj_projeto);
+                telaEditarProjeto.setVisible(true);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel labelDescricao;
     private javax.swing.JLabel labelNomeProjeto;
-    private javax.swing.JTextField tfNomeDono;
     // End of variables declaration//GEN-END:variables
 }

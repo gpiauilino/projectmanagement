@@ -6,7 +6,9 @@ import modelo.ModelTable;
 import modelo.ProjetoModel;
 
 public final class ProjetoGUI extends javax.swing.JFrame {
-    
+
+    ProjetoModel projeto_selecionado_atual;
+
     public ProjetoGUI() {
 
         initComponents();
@@ -16,14 +18,14 @@ public final class ProjetoGUI extends javax.swing.JFrame {
         // Trocando cursor para HAND CURSOR(Maozinha)
         // jButtonRefresh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         // Variavel con recebendo a conexao
-
     }
 
     // Metodo que faz uma instrucao Query(select)
     // para jogar na JTable atraves do modelo de tabela (ModelTabel.java)
     public void carregarTable(ProjetoModel objProjeto) {
+
         ArrayList lista_de_projetos;
-        
+
         // se o objPRojeto chegou como 'null' entao eh pra Selecionar todos
         if (objProjeto == null) {
             //
@@ -34,18 +36,17 @@ public final class ProjetoGUI extends javax.swing.JFrame {
             // senao chama o projDao.buscar passando um obj prpjeto que 'deverá' 
             //conter descricao ou nome preenchido
             lista_de_projetos = Utilitarios.projDAO.buscar(objProjeto);
-
         }
-        
+
         String[] nome_colunas = objProjeto.getColunas();
 
         // cria um ModelTable passando a lista de obs projetos e o nome das colunas
         ModelTable modelo = new ModelTable(lista_de_projetos, nome_colunas);
-        
+
         // defini a jtable com esse modelo jah preenchido com lista de projetos 
         // e colunas na mesma sequencia que a lista
         tbListagemProjeto.setModel(modelo);
-        
+
         // para ajustar os tamanhos de largura das colunas
         tbListagemProjeto.getColumnModel().getColumn(0).setPreferredWidth(80);
         tbListagemProjeto.getColumnModel().getColumn(0).setResizable(false);
@@ -69,7 +70,10 @@ public final class ProjetoGUI extends javax.swing.JFrame {
         txtNome.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 1).toString());
         txtDescricao.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 2).toString());
         LabelNomeAutor.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 3).toString());
-       
+
+        btnDeletar.setEnabled(true);
+        btnAddRequisito.setEnabled(true);
+
     }
 
     /**
@@ -94,6 +98,8 @@ public final class ProjetoGUI extends javax.swing.JFrame {
         btnBuscar = new javax.swing.JButton();
         LabelAuthor = new javax.swing.JLabel();
         LabelNomeAutor = new javax.swing.JLabel();
+        btnAddRequisito = new javax.swing.JButton();
+        btnAddRequisito1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -175,6 +181,20 @@ public final class ProjetoGUI extends javax.swing.JFrame {
         LabelNomeAutor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         LabelNomeAutor.setText("Gabriel Almeida");
 
+        btnAddRequisito.setText("Add Requisito");
+        btnAddRequisito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddRequisitoActionPerformed(evt);
+            }
+        });
+
+        btnAddRequisito1.setText("Listar Requisitos");
+        btnAddRequisito1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddRequisito1ActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -202,13 +222,17 @@ public final class ProjetoGUI extends javax.swing.JFrame {
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(tbnLimpar)
-                .add(61, 61, 61)
-                .add(btnDeletar)
-                .add(0, 0, Short.MAX_VALUE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
+                        .add(tbnLimpar)
+                        .add(61, 61, 61)
+                        .add(btnDeletar)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(btnAddRequisito))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(0, 0, Short.MAX_VALUE)
+                        .add(btnAddRequisito1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -234,12 +258,15 @@ public final class ProjetoGUI extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(txtDescricao, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(btnBuscar))
-                .add(18, 18, 18)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(btnAddRequisito1)
+                .add(5, 5, 5)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(tbnLimpar)
-                    .add(btnDeletar))
+                    .add(btnDeletar)
+                    .add(btnAddRequisito))
                 .add(18, 18, 18)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -248,21 +275,21 @@ public final class ProjetoGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tbnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbnLimparActionPerformed
-        
+
         limparTela();
-        
+
         carregarTable(null);
-        
+
     }//GEN-LAST:event_tbnLimparActionPerformed
 
     private void tbListagemProjetoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListagemProjetoMouseClicked
-        
+
         linhaTableSelecionado();
-        
+
     }//GEN-LAST:event_tbListagemProjetoMouseClicked
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
-       
+
         ProjetoModel objProjeto = new ProjetoModel(Long.parseLong(labelID.getText()));
 
         // somente pode deletar se houver um ID no campo labelID
@@ -271,12 +298,11 @@ public final class ProjetoGUI extends javax.swing.JFrame {
         } else {
             //usa o utilizarios.projDAO.deletar para deletar um projeto
             Utilitarios.projDAO.deletar(objProjeto);
-            
+
             //TODO, podia testar se realemnte deletou de alguma maneira verificando o retorno do ResultSet
             JOptionPane.showMessageDialog(null, "Projeto removido com Sucesso! (talvez)");
         }
 
-        
         carregarTable(null);
 
         // apaga os dados preenchidos nos campos de texto
@@ -290,11 +316,10 @@ public final class ProjetoGUI extends javax.swing.JFrame {
 
         // havendo nome ou descricao preechidos, altera 'buscar' para True 
         if ((!txtNome.getText().isEmpty()) || (!txtDescricao.getText().isEmpty())) {
-        
-            
+
             carregarTable(objProjeto);
-        
-        }else{
+
+        } else {
 
             carregarTable(null);
         }
@@ -304,22 +329,38 @@ public final class ProjetoGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        
+
         carregarTable(null);
-        
+
     }//GEN-LAST:event_formComponentShown
 
+    private void btnAddRequisitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRequisitoActionPerformed
+       
+        new RequisitoCriarGUI(Long.parseLong(labelID.getText()), 0l).setVisible(true);
+
+    }//GEN-LAST:event_btnAddRequisitoActionPerformed
+
+    private void btnAddRequisito1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRequisito1ActionPerformed
+               
+        new RequisitoGUI(Long.parseLong(labelID.getText())).setVisible(true);
+
+    }//GEN-LAST:event_btnAddRequisito1ActionPerformed
+
     public void limparTela() {
-        labelID.setText("ID 99999");
+        labelID.setText("0");
         txtNome.setText("");
         txtDescricao.setText("");
         LabelNomeAutor.setText("");
+        btnDeletar.setEnabled(false);
+        btnAddRequisito.setEnabled(false);
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelAuthor;
     private javax.swing.JLabel LabelNomeAutor;
+    private javax.swing.JButton btnAddRequisito;
+    private javax.swing.JButton btnAddRequisito1;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnDeletar;
     private javax.swing.JLabel jLabel1;
