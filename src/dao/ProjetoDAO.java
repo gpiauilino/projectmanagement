@@ -28,7 +28,7 @@ public class ProjetoDAO {
                 stmt.execute();
 
             } else {
-                sql = "UPDATE projeto SET nome = ?, descricao = ?, usuario_id WHERE projeto.id = ?";
+                sql = "UPDATE projeto SET nome = ?, descricao = ?, usuario_id = ? WHERE projeto.id = ?";
 
                 PreparedStatement stmt = connection.prepareStatement(sql);
                 stmt.setString(1, objProjeto.getNome());
