@@ -163,6 +163,11 @@ public final class UsuarioGUI extends javax.swing.JFrame {
         labelDtMod = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("Usuários");
@@ -461,6 +466,12 @@ public final class UsuarioGUI extends javax.swing.JFrame {
         new UsuarioInserirGUI().setVisible(true);
 
     }//GEN-LAST:event_tbnSalvar1ActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+
+        carregarTable(null);
+        
+    }//GEN-LAST:event_formComponentShown
 
     public void limparTela() {
         labelID.setText("ID 99999");
