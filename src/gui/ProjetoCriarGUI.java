@@ -12,15 +12,14 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
         //Centralizando a janela
         this.setLocationRelativeTo(null);
 
-        btRequisitos.setVisible(false)
-                ;
+        btRequisitos.setVisible(false);
         // Impede que a janela seja redimencionada 
         // this.setResizable(false);
 
         // Trocando cursor para HAND CURSOR(Maozinha)
         // jButtonRefresh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
     }
-    
+
     public ProjetoCriarGUI(Object[] obj_projeto) {
         initComponents();
 
@@ -31,12 +30,13 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
         // criado em ProjetoDAO.listartodos
         // tipo isso mais ou menos
         //txtDATAcriacao.set(obj_projeto[2].toString());
-        
+
         // alterar os textos para parecer q a tela agora eh de Editar e nao criar projeto
         tbnSalvar.setText("Alterar");
         jLabel1.setText("Editar Projeto");
         btRequisitos.setVisible(true);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,6 +58,7 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
         btRequisitos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Adicionar/Alterar Projeto");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("+ Novo Projeto");
@@ -163,7 +164,7 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
         } else {
             // instanciando a classe ProjetoDAO do pacote dao e criando seu objeto dao
             Utilitarios.projDAO.salvar(objProjeto);
-            JOptionPane.showMessageDialog(null, "Projeto " + txtNome.getText() + " inserido com sucesso! ");
+            JOptionPane.showMessageDialog(null, "Projeto '" + txtNome.getText() + "' inserido com sucesso! ");
         }
 
         // apaga os dados preenchidos nos campos de texto
@@ -175,8 +176,8 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tbnLimparActionPerformed
 
     private void btRequisitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRequisitosActionPerformed
-               
-        new RequisitoGUI(Long.parseLong(labelID.getText())).setVisible(true);
+
+        new RequisitoGUI(Long.parseLong(labelID.getText()), txtNome.getText()).setVisible(true);
 
     }//GEN-LAST:event_btRequisitosActionPerformed
 
@@ -185,10 +186,10 @@ public class ProjetoCriarGUI extends javax.swing.JFrame {
         tfDescricao.setText("");
         labelID.setText("0");
         tbnSalvar.setText("Salvar");
-        
+
         btRequisitos.setVisible(false);
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btRequisitos;

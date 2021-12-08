@@ -48,9 +48,10 @@ public final class UsuarioInserirGUI extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Adicionar/Alterar Usuário");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setText("OInserir de Usuários");
+        jLabel1.setText("Add novo usuário");
 
         jLabel2.setText("Nome");
 
@@ -109,13 +110,13 @@ public final class UsuarioInserirGUI extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .add(21, 21, 21)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabel1)
+                    .add(jLabel2)
+                    .add(jLabel3)
                     .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel6)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel1))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(jLabel9)
-                        .add(491, 491, 491))
+                        .add(tbnSalvar)
+                        .add(18, 18, 18)
+                        .add(btnDeletar))
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
@@ -127,24 +128,19 @@ public final class UsuarioInserirGUI extends javax.swing.JFrame {
                                     .add(txtTelefone, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 167, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                     .add(jLabel5)
                                     .add(txtEmail, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 255, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(jLabel4))
-                                .add(39, 39, 39)
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 150, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(jLabel7)
-                                    .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 150, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(jLabel8)))
-                            .add(layout.createSequentialGroup()
-                                .add(txtID, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(349, 349, 349)
-                                .add(cbNivel, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .add(jLabel2)
-                            .add(jLabel3)
-                            .add(layout.createSequentialGroup()
-                                .add(tbnSalvar)
-                                .add(94, 94, 94)
-                                .add(btnDeletar)))
-                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .add(jLabel4)))
+                            .add(txtID, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jLabel6))
+                        .add(39, 39, 39)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jLabel9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 64, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                                .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .add(jLabel7)
+                                .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                .add(jLabel8)
+                                .add(cbNivel, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -247,7 +243,7 @@ public final class UsuarioInserirGUI extends javax.swing.JFrame {
             Utilitarios.usuDAO.salvar(objUsuario);
             
             //Msg de adição do usuário ao banco.
-            JOptionPane.showMessageDialog(this, "Usuário " + txtNome.getText() + " " + palavra_msg + " com sucesso! ");
+            JOptionPane.showMessageDialog(this, "Usuário '" + txtNome.getText() + " " + palavra_msg + "' com sucesso! ");
         } else {
             JOptionPane.showMessageDialog(this, msg);
         }
@@ -261,7 +257,7 @@ public final class UsuarioInserirGUI extends javax.swing.JFrame {
 
         
         if ((txtID.getText().isEmpty())) {
-            JOptionPane.showMessageDialog(null, "Selecione um Usuario antes de deletar");
+            JOptionPane.showMessageDialog(null, "Selecione um Usuário antes de deletar");
         } else {
             if (("1".equals(txtID.getText()))) {
                 JOptionPane.showMessageDialog(null, "Proibido apagar ADMIN");
@@ -271,9 +267,9 @@ public final class UsuarioInserirGUI extends javax.swing.JFrame {
 
                 // instanciando a classe UsuarioDAO do pacote dao e criando seu objeto dao
                 if (Utilitarios.usuDAO.deletar(objUsuario)) {
-                    JOptionPane.showMessageDialog(null, "Usurio Removido com Sucesso! ");
+                    JOptionPane.showMessageDialog(null, "Usuário Removido com Sucesso! ");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Falha ao remover usuario ");
+                    JOptionPane.showMessageDialog(null, "Falha ao remover usuário ");
                 }
             }
         }

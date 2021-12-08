@@ -102,6 +102,7 @@ public final class ProjetoGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Lista de Projetos");
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
@@ -309,7 +310,7 @@ public final class ProjetoGUI extends javax.swing.JFrame {
             Utilitarios.projDAO.deletar(objProjeto);
 
             //TODO, podia testar se realemnte deletou de alguma maneira verificando o retorno do ResultSet
-            JOptionPane.showMessageDialog(null, "Projeto removido com Sucesso! (talvez)");
+            JOptionPane.showMessageDialog(null, "Projeto removido com Sucesso!");
         }
 
         carregarTable(null);
@@ -344,8 +345,8 @@ public final class ProjetoGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentShown
 
     private void btnAddRequisito1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRequisito1ActionPerformed
-               
-        new RequisitoGUI(Long.parseLong(labelID.getText())).setVisible(true);
+
+        new RequisitoGUI(Long.parseLong(labelID.getText()), txtNome.getText()).setVisible(true);
 
     }//GEN-LAST:event_btnAddRequisito1ActionPerformed
 

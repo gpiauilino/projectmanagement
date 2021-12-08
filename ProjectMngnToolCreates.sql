@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS projeto (
     data_criacao datetime DEFAULT CURRENT_TIMESTAMP, # dizem q eh assim agora no mysql 8: https://stackoverflow.com/a/60247492
     data_modificacao datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    FOREIGN KEY (usuario_id) REFERENCES usuario(id)
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON DELETE CASCADE
 );
 ##### TABELA DE REQUISITOS ######
 CREATE TABLE IF NOT EXISTS requisito (
@@ -44,8 +44,8 @@ CREATE TABLE IF NOT EXISTS requisito (
     usuario_id BIGINT(10),
     projeto_id BIGINT(10),
     PRIMARY KEY (id), 
-    FOREIGN KEY (projeto_id) REFERENCES projeto(id),
-    FOREIGN KEY (usuario_id) REFERENCES usuario(id)
+    FOREIGN KEY (projeto_id) REFERENCES projeto(id) ON DELETE CASCADE,
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON DELETE CASCADE
 );
 
 ### sobre str to date no mysql

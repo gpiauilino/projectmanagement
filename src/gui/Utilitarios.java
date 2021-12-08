@@ -87,7 +87,7 @@ public class Utilitarios {
                     + "    data_criacao datetime DEFAULT CURRENT_TIMESTAMP,"
                     + "    data_modificacao datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,"
                     + "    PRIMARY KEY (id),"
-                    + "    FOREIGN KEY (usuario_id) REFERENCES usuario(id)"
+                    + "    FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON DELETE CASCADE"
                     + ");");
 
             // Tabela de requisitos
@@ -108,8 +108,8 @@ public class Utilitarios {
                     + "    usuario_id BIGINT(10),"
                     + "    projeto_id BIGINT(10),"
                     + "    PRIMARY KEY (id), "
-                    + "    FOREIGN KEY (projeto_id) REFERENCES projeto(id),"
-                    + "    FOREIGN KEY (usuario_id) REFERENCES usuario(id)"
+                    + "    FOREIGN KEY (projeto_id) REFERENCES projeto(id) ON DELETE CASCADE,"
+                    + "    FOREIGN KEY (usuario_id) REFERENCES usuario(id) ON DELETE CASCADE"
                     + ");");
 
             // Aqui estou definindo login de admin na criação do database

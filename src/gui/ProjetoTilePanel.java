@@ -42,10 +42,13 @@ public class ProjetoTilePanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         labelDescricao = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        labelNomeProjeto.setForeground(new java.awt.Color(0, 0, 255));
         labelNomeProjeto.setText("NOME DE PROJETO]");
 
+        jButton1.setBackground(new java.awt.Color(204, 204, 204));
         jButton1.setText("Editar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,6 +58,7 @@ public class ProjetoTilePanel extends javax.swing.JPanel {
 
         jLabel1.setText("Descricao");
 
+        labelDescricao.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
         labelDescricao.setText("Descricao");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -63,15 +67,16 @@ public class ProjetoTilePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(labelNomeProjeto)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelDescricao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelNomeProjeto)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelDescricao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

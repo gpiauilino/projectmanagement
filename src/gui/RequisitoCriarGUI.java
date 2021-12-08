@@ -92,7 +92,7 @@ public class RequisitoCriarGUI extends javax.swing.JFrame {
         boxFase = new javax.swing.JComboBox<>();
         LabelCriadoEm = new javax.swing.JLabel();
         LabelUltimaMod = new javax.swing.JLabel();
-        LabelNomeAutor = new javax.swing.JLabel();
+        lbAutor = new javax.swing.JLabel();
         LabelDataCriacao = new javax.swing.JLabel();
         LabelDataUltimaMod = new javax.swing.JLabel();
         ButtonDeletarRequisito = new javax.swing.JButton();
@@ -106,6 +106,7 @@ public class RequisitoCriarGUI extends javax.swing.JFrame {
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Adicionar/Alterar Requisito");
         setPreferredSize(new java.awt.Dimension(880, 580));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -218,10 +219,10 @@ public class RequisitoCriarGUI extends javax.swing.JFrame {
         LabelUltimaMod.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         LabelUltimaMod.setText("Última Modificação");
 
-        LabelNomeAutor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        LabelNomeAutor.setForeground(new java.awt.Color(102, 102, 255));
-        LabelNomeAutor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        LabelNomeAutor.setText("Gabriel Almeida");
+        lbAutor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbAutor.setForeground(new java.awt.Color(102, 102, 255));
+        lbAutor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lbAutor.setText("Gabriel Almeida");
 
         LabelDataCriacao.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         LabelDataCriacao.setForeground(new java.awt.Color(102, 102, 255));
@@ -302,7 +303,7 @@ public class RequisitoCriarGUI extends javax.swing.JFrame {
                                     .addComponent(jLabel8)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel16))
-                                .addGap(63, 63, 63)
+                                .addGap(30, 30, 30)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(boxComplexidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtEsforco, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -323,7 +324,7 @@ public class RequisitoCriarGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LabelAuthor)
-                    .addComponent(LabelNomeAutor))
+                    .addComponent(lbAutor))
                 .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LabelCriadoEm)
@@ -354,7 +355,7 @@ public class RequisitoCriarGUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(LabelAuthor)
                                 .addGap(18, 18, 18)
-                                .addComponent(LabelNomeAutor))
+                                .addComponent(lbAutor))
                             .addComponent(LabelUltimaMod)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(LabelCriadoEm)
@@ -527,7 +528,6 @@ public class RequisitoCriarGUI extends javax.swing.JFrame {
     private javax.swing.JLabel LabelCriadoEm;
     private javax.swing.JLabel LabelDataCriacao;
     private javax.swing.JLabel LabelDataUltimaMod;
-    private javax.swing.JLabel LabelNomeAutor;
     private javax.swing.JLabel LabelUltimaMod;
     private javax.swing.JComboBox<String> boxComplexidade;
     private javax.swing.JComboBox<String> boxEstado;
@@ -552,6 +552,7 @@ public class RequisitoCriarGUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel labelIDProjeto;
+    private javax.swing.JLabel lbAutor;
     private javax.swing.JTextArea tfDescricaoRequisito;
     private javax.swing.JTextArea tfFuncionalidades;
     private javax.swing.JTextField txtEsforco;

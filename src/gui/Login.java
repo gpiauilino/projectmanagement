@@ -160,16 +160,16 @@ public class Login extends javax.swing.JDialog {
         usu = tfLogin.getText();
         pw = new String(tfSenha.getPassword());
         if (usu.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "usuario nao pode ser em bracno");
+            JOptionPane.showMessageDialog(this, "Usuário não pode ser em branco");
             tfLogin.requestFocus();
         } else {
             if (pw.isEmpty()) {
-                JOptionPane.showMessageDialog(tfSenha, "senha nao pode ser em bracno");
+                JOptionPane.showMessageDialog(tfSenha, "senha não pode ser em branco");
                 tfSenha.requestFocus();
             } else {
                 long retornoIdLogado = Utilitarios.usuDAO.testarLogin(usu, pw);
                 if (retornoIdLogado == 0) {
-                    JOptionPane.showMessageDialog(tfSenha, "login invalido");
+                    JOptionPane.showMessageDialog(tfSenha, "Login inválido");
                 } else {
                     Utilitarios.usuarioId = retornoIdLogado;
                     this.dispose();
