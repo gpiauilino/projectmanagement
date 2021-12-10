@@ -147,4 +147,10 @@ public class Utilitarios {
         // https://stackoverflow.com/a/25537303
         // armazena em HOME/.java/.userPrefs
     }
+    
+    public static String removeLastChar(String s) {
+    return (s == null || s.length() == 0)
+      ? null 
+      : (s.substring(0, s.length() - 1));
+}
 }

@@ -107,7 +107,7 @@ public class ProjetoDAO {
             try (PreparedStatement ps = connection.prepareStatement(
                     "select p.id, p.nome, p.descricao, p.data_criacao, p.data_modificacao, p.usuario_id, u.nome as nomeUsu"
                     + " FROM usuario u "
-                    + " JOIN projeto p ON u.id = p.id")) {
+                    + " JOIN projeto p ON p.usuario_id = u.id")) {
                 rs = ps.executeQuery();
                 while (rs.next()) {
 

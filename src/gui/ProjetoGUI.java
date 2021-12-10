@@ -1,9 +1,12 @@
 package gui;
 
+import java.io.File;
 import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import modelo.ModelTable;
 import modelo.ProjetoModel;
+import report.ReportControl;
 
 public final class ProjetoGUI extends javax.swing.JFrame {
 
@@ -45,16 +48,16 @@ public final class ProjetoGUI extends javax.swing.JFrame {
 
         // defini a jtable com esse modelo jah preenchido com lista de projetos 
         // e colunas na mesma sequencia que a lista
-        tbListagemProjeto.setModel(modelo);
+        tbLista.setModel(modelo);
 
         // para ajustar os tamanhos de largura das colunas
-        tbListagemProjeto.getColumnModel().getColumn(0).setPreferredWidth(80);
-        tbListagemProjeto.getColumnModel().getColumn(0).setResizable(false);
-        tbListagemProjeto.getColumnModel().getColumn(1).setPreferredWidth(120);
-        tbListagemProjeto.getColumnModel().getColumn(1).setResizable(false);
-        tbListagemProjeto.getColumnModel().getColumn(2).setPreferredWidth(250);
-        tbListagemProjeto.getColumnModel().getColumn(2).setResizable(false);
-        tbListagemProjeto.getTableHeader().setReorderingAllowed(false);
+        tbLista.getColumnModel().getColumn(0).setPreferredWidth(80);
+        tbLista.getColumnModel().getColumn(0).setResizable(false);
+        tbLista.getColumnModel().getColumn(1).setPreferredWidth(120);
+        tbLista.getColumnModel().getColumn(1).setResizable(false);
+        tbLista.getColumnModel().getColumn(2).setPreferredWidth(250);
+        tbLista.getColumnModel().getColumn(2).setResizable(false);
+        tbLista.getTableHeader().setReorderingAllowed(false);
         //  tbListagemProjeto.setAutoResizeMode(tbListagemProjeto.AUTO_RESIZE_ALL_COLUMNS);
         // tbListagemProjeto.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
@@ -64,12 +67,12 @@ public final class ProjetoGUI extends javax.swing.JFrame {
     public void linhaTableSelecionado() {
 
         //TODO tinha q ver uma maneira de pegar esses valores
-        labelID.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 0).toString());
+        labelID.setText(tbLista.getValueAt(tbLista.getSelectedRow(), 0).toString());
 
         //Object objNome = tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 1);
-        txtNome.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 1).toString());
-        txtDescricao.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 2).toString());
-        LabelNomeAutor.setText(tbListagemProjeto.getValueAt(tbListagemProjeto.getSelectedRow(), 6).toString());
+        txtNome.setText(tbLista.getValueAt(tbLista.getSelectedRow(), 1).toString());
+        txtDescricao.setText(tbLista.getValueAt(tbLista.getSelectedRow(), 2).toString());
+        LabelNomeAutor.setText(tbLista.getValueAt(tbLista.getSelectedRow(), 6).toString());
 
         btnDeletar.setEnabled(true);
         btnAddRequisito1.setEnabled(true);
@@ -88,7 +91,7 @@ public final class ProjetoGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         tbnLimpar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbListagemProjeto = new javax.swing.JTable();
+        tbLista = new javax.swing.JTable();
         labelID = new javax.swing.JLabel();
         btnDeletar = new javax.swing.JButton();
         LabelAuthor = new javax.swing.JLabel();
@@ -100,6 +103,7 @@ public final class ProjetoGUI extends javax.swing.JFrame {
         txtDescricao = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        btRelatorio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lista de Projetos");
@@ -119,7 +123,7 @@ public final class ProjetoGUI extends javax.swing.JFrame {
             }
         });
 
-        tbListagemProjeto.setModel(new javax.swing.table.DefaultTableModel(
+        tbLista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -145,12 +149,12 @@ public final class ProjetoGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tbListagemProjeto.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbLista.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbListagemProjetoMouseClicked(evt);
+                tbListaMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tbListagemProjeto);
+        jScrollPane1.setViewportView(tbLista);
 
         labelID.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         labelID.setText("ID 9999");
@@ -224,6 +228,13 @@ public final class ProjetoGUI extends javax.swing.JFrame {
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btRelatorio.setText("Relatório");
+        btRelatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRelatorioActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -240,7 +251,9 @@ public final class ProjetoGUI extends javax.swing.JFrame {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(labelID))
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .add(btRelatorio)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(btnDeletar)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(btnAddRequisito1))
@@ -274,7 +287,8 @@ public final class ProjetoGUI extends javax.swing.JFrame {
                 .add(92, 92, 92)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(btnAddRequisito1)
-                    .add(btnDeletar))
+                    .add(btnDeletar)
+                    .add(btRelatorio))
                 .add(18, 18, 18)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                 .addContainerGap())
@@ -292,11 +306,11 @@ public final class ProjetoGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tbnLimparActionPerformed
 
-    private void tbListagemProjetoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListagemProjetoMouseClicked
+    private void tbListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbListaMouseClicked
 
         linhaTableSelecionado();
 
-    }//GEN-LAST:event_tbListagemProjetoMouseClicked
+    }//GEN-LAST:event_tbListaMouseClicked
 
     private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
 
@@ -350,6 +364,35 @@ public final class ProjetoGUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAddRequisito1ActionPerformed
 
+    private void btRelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRelatorioActionPerformed
+
+        /// cria um novo FileChooser
+        JFileChooser fileChooser = new JFileChooser();
+
+        // seta diretorio para o Home
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+
+        // mostra a Janela de pergunta para escolher o arquivo
+        int result = fileChooser.showSaveDialog(this);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            String arquivoPathCompleto = selectedFile.getAbsolutePath();
+            System.out.println("Selecionou arquivo: " + arquivoPathCompleto);
+
+            boolean retExportacao = ReportControl.exportarParaCsv(tbLista, arquivoPathCompleto, ',');
+            String msg;
+            if (retExportacao) {
+                msg = "Exportação conclida com sucedocs";
+            } else {
+                msg = "Erro na exporfawfec ";
+            }
+            JOptionPane.showMessageDialog(this, msg);
+        }
+
+
+    }//GEN-LAST:event_btRelatorioActionPerformed
+
     public void limparTela() {
         labelID.setText("0");
         txtNome.setText("");
@@ -363,6 +406,7 @@ public final class ProjetoGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelAuthor;
     private javax.swing.JLabel LabelNomeAutor;
+    private javax.swing.JButton btRelatorio;
     private javax.swing.JButton btnAddRequisito1;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnDeletar;
@@ -372,7 +416,7 @@ public final class ProjetoGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelID;
-    private javax.swing.JTable tbListagemProjeto;
+    private javax.swing.JTable tbLista;
     private javax.swing.JButton tbnLimpar;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtNome;
